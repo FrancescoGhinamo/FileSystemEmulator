@@ -46,7 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileSystemEmulator\Backend\Data\File\File.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFileList\FileList.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFileSystem\FileSystem.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFiles\Extensions\Directory.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFiles\File.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Exceptions\IllegalParameterException.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Utilities\Exceptions\NoSuchElementException.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Utilities\StringTokenizer.cs" />
     <Compile Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemEmulatorGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,5 +86,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
