@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSystemEmulator
+namespace FileSystemEmulator.Launcher
 {
-    static class Program
+    static class FileSystemEmulatorLauncher
     {
         /// <summary>
         /// The main entry point for the application.
@@ -16,7 +16,7 @@ namespace FileSystemEmulator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FileSystemEmulatorGUI());
         }
     }
 }

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace FileSystemEmulator
 {
-    public partial class Form1 : Form
+    public partial class FileSystemEmulatorGUI : Form
     {
-        public Form1()
+        public FileSystemEmulatorGUI()
         {
             InitializeComponent();
+        }
+
+        private void FileSystemEmulatorGUI_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
