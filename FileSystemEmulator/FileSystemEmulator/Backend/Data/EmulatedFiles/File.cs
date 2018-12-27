@@ -42,12 +42,11 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// </summary>
         /// <param name="path">Location in the file system</param>
         /// <param name="isDir">True if the file is a directory</param>
-        /// <param name="name">Name assigned to the file</param>
-        public File(string path, bool isDir, string name)
+        public File(string path, bool isDir)
         {
             this.Path = path;
             this.Directory = isDir;
-            this.Name = name;
+            this.Name = Path.Substring(Path.LastIndexOf('\\') + 1);
             this.SubFiles = new FileList();
 
         }

@@ -45,8 +45,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// Default constructor, the root dir is C:
         /// </summary>
         public FileSystem()
-        {
-            Root = new Directory("C:", "C");
+        { 
+            Root = new Directory("C:");
         }
         #endregion Constructor
 
@@ -73,7 +73,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         private void Add(File f, File sRoot, StringTokenizer sT)
         {
             string token = sT.NextToken();
-            if (token.EndsWith(".*"))
+            if (token.Equals(f.Name))
             {
                 sRoot.SubFiles.Add(f);
             }
@@ -82,7 +82,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 int subDir;
                 if((subDir = sRoot.SubFiles.IndexOfFileName(token)) == -1)
                 {
-                    sRoot.SubFiles.Add(new Directory(CurrentLocation + DIR_SEPARATOR + token, token));
+                    sRoot.SubFiles.Add(new Directory(CurrentLocation + DIR_SEPARATOR + token));
                 }
                 CurrentLocation = CurrentLocation + DIR_SEPARATOR + token;
                 Add(f, sRoot.SubFiles.ElementAt(sRoot.SubFiles.IndexOfFileName(token)), sT);

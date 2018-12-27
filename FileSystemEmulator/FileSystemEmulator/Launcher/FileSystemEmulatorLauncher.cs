@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +19,8 @@ namespace FileSystemEmulator.Launcher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FileSystemEmulatorGUI());
+
+            
         }
     }
 }

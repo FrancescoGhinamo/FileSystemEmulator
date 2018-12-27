@@ -48,7 +48,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList
             {
                 if (this.ElementAt(_i).Name.Equals(name))
                 {
-                    index = -1;
+                    index = _i;
                     break;
                 }
             }

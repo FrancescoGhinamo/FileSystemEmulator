@@ -17,8 +17,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
         /// Basic constructor to define a general directory
         /// </summary>
         /// <param name="path">Location in the file system</param>
-        /// <param name="name">Name of the directory</param>
-        public Directory(string path, string name) : base(path, true, name)
+        public Directory(string path) : base(path, true)
         {
 
         }
