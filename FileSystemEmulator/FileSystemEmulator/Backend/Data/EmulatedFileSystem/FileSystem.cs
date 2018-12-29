@@ -11,9 +11,25 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 {
     /// <summary>
     /// File system emulation, with methods to access the file system
+    /// Singleton class, 
     /// </summary>
     public class FileSystem
     {
+
+        #region Singleton
+        private static FileSystem SingletonFileSystem;
+
+        public static FileSystem GetInstance()
+        {
+            if(SingletonFileSystem == null)
+            {
+                SingletonFileSystem = new FileSystem();
+            }
+            return SingletonFileSystem;
+        }
+
+        #endregion Singleton
+
 
         #region Constants
         /// <summary>
@@ -44,7 +60,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <summary>
         /// Default constructor, the root dir is C:
         /// </summary>
-        public FileSystem()
+        private FileSystem()
         { 
             Root = new Directory("C:");
         }
@@ -90,5 +106,19 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 
         }
         #endregion AddingFileMethods
+
+
+        #region RetrievingFileMethods
+
+        /// <summary>
+        /// Retrieves a file saved in the file system
+        /// </summary>
+        /// <param name="path">Path to look for</param>
+        /// <returns>File indentified by the path</returns>
+        public File getFile(string path)
+        {
+            throw new Exception();
+        }
+        #endregion RetrievingFileMethods
     }
 }
