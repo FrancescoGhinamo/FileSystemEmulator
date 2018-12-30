@@ -11,7 +11,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 {
     /// <summary>
     /// File system emulation, with methods to access the file system
-    /// Singleton class, 
+    /// Singleton class, only the same instance of this object can be used in the program
     /// </summary>
     public class FileSystem
     {
