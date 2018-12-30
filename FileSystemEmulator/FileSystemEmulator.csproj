@@ -50,6 +50,7 @@
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFileSystem\FileSystem.cs" />
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFiles\Extensions\Directory.cs" />
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFiles\File.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Exceptions\FileNotFoundException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Exceptions\IllegalParameterException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\Exceptions\NoSuchElementException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\StringTokenizer.cs" />

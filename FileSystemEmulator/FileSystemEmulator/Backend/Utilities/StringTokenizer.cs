@@ -72,5 +72,25 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Utilities
             
         }
         #endregion ProvidingMethods
+
+
+        #region StateMethods
+
+        /// <summary>
+        /// Tells if the tokenizer has other tokens
+        /// </summary>
+        /// <returns>True if other tokens are available</returns>
+        public bool HasMoreTokens()
+        {
+            if(Index >= Tokens.Length)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        #endregion StateMethods
     }
 }
