@@ -23,7 +23,10 @@ namespace FileSystemEmulator.Launcher
             //remove this: written for tests
             FileSystem fs = FileSystem.GetInstance();
             fs.Add(new Directory("C:\\Users\\Francesco"));
-            File f = fs.GetFile("C:\\Users\\Francesco");
+            fs.Add(new Directory("C:\\System"));
+            File f = fs.GetFile("C:\\Users");
+            fs.MoveFile("C:\\Users", "C:\\System\\Copy\\Users");
+            fs.RenameFile("C:\\System\\Copy", "Test");
 
 
             Application.Run(new FileSystemEmulatorGUI());

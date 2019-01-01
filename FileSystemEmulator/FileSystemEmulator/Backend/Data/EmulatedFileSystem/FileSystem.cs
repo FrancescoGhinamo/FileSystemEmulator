@@ -140,19 +140,27 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <exception cref="FileNotFoundException">The specified file path points to a file that doesn't exist</exception>
         public File GetFile(string path)
         {
-            StringTokenizer sT = new StringTokenizer(path, DIR_SEPARATOR);
-            //exclude the first token (C:)
-            sT.NextToken();
-            //I begin from dir C:
-            CurrentLocation = "C:";
-            try
+            if(path.Equals("C:"))
             {
-                return GetFile(Root, sT);
+                return Root;
             }
-            catch(FileNotFoundException e)
+            else
             {
-                throw e;
+                StringTokenizer sT = new StringTokenizer(path, DIR_SEPARATOR);
+                //exclude the first token (C:)
+                sT.NextToken();
+                //I begin from dir C:
+                CurrentLocation = "C:";
+                try
+                {
+                    return GetFile(Root, sT);
+                }
+                catch (FileNotFoundException e)
+                {
+                    throw e;
+                }
             }
+            
            
         }
 
@@ -206,7 +214,11 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             File _deleted = null;
             try
             {
+                //getting the file, I update the location to the parent folder
                 _deleted = GetFile(path);
+                File parent = GetFile(CurrentLocation);
+                //remove the file from the sub files of this parent
+                parent.SubFiles.Remove(_deleted);
             }
             catch (FileNotFoundException e)
             {
@@ -215,6 +227,76 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             }
 
             return _deleted;
+        }
+
+
+
+        /// <summary>
+        /// Copies a file to another location in the file system
+        /// </summary>
+        /// <param name="sourcePath">Source file</param>
+        /// <param name="destinationPath">Destination location, must contain the file name in the destination</param>
+        /// <exception cref="FileNotFoundException">The specified source file doesn't exist</exception>
+        public void CopyFile(string sourcePath, string destinationPath)
+        {
+            try
+            {
+                File _source = GetFile(sourcePath);
+                //update of file path and name
+                _source.Path = destinationPath;
+                _source.Name = destinationPath.Substring(destinationPath.LastIndexOf("\\") + 1);
+                this.Add(_source);
+            }
+            catch(FileNotFoundException e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Moves a file from a location to another
+        /// </summary>
+        /// <param name="sourcePath">Source file</param>
+        /// <param name="destinationPath">Destination location, must contain the file name in the destination</param>
+        /// <exception cref="FileNotFoundException">The specified source file doesn't exist</exception>
+        public void MoveFile(string sourcePath, string destinationPath)
+        {
+            try
+            {
+                File _source = DeleteFile(sourcePath);
+                //update of file path and name
+                _source.Path = destinationPath;
+                _source.Name = destinationPath.Substring(destinationPath.LastIndexOf("\\") + 1);
+                this.Add(_source);
+            }
+            catch(FileNotFoundException e)
+            {
+                throw e;
+            }
+
+        }
+
+        /// <summary>
+        /// Renames the specified file
+        /// </summary>
+        /// <param name="file">Chosen file</param>
+        /// <param name="newName">New name to assign to the file</param>
+        /// <exception cref="FileNotFoundException">The specified source file doesn't exist</exception>
+        public void RenameFile(string file, string newName)
+        {
+            try
+            {
+                File _f = DeleteFile(file);
+                _f.Name = newName;
+                string _path = _f.Path;
+                _path = _path.Substring(0, _path.LastIndexOf("\\") + 1) + newName;
+                _f.Path = _path;
+                Add(_f);
+            }
+            catch(FileNotFoundException e)
+            {
+                throw e;
+            }
         }
         #endregion ManagingFilesMethods
     }

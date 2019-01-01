@@ -21,12 +21,12 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// <summary>
         /// Path of the file: location in the file system
         /// </summary>
-        public string Path { get; }
+        public string Path { get; set; }
 
         /// <summary>
         /// Name assigned to the file, should be the same written at the end of the path
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// List of the sub files related to this file
