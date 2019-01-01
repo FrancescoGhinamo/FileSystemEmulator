@@ -22,7 +22,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList
         /// <exception cref="IllegalParameterException">The passed argument is not valid (null)</exception>
         public new void Add(File item)
         {
-            if(item != null)
+            if (item != null)
             {
                 base.Add(item);
             }

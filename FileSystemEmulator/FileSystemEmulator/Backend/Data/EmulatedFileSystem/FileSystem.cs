@@ -22,7 +22,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 
         public static FileSystem GetInstance()
         {
-            if(SingletonFileSystem == null)
+            if (SingletonFileSystem == null)
             {
                 //if this objecy hasn't been instances yet, I instance it here
                 SingletonFileSystem = new FileSystem();
@@ -105,7 +105,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 {
                     rRoot.SubFiles.Add(f);
                 }
-                catch(IllegalParameterException e)
+                catch (IllegalParameterException e)
                 {
                     throw e;
                 }
@@ -114,7 +114,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             else
             {
                 int subDir;
-                if((subDir = rRoot.SubFiles.IndexOfFileName(token)) == -1)
+                if ((subDir = rRoot.SubFiles.IndexOfFileName(token)) == -1)
                 {
                     //if the nestled dir doesn't exist, I creae it
                     rRoot.SubFiles.Add(new Directory(CurrentLocation + DIR_SEPARATOR + token));
@@ -140,7 +140,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <exception cref="FileNotFoundException">The specified file path points to a file that doesn't exist</exception>
         public File GetFile(string path)
         {
-            if(path.Equals("C:"))
+            if (path.Equals("C:"))
             {
                 return Root;
             }
@@ -177,10 +177,10 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         {
             string token = sT.NextToken();
             int subIndex = 0;
-            if((subIndex = rRoot.SubFiles.IndexOfFileName(token)) != -1)
+            if ((subIndex = rRoot.SubFiles.IndexOfFileName(token)) != -1)
             {
                 //if the sub file exists
-                if(!sT.HasMoreTokens())
+                if (!sT.HasMoreTokens())
                 {
                     //if I reaced the last file name
                     return rRoot.SubFiles.ElementAt(subIndex);

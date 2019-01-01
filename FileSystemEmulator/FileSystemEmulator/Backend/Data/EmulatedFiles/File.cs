@@ -42,7 +42,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// </summary>
         /// <param name="path">Location in the file system</param>
         /// <param name="isDir">True if the file is a directory</param>
-        public File(string path, bool isDir)
+        public File (string path, bool isDir)
         {
             this.Path = path;
             this.Directory = isDir;
