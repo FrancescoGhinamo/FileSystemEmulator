@@ -93,6 +93,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <param name="f">File to add</param>
         /// <param name="rRoot">Relative root</param>
         /// <param name="sT">Segments of the path</param>
+        /// <exception cref="IllegalParameterException">The file the method is attempting to add is not valid</exception>
         private void Add(File f, File rRoot, StringTokenizer sT)
         {
             //tokens and position in the file system proceed the same way
@@ -136,6 +137,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// </summary>
         /// <param name="path">Path to look for</param>
         /// <returns>File indentified by the path</returns>
+        /// <exception cref="FileNotFoundException">The specified file path points to a file that doesn't exist</exception>
         public File GetFile(string path)
         {
             StringTokenizer sT = new StringTokenizer(path, DIR_SEPARATOR);
@@ -161,7 +163,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// </summary>
         /// <param name="rRoot">Relative root</param>
         /// <param name="sT">Segments of the path</param>
-        /// <returns></returns>
+        /// <returns>Requested file</returns>
+        /// <exception cref="FileNotFoundException">The specified file path points to a file that doesn't exist</exception>
         private File GetFile(File rRoot, StringTokenizer sT)
         {
             string token = sT.NextToken();
@@ -178,7 +181,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 {
                     //I explore the next subfolder
                     //update the current location
-                    CurrentLocation += token;
+                    CurrentLocation = CurrentLocation + DIR_SEPARATOR + token;
                     return GetFile(rRoot.SubFiles.ElementAt(subIndex), sT);
                 }
             }
@@ -189,5 +192,30 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             
         }
         #endregion RetrievingFileMethods
+
+        #region ManagingFilesMethods
+
+        /// <summary>
+        /// Deletes and returns the file specified in the given path
+        /// </summary>
+        /// <param name="path">Path reference to the file</param>
+        /// <returns>Deleted file</returns>
+        /// <exception cref="FileNotFoundException">The chosen file doesn't exist</exception>
+        public File DeleteFile(string path)
+        {
+            File _deleted = null;
+            try
+            {
+                _deleted = GetFile(path);
+            }
+            catch (FileNotFoundException e)
+            {
+
+                throw e;
+            }
+
+            return _deleted;
+        }
+        #endregion ManagingFilesMethods
     }
 }

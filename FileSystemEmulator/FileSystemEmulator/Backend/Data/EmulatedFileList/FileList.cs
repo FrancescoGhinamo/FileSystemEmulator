@@ -19,6 +19,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList
         /// Adds a file to the current list
         /// </summary>
         /// <param name="item">file to add to the list</param>
+        /// <exception cref="IllegalParameterException">The passed argument is not valid (null)</exception>
         public new void Add(File item)
         {
             if(item != null)
