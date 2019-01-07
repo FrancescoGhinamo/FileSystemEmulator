@@ -230,7 +230,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         }
 
 
-
+        
         /// <summary>
         /// Copies a file to another location in the file system
         /// </summary>
@@ -243,8 +243,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             {
                 File _source = GetFile(sourcePath);
                 //update of file path and name
-                _source.Path = destinationPath;
-                _source.Name = destinationPath.Substring(destinationPath.LastIndexOf("\\") + 1);
+                _source.ParentPath = destinationPath.Substring(0, destinationPath.LastIndexOf(DIR_SEPARATOR) + 1);
+                _source.Name = destinationPath.Substring(destinationPath.LastIndexOf(DIR_SEPARATOR) + 1);
                 this.Add(_source);
             }
             catch(FileNotFoundException e)
@@ -265,8 +265,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             {
                 File _source = DeleteFile(sourcePath);
                 //update of file path and name
-                _source.Path = destinationPath;
-                _source.Name = destinationPath.Substring(destinationPath.LastIndexOf("\\") + 1);
+                _source.ParentPath = destinationPath.Substring(0, destinationPath.LastIndexOf(DIR_SEPARATOR) + 1);
+                _source.Name = destinationPath.Substring(destinationPath.LastIndexOf(DIR_SEPARATOR) + 1);
                 this.Add(_source);
             }
             catch(FileNotFoundException e)
@@ -288,9 +288,6 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             {
                 File _f = DeleteFile(file);
                 _f.Name = newName;
-                string _path = _f.Path;
-                _path = _path.Substring(0, _path.LastIndexOf("\\") + 1) + newName;
-                _f.Path = _path;
                 Add(_f);
             }
             catch(FileNotFoundException e)
@@ -298,6 +295,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 throw e;
             }
         }
+        
         #endregion ManagingFilesMethods
+
     }
 }

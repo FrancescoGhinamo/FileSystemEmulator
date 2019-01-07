@@ -1,4 +1,5 @@
 ﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,20 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// <summary>
         /// Path of the file: location in the file system
         /// </summary>
-        public string Path { get; set; }
+        public string Path {
+            get
+            {
+                return ParentPath != null ? ParentPath + FileSystem.DIR_SEPARATOR + Name : Name;
+            }
+        }
 
         /// <summary>
-        /// Name assigned to the file, should be the same written at the end of the path
+        /// Path of the parent file
+        /// </summary>
+        public string ParentPath { get; set; }
+
+        /// <summary>
+        /// Name assigned to the file, contains the extension
         /// </summary>
         public string Name { get; set; }
 
@@ -44,9 +55,20 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// <param name="isDir">True if the file is a directory</param>
         public File (string path, bool isDir)
         {
-            this.Path = path;
+            int sepI = 0;
+            if((sepI = path.LastIndexOf(FileSystem.DIR_SEPARATOR)) != -1)
+            {
+                ParentPath = path.Substring(0, path.LastIndexOf(FileSystem.DIR_SEPARATOR));
+                Name = path.Substring(path.LastIndexOf(FileSystem.DIR_SEPARATOR) + 1);
+            }
+            else
+            {
+                //it is a root...
+                ParentPath = null;
+                Name = path;
+            }
+            
             this.Directory = isDir;
-            this.Name = Path.Substring(Path.LastIndexOf('\\') + 1);
             this.SubFiles = new FileList();
 
         }
