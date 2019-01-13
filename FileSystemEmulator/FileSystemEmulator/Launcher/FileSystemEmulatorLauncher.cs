@@ -1,4 +1,5 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
+﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using System;
@@ -21,7 +22,7 @@ namespace FileSystemEmulator.Launcher
             Application.SetCompatibleTextRenderingDefault(false);
 
             //remove this: written for tests
-            /*EFileSystem fs = EFileSystem.GetInstance();
+            EFileSystem fs = EFileSystem.GetInstance();
             string path = fs.Root.Path;
             fs.Add(new EDirectory("C:\\Users\\Francesco"));
             fs.Add(new EDirectory("C:\\System"));
@@ -29,9 +30,10 @@ namespace FileSystemEmulator.Launcher
        
             fs.MoveFile("C:\\Users", "C:\\System\\Copy\\Users");
             fs.RenameFile("C:\\System\\Copy", "Test");
-            fs.SerializeFileSystem(@"C:\Users\franc\OneDrive\Desktop\Test.t");*/
+            fs.SerializeFileSystem(@"C:\Users\franc\OneDrive\Desktop\Test.t");
 
             EFileSystem ef = EFileSystem.DeserializeFileSystem(@"C:\Users\franc\OneDrive\Desktop\Test.t");
+            EFileList lst = ef.GetFileList();
 
             Application.Run(new FileSystemEmulatorGUI());
 

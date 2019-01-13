@@ -1,4 +1,5 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
+﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Utilities;
@@ -59,6 +60,11 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// </summary>
         private string CurrentLocation { get; set; }
 
+        /// <summary>
+        /// List of the used path in the file system
+        /// </summary>
+        private List<string> UsedPaths { get; set; }
+
 
         #endregion PrivateFields
 
@@ -70,6 +76,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         private EFileSystem()
         { 
             Root = new EDirectory("C:");
+            UsedPaths = new List<string>();
         }
         #endregion Constructor
 
@@ -108,6 +115,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 try
                 {
                     rRoot.SubFiles.Add(f);
+                    UsedPaths.Add(f.Path);
                 }
                 catch (IllegalParameterException e)
                 {
@@ -121,7 +129,9 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 if ((subDir = rRoot.SubFiles.IndexOfFileName(token)) == -1)
                 {
                     //if the nestled dir doesn't exist, I creae it
-                    rRoot.SubFiles.Add(new EDirectory(CurrentLocation + DIR_SEPARATOR + token));
+                    EDirectory dir = new EDirectory(CurrentLocation + DIR_SEPARATOR + token);
+                    rRoot.SubFiles.Add(dir);
+                    UsedPaths.Add(dir.Path);
                 }
                 //update the current location
                 CurrentLocation = CurrentLocation + DIR_SEPARATOR + token;
@@ -131,8 +141,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 
         }
         #endregion AddingFileMethods
-
-
+        
         #region RetrievingFileMethods
 
         /// <summary>
@@ -223,6 +232,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 EFile parent = GetFile(CurrentLocation);
                 //remove the file from the sub files of this parent
                 parent.SubFiles.Remove(_deleted);
+                UsedPaths.Remove(_deleted.Path);
             }
             catch (EFileNotFoundException e)
             {
@@ -293,7 +303,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             {
                 EFile _source = DeleteFile(sourceFile);
                 //update of file path and name
-                _source.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
+                _source.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR));
                 _source.Name = destinationFile.Substring(destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
                 this.Add(_source);
             }
@@ -414,6 +424,24 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             return ris;
         }
         #endregion Serialization
+
+
+        #region InterfaceMethods
+
+        /// <summary>
+        /// Returns a list containing all the files and directories of the EFileSystem
+        /// </summary>
+        /// <returns></returns>
+        public EFileList GetFileList()
+        {
+            EFileList ris = new EFileList();
+            foreach(string path in UsedPaths)
+            {
+                ris.Add(GetFile(path));
+            }
+            return ris;
+        }
+        #endregion InterfaceMethods
 
     }
 }
