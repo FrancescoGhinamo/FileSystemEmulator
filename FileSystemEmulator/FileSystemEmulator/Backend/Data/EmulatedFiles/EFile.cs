@@ -11,7 +11,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
     /// <summary>
     /// Abstract file writable in the emulated file system
     /// </summary>
-    public abstract class File
+    [Serializable]
+    public abstract class EFile
     {
         #region PublicFields
         /// <summary>
@@ -36,7 +37,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         public string Path {
             get
             {
-                return ParentPath != null ? ParentPath + FileSystem.DIR_SEPARATOR + Name : Name;
+                return ParentPath != null ? ParentPath + EFileSystem.DIR_SEPARATOR + Name : Name;
             }
         }
 
@@ -53,7 +54,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// <summary>
         /// List of the sub files related to this file
         /// </summary>
-        public FileList SubFiles { get; }
+        public EFileList SubFiles { get; }
 
         #endregion PublicFields
 
@@ -64,13 +65,13 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// </summary>
         /// <param name="pathAndName">Location in the file system (containing file name and extension</param>
         /// <param name="isDir">True if the file is a directory</param>
-        public File (string pathAndName, bool isDir)
+        public EFile (string pathAndName, bool isDir)
         {
             int sepI = 0;
-            if((sepI = pathAndName.LastIndexOf(FileSystem.DIR_SEPARATOR)) != -1)
+            if((sepI = pathAndName.LastIndexOf(EFileSystem.DIR_SEPARATOR)) != -1)
             {
-                ParentPath = pathAndName.Substring(0, pathAndName.LastIndexOf(FileSystem.DIR_SEPARATOR));
-                Name = pathAndName.Substring(pathAndName.LastIndexOf(FileSystem.DIR_SEPARATOR) + 1);
+                ParentPath = pathAndName.Substring(0, pathAndName.LastIndexOf(EFileSystem.DIR_SEPARATOR));
+                Name = pathAndName.Substring(pathAndName.LastIndexOf(EFileSystem.DIR_SEPARATOR) + 1);
             }
             else
             {
@@ -80,7 +81,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
             }
             
             this.Directory = isDir;
-            this.SubFiles = new FileList();
+            this.SubFiles = new EFileList();
 
         }
 
@@ -91,11 +92,11 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// <param name="parent">Parent file path (can be the path of the parent folder), null if the file is a root</param>
         /// <param name="name">File name</param>
         /// <param name="isDir">True if the file is a directory</param>
-        public File (string parent, string name, bool isDir)
+        public EFile (string parent, string name, bool isDir)
         {
             this.ParentPath = parent;
             this.Directory = isDir;
-            this.SubFiles = new FileList();
+            this.SubFiles = new EFileList();
         }
         #endregion Constructor
     }

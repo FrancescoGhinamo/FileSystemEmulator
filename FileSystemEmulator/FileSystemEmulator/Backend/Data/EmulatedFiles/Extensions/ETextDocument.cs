@@ -10,7 +10,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
     /// Extension of class File
     /// Implementation of a general text document
     /// </summary>
-    public class TextDocument : File
+    [Serializable]
+    public class ETextDocument : EFile
     {
         #region PublicFields
         /// <summary>
@@ -34,7 +35,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
         /// Creates an instance of a TextDocument
         /// </summary>
         /// <param name="path">Location of the file</param>
-        public TextDocument(string path) : base(path, false)
+        public ETextDocument(string path) : base(path, false)
         {
             Text = "";
             _buffer = "";

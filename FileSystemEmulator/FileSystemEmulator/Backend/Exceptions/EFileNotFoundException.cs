@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FileSystemEmulator.FileSystemEmulator.Backend.Exceptions
 {
-    public class FileNotFoundException : Exception
+    public class EFileNotFoundException : Exception
     {
-        public FileNotFoundException() : base("File not found")
+        public EFileNotFoundException() : base("File not found")
         {
 
         }

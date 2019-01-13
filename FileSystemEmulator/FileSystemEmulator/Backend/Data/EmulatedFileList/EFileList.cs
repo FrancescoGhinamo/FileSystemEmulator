@@ -11,7 +11,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList
     /// <summary>
     /// Dynamic list of files, extension of class List
     /// </summary>
-    public class FileList : List<File>
+    [Serializable]
+    public class EFileList : List<EFile>
     {
         #region InheritedMethods
 
@@ -20,7 +21,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList
         /// </summary>
         /// <param name="item">file to add to the list</param>
         /// <exception cref="IllegalParameterException">The passed argument is not valid (null)</exception>
-        public new void Add(File item)
+        public new void Add(EFile item)
         {
             if (item != null)
             {

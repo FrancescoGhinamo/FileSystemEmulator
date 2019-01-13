@@ -9,7 +9,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
     /// <summary>
     /// Extension of class File, this file is a standard directory
     /// </summary>
-    public class Directory : File
+    [Serializable]
+    public class EDirectory : EFile
     {
         #region Constructor
 
@@ -17,7 +18,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
         /// Basic constructor to define a general directory
         /// </summary>
         /// <param name="path">Location in the file system</param>
-        public Directory(string path) : base(path, true)
+        public EDirectory(string path) : base(path, true)
         {
 
         }
