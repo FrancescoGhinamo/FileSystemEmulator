@@ -20,6 +20,17 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         public bool Directory { get; }
 
         /// <summary>
+        /// Extension of the file
+        /// </summary>
+        public string Extension
+        {
+            get
+            {
+                return Name.Substring(Name.LastIndexOf(".") + 1);
+            }
+        }
+
+        /// <summary>
         /// Path of the file: location in the file system
         /// </summary>
         public string Path {
@@ -51,26 +62,40 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// <summary>
         /// Constructor for a file
         /// </summary>
-        /// <param name="path">Location in the file system</param>
+        /// <param name="pathAndName">Location in the file system (containing file name and extension</param>
         /// <param name="isDir">True if the file is a directory</param>
-        public File (string path, bool isDir)
+        public File (string pathAndName, bool isDir)
         {
             int sepI = 0;
-            if((sepI = path.LastIndexOf(FileSystem.DIR_SEPARATOR)) != -1)
+            if((sepI = pathAndName.LastIndexOf(FileSystem.DIR_SEPARATOR)) != -1)
             {
-                ParentPath = path.Substring(0, path.LastIndexOf(FileSystem.DIR_SEPARATOR));
-                Name = path.Substring(path.LastIndexOf(FileSystem.DIR_SEPARATOR) + 1);
+                ParentPath = pathAndName.Substring(0, pathAndName.LastIndexOf(FileSystem.DIR_SEPARATOR));
+                Name = pathAndName.Substring(pathAndName.LastIndexOf(FileSystem.DIR_SEPARATOR) + 1);
             }
             else
             {
                 //it is a root...
                 ParentPath = null;
-                Name = path;
+                Name = pathAndName;
             }
             
             this.Directory = isDir;
             this.SubFiles = new FileList();
 
+        }
+
+
+        /// <summary>
+        /// Constructorf for a File
+        /// </summary>
+        /// <param name="parent">Parent file path (can be the path of the parent folder), null if the file is a root</param>
+        /// <param name="name">File name</param>
+        /// <param name="isDir">True if the file is a directory</param>
+        public File (string parent, string name, bool isDir)
+        {
+            this.ParentPath = parent;
+            this.Directory = isDir;
+            this.SubFiles = new FileList();
         }
         #endregion Constructor
     }

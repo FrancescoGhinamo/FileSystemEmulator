@@ -234,20 +234,44 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <summary>
         /// Copies a file to another location in the file system
         /// </summary>
-        /// <param name="sourcePath">Source file</param>
-        /// <param name="destinationPath">Destination location, must contain the file name in the destination</param>
+        /// <param name="sourceFile">Source file</param>
+        /// <param name="destinationFile">Destination location, must contain the file name in the destination</param>
         /// <exception cref="FileNotFoundException">The specified source file doesn't exist</exception>
-        public void CopyFile(string sourcePath, string destinationPath)
+        public void CopyFile(string sourceFile, string destinationFile)
         {
             try
             {
-                File _source = GetFile(sourcePath);
+                File _source = GetFile(sourceFile);
                 //update of file path and name
-                _source.ParentPath = destinationPath.Substring(0, destinationPath.LastIndexOf(DIR_SEPARATOR) + 1);
-                _source.Name = destinationPath.Substring(destinationPath.LastIndexOf(DIR_SEPARATOR) + 1);
+                _source.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
+                _source.Name = destinationFile.Substring(destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
                 this.Add(_source);
             }
             catch(FileNotFoundException e)
+            {
+                throw e;
+            }
+        }
+
+
+        /// <summary>
+        /// Copies a file to another location in the file system
+        /// </summary>
+        /// <param name="sourceFile">Source file</param>
+        /// <param name="destinationPath">New parent of the file (should be a Directory)</param>
+        /// <param name="destinationName">Name of the file in the destination</param>
+        /// <exception cref="FileNotFoundException">The specified source file doesn't exist</exception>
+        public void CopyFile(string sourceFile, string destinationPath, string destinationName)
+        {
+            try
+            {
+                File _source = GetFile(sourceFile);
+                //update of file path and name
+                _source.ParentPath = destinationPath;
+                _source.Name = destinationName;
+                this.Add(_source);
+            }
+            catch (FileNotFoundException e)
             {
                 throw e;
             }
@@ -256,17 +280,17 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <summary>
         /// Moves a file from a location to another
         /// </summary>
-        /// <param name="sourcePath">Source file</param>
-        /// <param name="destinationPath">Destination location, must contain the file name in the destination</param>
+        /// <param name="sourceFile">Source file</param>
+        /// <param name="destinationFile">Destination location, must contain the file name in the destination</param>
         /// <exception cref="FileNotFoundException">The specified source file doesn't exist</exception>
-        public void MoveFile(string sourcePath, string destinationPath)
+        public void MoveFile(string sourceFile, string destinationFile)
         {
             try
             {
-                File _source = DeleteFile(sourcePath);
+                File _source = DeleteFile(sourceFile);
                 //update of file path and name
-                _source.ParentPath = destinationPath.Substring(0, destinationPath.LastIndexOf(DIR_SEPARATOR) + 1);
-                _source.Name = destinationPath.Substring(destinationPath.LastIndexOf(DIR_SEPARATOR) + 1);
+                _source.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
+                _source.Name = destinationFile.Substring(destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
                 this.Add(_source);
             }
             catch(FileNotFoundException e)
@@ -275,6 +299,30 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             }
 
         }
+
+        /// <summary>
+        /// Moves a file from a location to another
+        /// </summary>
+        /// <param name="sourceFile">Source file</param>
+        /// <param name="destinationPath">New parent of the file (should be a Directory)</param>
+        /// <param name="destinationName">Name of the file in the destination</param>
+        /// <exception cref="FileNotFoundException">The specified source file doesn't exist</exception>
+        public void MoveFile(string sourceFile, string destinationPath, string destinationName)
+        {
+            try
+            {
+                File _source = DeleteFile(sourceFile);
+                //update of file path and name
+                _source.ParentPath = destinationPath;
+                _source.Name = destinationName;
+                this.Add(_source);
+            }
+            catch (FileNotFoundException e)
+            {
+                throw e;
+            }
+        }
+
 
         /// <summary>
         /// Renames the specified file
