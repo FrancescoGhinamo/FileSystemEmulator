@@ -54,6 +54,7 @@
     <Compile Include="FileSystemEmulator\Backend\Exceptions\EFileNotFoundException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Exceptions\IllegalParameterException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\Exceptions\NoSuchElementException.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Utilities\PathList.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\StringTokenizer.cs" />
     <Compile Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemEmulatorGUI.cs">
       <SubType>Form</SubType>

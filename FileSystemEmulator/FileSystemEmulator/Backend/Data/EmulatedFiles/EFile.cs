@@ -1,5 +1,6 @@
 ﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileSystemEmulator.FileSystemEmulator.Backend.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,27 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         public string Name { get; set; }
 
         /// <summary>
+        /// List of the paths of all the subfiles
+        /// </summary>
+        public PathList SubPaths
+        {
+            get
+            {
+                PathList _ris = new PathList();
+                foreach(EFile f in SubFiles)
+                {
+                    _ris.Add(f.Path);
+                }
+
+                foreach (EFile f in SubFiles)
+                {
+                    _ris.AddRange(f.SubPaths);
+                }
+                return _ris;
+            }
+        }
+
+        /// <summary>
         /// List of the sub files related to this file
         /// </summary>
         public EFileList SubFiles { get; }
@@ -99,5 +121,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
             this.SubFiles = new EFileList();
         }
         #endregion Constructor
+
+       
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions
 {
     /// <summary>
-    /// Extension of class File
+    /// Extension of class <see cref="EFile"/>
     /// Implementation of a general text document
     /// </summary>
     [Serializable]

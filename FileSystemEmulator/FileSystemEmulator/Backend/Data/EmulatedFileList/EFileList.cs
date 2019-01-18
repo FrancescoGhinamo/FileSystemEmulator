@@ -9,7 +9,7 @@ using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
 namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList
 {
     /// <summary>
-    /// Dynamic list of files, extension of class List
+    /// Dynamic list of <see cref="EFile"/>, extension of class <see cref="List{EFile}"/>
     /// </summary>
     [Serializable]
     public class EFileList : List<EFile>

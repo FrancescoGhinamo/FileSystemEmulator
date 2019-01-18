@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions
 {
     /// <summary>
-    /// Extension of class File, this file is a standard directory
+    /// Extension of class <see cref="EFile"/>, this file is a standard directory
     /// </summary>
     [Serializable]
     public class EDirectory : EFile
