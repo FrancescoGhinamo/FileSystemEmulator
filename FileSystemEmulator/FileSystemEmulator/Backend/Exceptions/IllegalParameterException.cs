@@ -12,13 +12,11 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Exceptions
     public class IllegalParameterException : Exception
     {
 
-       
+
         /// <summary>
         /// Constructor, uses a default message for this exception
         /// </summary>
-        public IllegalParameterException() : base("One or more parameters passed to the method are invalid")
-        {
-
-        }
+        public IllegalParameterException() : base("One or more parameters passed to the method are invalid") { }
+       
     }
 }

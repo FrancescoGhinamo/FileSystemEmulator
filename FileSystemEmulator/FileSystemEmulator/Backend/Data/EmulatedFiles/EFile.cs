@@ -60,10 +60,12 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
             get
             {
                 PathList _ris = new PathList();
-                foreach(EFile f in SubFiles)
+                //if it's not a root
+                if(ParentPath != null)
                 {
-                    _ris.Add(f.Path);
+                    _ris.Add(this.Path);
                 }
+                
 
                 foreach (EFile f in SubFiles)
                 {
@@ -122,6 +124,28 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         }
         #endregion Constructor
 
-       
+        #region MaintenanceMethods
+
+        /// <summary>
+        /// Updates the path of the sub files to meet the position in file system
+        /// Useful after copying, moving or renaming a file
+        /// </summary>
+        public void UpdateSubFilesPath()
+        {
+            foreach(EFile f in SubFiles)
+            {
+                f.ParentPath = this.Path;
+            }
+
+            foreach(EFile f in SubFiles)
+            {
+                f.UpdateSubFilesPath();
+            }
+        }
+
+        #endregion MaintenanceMethods
+
+
+
     }
 }

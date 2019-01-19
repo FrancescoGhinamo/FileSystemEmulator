@@ -14,10 +14,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Utilities.Exceptions
         /// <summary>
         /// Constructor with default message
         /// </summary>
-        public NoSuchElementException() : base("The requested datum was not found")
-        {
-
-        }
+        public NoSuchElementException() : base("The requested datum was not found") { }
+       
 
     }
 }

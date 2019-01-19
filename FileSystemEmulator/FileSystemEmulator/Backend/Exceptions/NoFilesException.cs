@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 namespace FileSystemEmulator.FileSystemEmulator.Backend.Exceptions
 {
     /// <summary>
-    /// The looked <see cref="EFile"/> was not found
+    /// Exception thrown when there are no files available in the current process
     /// </summary>
-    public class EFileNotFoundException : Exception
+    public class NoFilesException : Exception
     {
         /// <summary>
-        /// Constructor, uses a default message for this exception
+        /// Constructor with default message
         /// </summary>
-        public EFileNotFoundException() : base("File not found") { }
-       
+        public NoFilesException() : base("No files available") { }
     }
 }

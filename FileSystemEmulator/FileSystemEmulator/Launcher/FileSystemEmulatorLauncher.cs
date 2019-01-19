@@ -27,13 +27,18 @@ namespace FileSystemEmulator.Launcher
             fs.Add(new EDirectory("C:\\Users\\Francesco"));
             fs.Add(new EDirectory("C:\\System"));
             EFile f = fs.GetFile("C:\\Users");
-       
+            EFileList list = fs.GetFileList();
+
             fs.MoveFile("C:\\Users", "C:\\System\\Copy\\Users");
             fs.RenameFile("C:\\System\\Copy", "Test");
             fs.SerializeFileSystem(@"C:\Users\franc\OneDrive\Desktop\Test.t");
 
             EFileSystem ef = EFileSystem.DeserializeFileSystem(@"C:\Users\franc\OneDrive\Desktop\Test.t");
-            EFileList lst = ef.GetFileList();
+            ef.Format(true);
+            ef.Add(new EDirectory("C:\\Windows"));
+            ef.AttemptRecovery(false);
+            ef.LoadFromFileList(list, true);
+
 
             Application.Run(new FileSystemEmulatorGUI());
 

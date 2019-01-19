@@ -71,6 +71,11 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// </summary>
         private string CurrentLocation { get; set; }
 
+        /// <summary>
+        /// Temporary copy for files after format
+        /// </summary>
+        private EFileList _temporaryCopy { get; set; }
+
        
 
 
@@ -84,8 +89,62 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         private EFileSystem()
         { 
             Root = new EDirectory("C:");
+            _temporaryCopy = new EFileList();
         }
         #endregion Constructor
+
+
+        #region FileSystemManagement
+
+        /// <summary>
+        /// Formats the file system: all the references to the files are lost
+        /// A temporary copy can be preserved to retrieve the files in case of an error.
+        /// The copy cannot be serialized so once the object is finalized the temporary copy is lost
+        /// </summary>
+        /// <param name="copy">True if a temporary copy has to be preserved</param>
+        public void Format(bool copy)
+        {
+            if (copy)
+            {
+                foreach(EFile f in Root.SubFiles)
+                {
+                    _temporaryCopy.Add(f);
+                }
+            }
+            Root.SubFiles.Clear();
+        }
+
+        /// <summary>
+        /// Attempts to recovery deleted files after a format
+        /// The file system can be overwritten by recovered files or the recovered files can be only added to the existing ones
+        /// </summary>
+        /// <param name="overwrite">True to overwrite the file system</param>
+        /// <exception cref="NoFilesException">Thrown if no files can be recovered</exception>
+        public void AttemptRecovery(bool overwrite)
+        {
+            if(_temporaryCopy.Count > 0)
+            {
+                if (overwrite)
+                {
+                    Root.SubFiles.Clear();
+                }
+
+                foreach(EFile f in _temporaryCopy)
+                {
+                    this.Add(f);
+                }
+            }
+            else
+            {
+                throw new NoFilesException();
+            }
+            
+
+            
+        }
+
+
+        #endregion FileSystemManagement
 
         #region AddingFileMethods
 
@@ -263,6 +322,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 //update of file path and name
                 _source.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
                 _source.Name = destinationFile.Substring(destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
+                _source.UpdateSubFilesPath();
                 this.Add(_source);
             }
             catch(EFileNotFoundException e)
@@ -287,6 +347,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 //update of file path and name
                 _source.ParentPath = destinationPath;
                 _source.Name = destinationName;
+                _source.UpdateSubFilesPath();
                 this.Add(_source);
             }
             catch (EFileNotFoundException e)
@@ -309,6 +370,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 //update of file path and name
                 _source.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR));
                 _source.Name = destinationFile.Substring(destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
+                _source.UpdateSubFilesPath();
                 this.Add(_source);
             }
             catch(EFileNotFoundException e)
@@ -333,6 +395,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 //update of file path and name
                 _source.ParentPath = destinationPath;
                 _source.Name = destinationName;
+                _source.UpdateSubFilesPath();
                 this.Add(_source);
             }
             catch (EFileNotFoundException e)
@@ -354,6 +417,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             {
                 EFile _f = DeleteFile(file);
                 _f.Name = newName;
+                _f.UpdateSubFilesPath();
                 Add(_f);
             }
             catch(EFileNotFoundException e)
@@ -445,6 +509,25 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             }
             return ris;
         }
+
+        /// <summary>
+        /// Loads all the <see cref="EFile"/> contained in a <see cref="EFileList"/> in the current <see cref="EFileSystem"/>
+        /// </summary>
+        /// <param name="fileList">List of files to add</param>
+        /// <param name="format">True if the file system must be formatted before adding the files </param>
+        public void LoadFromFileList(EFileList fileList, bool format)
+        {
+            if (format)
+            {
+                this.Format(true);
+            }
+
+            foreach(EFile f in fileList)
+            {
+                this.Add(f);
+            }
+        }
+
         #endregion InterfaceMethods
 
     }
