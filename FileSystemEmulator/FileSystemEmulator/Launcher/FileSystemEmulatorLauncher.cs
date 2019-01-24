@@ -25,7 +25,10 @@ namespace FileSystemEmulator.Launcher
             EFileSystem fs = EFileSystem.GetInstance();
             string path = fs.Root.Path;
             fs.Add(new EDirectory("C:\\Users\\Francesco"));
+            fs.Add(new EDirectory("C:\\Users\\Test"));
             fs.Add(new EDirectory("C:\\System"));
+            fs.DeleteFile("C:\\Users\\Test");
+            fs.Add(new EDirectory("C:\\Users\\Test"));
             EFile f = fs.GetFile("C:\\Users");
             EFileList list = fs.GetFileList();
 
