@@ -59,7 +59,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Services.Implementations
             {
                 saveStream = File.Create(path);
                 BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(saveStream, path);
+                formatter.Serialize(saveStream, fs);
             }
             catch (Exception e)
             {
