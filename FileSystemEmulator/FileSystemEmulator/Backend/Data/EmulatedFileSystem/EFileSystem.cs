@@ -2,6 +2,8 @@
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
+using FileSystemEmulator.FileSystemEmulator.Backend.Services;
+using FileSystemEmulator.FileSystemEmulator.Backend.Services.Interfaces;
 using FileSystemEmulator.FileSystemEmulator.Backend.Utilities;
 using System;
 using System.Collections.Generic;
@@ -152,6 +154,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// Adds the specified file to the file system
         /// </summary>
         /// <param name="f">File to add</param>
+        /// <exception cref="EFileNameAlreadyExistingException">The method is attempting to add a file that has the same of a file alread in directory</exception>
         public void Add(EFile f)
         {
             //I begin adding file from C: directory
@@ -159,8 +162,17 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             StringTokenizer sT = new StringTokenizer(f.Path, DIR_SEPARATOR);
             //to exclude the C: token
             sT.NextToken();
+            try
+            {
+                Add(f, Root, sT);
+            }
+            catch (IllegalParameterException) { }
+            catch (EFileNameAlreadyExistingException e)
+            {
+                throw e;
+            }
 
-            Add(f, Root, sT);
+            
         }
 
         /// <summary>
@@ -171,6 +183,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <param name="rRoot">Relative root</param>
         /// <param name="sT">Segments of the path</param>
         /// <exception cref="IllegalParameterException">The file the method is attempting to add is not valid</exception>
+        /// <exception cref="EFileNameAlreadyExistingException">The method is attempting to add a file that has the same of a file alread in directory</exception>
         private void Add(EFile f, EFile rRoot, StringTokenizer sT)
         {
             //tokens and position in the file system proceed the same way
@@ -180,7 +193,18 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 //if the I reached the position I add the file
                 try
                 {
-                    rRoot.SubFiles.Add(f);
+                    //if the file doesn't exist yet
+                    if (rRoot.SubFiles.IndexOfFileName(f.Name) == -1)
+                    {
+                        //I add the fine
+                        rRoot.SubFiles.Add(f);
+                    }
+                    else
+                    {
+                        //I throw an exception
+                        throw new EFileNameAlreadyExistingException();
+                    }
+                    
                 }
                 catch (IllegalParameterException e)
                 {
@@ -200,7 +224,19 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 //update the current location
                 CurrentLocation = CurrentLocation + DIR_SEPARATOR + token;
                 //I add the file in the nestled folder, recoursively
-                Add(f, rRoot.SubFiles.ElementAt(rRoot.SubFiles.IndexOfFileName(token)), sT);
+                try
+                {
+                    Add(f, rRoot.SubFiles.ElementAt(rRoot.SubFiles.IndexOfFileName(token)), sT);
+                }
+                catch (IllegalParameterException e)
+                {
+                    throw e;
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
+                
             }
 
         }
@@ -217,9 +253,10 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <exception cref="EFileNotFoundException">The specified file path points to a file that doesn't exist</exception>
         public EFile GetFile(string path)
         {
+            EFile res = null;
             if (path.Equals("C:"))
             {
-                return Root;
+                res = Root;
             }
             else
             {
@@ -230,14 +267,15 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 CurrentLocation = "C:";
                 try
                 {
-                    return GetFile(Root, sT);
+                    res = GetFile(Root, sT);
                 }
                 catch (EFileNotFoundException e)
                 {
                     throw e;
                 }
             }
-            
+
+            return res;
            
         }
 
@@ -252,6 +290,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <exception cref="EFileNotFoundException">The specified file path points to a file that doesn't exist</exception>
         private EFile GetFile(EFile rRoot, StringTokenizer sT)
         {
+            EFile res = null;
+
             string token = sT.NextToken();
             int subIndex = 0;
             if ((subIndex = rRoot.SubFiles.IndexOfFileName(token)) != -1)
@@ -260,20 +300,30 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 if (!sT.HasMoreTokens())
                 {
                     //if I reaced the last file name
-                    return rRoot.SubFiles.ElementAt(subIndex);
+                    res = rRoot.SubFiles.ElementAt(subIndex);
                 }
                 else
                 {
                     //I explore the next subfolder
                     //update the current location
                     CurrentLocation = CurrentLocation + DIR_SEPARATOR + token;
-                    return GetFile(rRoot.SubFiles.ElementAt(subIndex), sT);
+                    try
+                    {
+                        res = GetFile(rRoot.SubFiles.ElementAt(subIndex), sT);
+                    }
+                    catch (EFileNotFoundException e)
+                    {
+                        throw e;
+                    }
+                    
                 }
             }
             else
             {
                 throw new EFileNotFoundException();
             }
+
+            return res;
             
         }
         #endregion RetrievingFileMethods
@@ -291,11 +341,20 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             EFile _deleted = null;
             try
             {
-                //getting the file, I update the location to the parent folder
-                _deleted = GetFile(path);
-                EFile parent = GetFile(CurrentLocation);
-                //remove the file from the sub files of this parent
-                parent.SubFiles.Remove(_deleted);
+                
+                try
+                {
+                    //getting the file, I update the location to the parent folder
+                    _deleted = GetFile(path);
+                    EFile parent = GetFile(CurrentLocation);
+                    //remove the file from the sub files of this parent
+                    parent.SubFiles.Remove(_deleted);
+                }
+                catch (EFileNotFoundException e)
+                {
+                    throw e;
+                }
+                
             }
             catch (EFileNotFoundException e)
             {
@@ -314,6 +373,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <param name="sourceFile">Source file</param>
         /// <param name="destinationFile">Destination location, must contain the file name in the destination</param>
         /// <exception cref="EFileNotFoundException">The specified source file doesn't exist</exception>
+        /// <exception cref="EFileNameAlreadyExistingException">The destination directory already contains an <see cref="EFile"/> with the same name</exception>
         public void CopyFile(string sourceFile, string destinationFile)
         {
             try
@@ -323,9 +383,17 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 _source.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
                 _source.Name = destinationFile.Substring(destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
                 _source.UpdateSubFilesPath();
-                this.Add(_source);
+                try
+                {
+                    this.Add(_source);
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
+                
             }
-            catch(EFileNotFoundException e)
+            catch (EFileNotFoundException e)
             {
                 throw e;
             }
@@ -339,6 +407,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <param name="destinationPath">New parent of the file (should be a Directory)</param>
         /// <param name="destinationName">Name of the file in the destination</param>
         /// <exception cref="EFileNotFoundException">The specified source file doesn't exist</exception>
+        /// <exception cref="EFileNameAlreadyExistingException">The destination directory already contains an <see cref="EFile"/> with the same name</exception>
         public void CopyFile(string sourceFile, string destinationPath, string destinationName)
         {
             try
@@ -348,7 +417,14 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 _source.ParentPath = destinationPath;
                 _source.Name = destinationName;
                 _source.UpdateSubFilesPath();
-                this.Add(_source);
+                try
+                {
+                    this.Add(_source);
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
             }
             catch (EFileNotFoundException e)
             {
@@ -362,6 +438,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <param name="sourceFile">Source file</param>
         /// <param name="destinationFile">Destination location, must contain the file name in the destination</param>
         /// <exception cref="EFileNotFoundException">The specified source file doesn't exist</exception>
+        /// <exception cref="EFileNameAlreadyExistingException">The destination directory already contains an <see cref="EFile"/> with the same name</exception>
         public void MoveFile(string sourceFile, string destinationFile)
         {
             try
@@ -371,9 +448,16 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 _source.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR));
                 _source.Name = destinationFile.Substring(destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
                 _source.UpdateSubFilesPath();
-                this.Add(_source);
+                try
+                {
+                    this.Add(_source);
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
             }
-            catch(EFileNotFoundException e)
+            catch (EFileNotFoundException e)
             {
                 throw e;
             }
@@ -387,6 +471,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <param name="destinationPath">New parent of the file (should be a Directory)</param>
         /// <param name="destinationName">Name of the file in the destination</param>
         /// <exception cref="EFileNotFoundException">The specified source file doesn't exist</exception>
+        /// <exception cref="EFileNameAlreadyExistingException">The destination directory already contains an <see cref="EFile"/> with the same name</exception>
         public void MoveFile(string sourceFile, string destinationPath, string destinationName)
         {
             try
@@ -396,7 +481,14 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 _source.ParentPath = destinationPath;
                 _source.Name = destinationName;
                 _source.UpdateSubFilesPath();
-                this.Add(_source);
+                try
+                {
+                    this.Add(_source);
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
             }
             catch (EFileNotFoundException e)
             {
@@ -411,6 +503,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <param name="file">Chosen file</param>
         /// <param name="newName">New name to assign to the file</param>
         /// <exception cref="EFileNotFoundException">The specified source file doesn't exist</exception>
+        /// <exception cref="EFileNameAlreadyExistingException">The <see cref="EFile"/> name already exists</exception>
         public void RenameFile(string file, string newName)
         {
             try
@@ -418,7 +511,14 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 EFile _f = DeleteFile(file);
                 _f.Name = newName;
                 _f.UpdateSubFilesPath();
-                Add(_f);
+                try
+                {
+                    this.Add(_f);
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
             }
             catch(EFileNotFoundException e)
             {
@@ -439,26 +539,16 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <exception cref="Exception">An exception occured</exception>
         public void SerializeFileSystem(string filePath)
         {
-            Stream saveFileStream = null;
+            IFileServices fS = FileFactory.GetFileServices();
             try
             {
-                saveFileStream = File.Create(filePath);
-                BinaryFormatter serializer = new BinaryFormatter();
-                serializer.Serialize(saveFileStream, this);
+                fS.SaveOnDisk(this, filePath);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
-            finally
-            {
-                if(saveFileStream != null)
-                {
-                    saveFileStream.Close();
-                }
-            }
-           
-            
+
         }
 
         /// <summary>
@@ -469,26 +559,16 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <exception cref="Exception">An exception occured</exception>
         public static EFileSystem DeserializeFileSystem(string filePath)
         {
-            Stream openFileStream = null;
             EFileSystem ris = null;
+            IFileServices fS = FileFactory.GetFileServices();
             try
             {
-                openFileStream = File.OpenRead(filePath);
-                BinaryFormatter deserializer = new BinaryFormatter();
-                ris = (EFileSystem)deserializer.Deserialize(openFileStream);
+                ris = fS.LoadFromDisk(filePath);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
-            finally
-            {
-                if(openFileStream != null)
-                {
-                    openFileStream.Close();
-                }                
-            }
-
             return ris;
         }
         #endregion Serialization
@@ -505,7 +585,12 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             EFileList ris = new EFileList();
             foreach(string path in PathsList)
             {
-                ris.Add(GetFile(path));
+                try
+                {
+                    ris.Add(GetFile(path));
+                }
+                catch (EFileNotFoundException) { }
+                
             }
             return ris;
         }
@@ -524,7 +609,12 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 
             foreach(EFile f in fileList)
             {
-                this.Add(f);
+                try
+                {
+                    this.Add(f);
+                }
+                catch (EFileNameAlreadyExistingException) { }
+                
             }
         }
 

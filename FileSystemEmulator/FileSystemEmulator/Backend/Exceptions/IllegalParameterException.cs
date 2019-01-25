@@ -9,7 +9,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Exceptions
     /// <summary>
     /// Exception indicating the parameter passed to a method is not valid
     /// </summary>
-    public class IllegalParameterException : Exception
+    public class IllegalParameterException : EFileException
     {
 
 
