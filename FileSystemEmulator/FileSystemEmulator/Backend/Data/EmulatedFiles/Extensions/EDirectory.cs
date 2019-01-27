@@ -23,5 +23,16 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
 
         }
         #endregion Constructor
+
+        #region InterfaceMethods
+
+        public new string ToString()
+        {
+            string res = "";
+            res = ">";
+            res += base.ToString();
+            return res;
+        }
+        #endregion InterfaceMethods
     }
 }

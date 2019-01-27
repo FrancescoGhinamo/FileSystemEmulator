@@ -38,7 +38,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         public string Path {
             get
             {
-                return ParentPath != null ? ParentPath + EFileSystem.DIR_SEPARATOR + Name : Name;
+                return ParentPath != null ? ParentPath + FileSystemImpl.DIR_SEPARATOR + Name : Name;
             }
         }
 
@@ -92,10 +92,10 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         public EFile (string pathAndName, bool isDir)
         {
             int sepI = 0;
-            if((sepI = pathAndName.LastIndexOf(EFileSystem.DIR_SEPARATOR)) != -1)
+            if((sepI = pathAndName.LastIndexOf(FileSystemImpl.DIR_SEPARATOR)) != -1)
             {
-                ParentPath = pathAndName.Substring(0, pathAndName.LastIndexOf(EFileSystem.DIR_SEPARATOR));
-                Name = pathAndName.Substring(pathAndName.LastIndexOf(EFileSystem.DIR_SEPARATOR) + 1);
+                ParentPath = pathAndName.Substring(0, pathAndName.LastIndexOf(FileSystemImpl.DIR_SEPARATOR));
+                Name = pathAndName.Substring(pathAndName.LastIndexOf(FileSystemImpl.DIR_SEPARATOR) + 1);
             }
             else
             {
@@ -145,7 +145,15 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
 
         #endregion MaintenanceMethods
 
+        #region InterfaceMethods
 
+        public new string ToString()
+        {
+            string res = "";
+            res = Name + Extension;
+            return res;
+        }
+        #endregion InterfaceMethods
 
     }
 }

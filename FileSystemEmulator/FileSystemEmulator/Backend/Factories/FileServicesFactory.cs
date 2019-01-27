@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Services
+namespace FileSystemEmulator.FileSystemEmulator.Backend.Factories
 {
     /// <summary>
     /// Factory class to provide file <see cref="IFileServices"/> functionalities
     /// </summary>
-    public class FileFactory
+    public class FileServicesFactory
     {
         /// <summary>
         /// Factory method

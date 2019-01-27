@@ -2,7 +2,7 @@
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Services;
+using FileSystemEmulator.FileSystemEmulator.Backend.Factories;
 using FileSystemEmulator.FileSystemEmulator.Backend.Services.Interfaces;
 using FileSystemEmulator.FileSystemEmulator.Backend.Utilities;
 using System;
@@ -21,25 +21,24 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
     /// Singleton class, only the same instance of this object can be used in the program
     /// </summary>
     [Serializable]
-    public class EFileSystem
+    public class FileSystemImpl : IFileSystem
     {
 
         #region Singleton
-        private static EFileSystem SingletonFileSystem;
+        private static FileSystemImpl me;
 
-        public static EFileSystem GetInstance()
+        public static FileSystemImpl GetInstance()
         {
-            if (SingletonFileSystem == null)
+            if (me == null)
             {
                 //if this objecy hasn't been instances yet, I instance it here
-                SingletonFileSystem = new EFileSystem();
+                me = new FileSystemImpl();
             }
             //return the instance
-            return SingletonFileSystem;
+            return me;
         }
 
         #endregion Singleton
-
 
         #region Constants
         /// <summary>
@@ -88,11 +87,21 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <summary>
         /// Default constructor, the root dir is C:
         /// </summary>
-        private EFileSystem()
+        private FileSystemImpl()
         { 
             Root = new EDirectory("C:");
             _temporaryCopy = new EFileList();
         }
+
+        /// <summary>
+        /// Gets the root of the file system
+        /// </summary>
+        /// <returns>Root of the file system</returns>
+        public EDirectory GetRoot()
+        {
+            return Root;
+        }
+
         #endregion Constructor
 
 
@@ -151,7 +160,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         #region AddingFileMethods
 
         /// <summary>
-        /// Adds the specified file to the file system
+        /// Adds the specified <see cref="EFile"/> to the file system
         /// </summary>
         /// <param name="f">File to add</param>
         /// <exception cref="EFileNameAlreadyExistingException">The method is attempting to add a file that has the same of a file alread in directory</exception>
@@ -245,7 +254,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         #region RetrievingFileMethods
 
         /// <summary>
-        /// Retrieves a file saved in the file system
+        /// Retrieves an <see cref="EFile"/> saved in the file system
         /// If the specified file doesn't exist a FileNotFoundException is thrown
         /// </summary>
         /// <param name="path">Path to look for</param>
@@ -331,7 +340,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         #region ManagingFilesMethods
 
         /// <summary>
-        /// Deletes and returns the file specified in the given path
+        /// Deletes and returns the <see cref="EFile"/> specified in the given path
         /// </summary>
         /// <param name="path">Path reference to the file</param>
         /// <returns>Deleted file</returns>
@@ -368,7 +377,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 
         
         /// <summary>
-        /// Copies a file to another location in the file system
+        /// Copies an <see cref="EFile"/> to another location in the file system
         /// </summary>
         /// <param name="sourceFile">Source file</param>
         /// <param name="destinationFile">Destination location, must contain the file name in the destination</param>
@@ -401,7 +410,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 
 
         /// <summary>
-        /// Copies a file to another location in the file system
+        /// Copies an <see cref="EFile"/> to another location in the file system
         /// </summary>
         /// <param name="sourceFile">Source file</param>
         /// <param name="destinationPath">New parent of the file (should be a Directory)</param>
@@ -433,7 +442,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         }
 
         /// <summary>
-        /// Moves a file from a location to another
+        /// Moves an <see cref="EFile"/> from a location to another
         /// </summary>
         /// <param name="sourceFile">Source file</param>
         /// <param name="destinationFile">Destination location, must contain the file name in the destination</param>
@@ -465,7 +474,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         }
 
         /// <summary>
-        /// Moves a file from a location to another
+        /// Moves an <see cref="EFile"/> from a location to another
         /// </summary>
         /// <param name="sourceFile">Source file</param>
         /// <param name="destinationPath">New parent of the file (should be a Directory)</param>
@@ -498,7 +507,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 
 
         /// <summary>
-        /// Renames the specified file
+        /// Renames the specified <see cref="EFile"/>
         /// </summary>
         /// <param name="file">Chosen file</param>
         /// <param name="newName">New name to assign to the file</param>
@@ -539,7 +548,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <exception cref="Exception">An exception occured</exception>
         public void SerializeFileSystem(string filePath)
         {
-            IFileServices fS = FileFactory.GetFileServices();
+            IFileServices fS = FileServicesFactory.GetFileServices();
             try
             {
                 fS.SaveOnDisk(this, filePath);
@@ -557,10 +566,10 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <param name="filePath">Path from which retrieve the instance</param>
         /// <returns>Instance of EFileSystem</returns>
         /// <exception cref="Exception">An exception occured</exception>
-        public static EFileSystem DeserializeFileSystem(string filePath)
+        public FileSystemImpl DeserializeFileSystem(string filePath)
         {
-            EFileSystem ris = null;
-            IFileServices fS = FileFactory.GetFileServices();
+            FileSystemImpl ris = null;
+            IFileServices fS = FileServicesFactory.GetFileServices();
             try
             {
                 ris = fS.LoadFromDisk(filePath);
@@ -569,7 +578,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             {
                 throw e;
             }
-            return ris;
+            me = ris;
+            return GetInstance();
         }
         #endregion Serialization
 
@@ -577,7 +587,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         #region InterfaceMethods
 
         /// <summary>
-        /// Returns a list containing all the files and directories of the EFileSystem
+        /// Returns an <see cref="EFileList"/> containing all the <see cref="EFile"/> and directories of the EFileSystem
         /// </summary>
         /// <returns></returns>
         public EFileList GetFileList()
@@ -596,7 +606,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         }
 
         /// <summary>
-        /// Loads all the <see cref="EFile"/> contained in a <see cref="EFileList"/> in the current <see cref="EFileSystem"/>
+        /// Loads all the <see cref="EFile"/> contained in a <see cref="EFileList"/> in the current <see cref="FileSystemImpl"/>
         /// </summary>
         /// <param name="fileList">List of files to add</param>
         /// <param name="format">True if the file system must be formatted before adding the files </param>
@@ -618,6 +628,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             }
         }
 
+        
         #endregion InterfaceMethods
 
     }
