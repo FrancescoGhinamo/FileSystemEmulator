@@ -1,6 +1,7 @@
 ﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,7 @@ namespace FileSystemEmulator
             }
         }
 
+        
         #endregion EventHandlers
 
         #region ActionMethods
@@ -97,15 +99,16 @@ namespace FileSystemEmulator
         /// </summary>
         public void UpdateList()
         {
-            listDirectory.Clear();
+            listDirectory.Items.Clear();
             foreach(EFile f in CurrentLocation.SubFiles)
             {
                 listDirectory.Items.Add(f.ToString());
             }
         }
+
         #endregion DisplayMethods
 
-
+        
     }
 
 }

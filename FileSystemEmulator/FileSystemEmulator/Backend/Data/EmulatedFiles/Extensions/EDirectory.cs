@@ -29,7 +29,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
         public new string ToString()
         {
             string res = "";
-            res = ">";
+            res += "> ";
             res += base.ToString();
             return res;
         }

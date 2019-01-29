@@ -1,6 +1,7 @@
 ﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Services.Implementations;
 using FileSystemEmulator.FileSystemEmulator.Backend.Services.Interfaces;

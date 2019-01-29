@@ -1,4 +1,5 @@
 ﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

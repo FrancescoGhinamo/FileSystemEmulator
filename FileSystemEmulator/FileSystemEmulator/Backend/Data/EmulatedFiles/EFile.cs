@@ -150,7 +150,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         public new string ToString()
         {
             string res = "";
-            res = Name + Extension;
+            res = Name;
             return res;
         }
         #endregion InterfaceMethods

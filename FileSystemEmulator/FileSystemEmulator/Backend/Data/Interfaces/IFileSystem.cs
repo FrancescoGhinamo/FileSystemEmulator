@@ -1,13 +1,14 @@
 ﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
+namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces
 {
     /// <summary>
     /// Decalration functionalities for a file system
