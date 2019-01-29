@@ -15,6 +15,11 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Services.Implementations
     /// </summary>
     public class FileServicesImpl : IFileServices
     {
+        internal FileServicesImpl()
+        {
+
+        }
+
         /// <summary>
         /// Mathod to retrieve an instance of <see cref="FileSystemImpl"/> from fixed disk
         /// </summary>

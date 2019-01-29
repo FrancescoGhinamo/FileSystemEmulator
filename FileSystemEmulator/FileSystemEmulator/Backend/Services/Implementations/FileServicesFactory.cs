@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Factories
+namespace FileSystemEmulator.FileSystemEmulator.Backend.Services.Implementations
 {
     /// <summary>
     /// Factory class to provide file <see cref="IFileServices"/> functionalities

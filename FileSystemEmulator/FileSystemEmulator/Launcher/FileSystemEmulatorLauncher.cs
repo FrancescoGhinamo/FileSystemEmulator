@@ -3,7 +3,6 @@ using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

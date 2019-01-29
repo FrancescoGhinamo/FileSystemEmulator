@@ -2,7 +2,7 @@
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Factories;
+using FileSystemEmulator.FileSystemEmulator.Backend.Services.Implementations;
 using FileSystemEmulator.FileSystemEmulator.Backend.Services.Interfaces;
 using FileSystemEmulator.FileSystemEmulator.Backend.Utilities;
 using System;
@@ -27,7 +27,11 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         #region Singleton
         private static FileSystemImpl me;
 
-        public static FileSystemImpl GetInstance()
+        /// <summary>
+        /// Internal instance getter
+        /// </summary>
+        /// <returns>Instance of <see cref="FileSystemImpl"/></returns>
+        internal static FileSystemImpl GetInstance()
         {
             if (me == null)
             {

@@ -57,8 +57,8 @@
     <Compile Include="FileSystemEmulator\Backend\Exceptions\EFileNotFoundException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Exceptions\IllegalParameterException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Exceptions\NoFilesException.cs" />
-    <Compile Include="FileSystemEmulator\Backend\Factories\FileServicesFactory.cs" />
-    <Compile Include="FileSystemEmulator\Backend\Factories\FileSystemFactory.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Services\Implementations\FileServicesFactory.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFileSystem\FileSystemFactory.cs" />
     <Compile Include="FileSystemEmulator\Backend\Services\Implementations\FileServicesImpl.cs" />
     <Compile Include="FileSystemEmulator\Backend\Services\Interfaces\IFileServices.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\Exceptions\NoSuchElementException.cs" />

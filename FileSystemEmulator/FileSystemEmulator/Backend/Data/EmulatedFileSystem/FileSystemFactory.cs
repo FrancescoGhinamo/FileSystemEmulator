@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Factories
+namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 {
     /// <summary>
     /// Factory class for the File System

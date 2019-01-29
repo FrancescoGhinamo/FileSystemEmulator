@@ -1,7 +1,7 @@
 ﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Factories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +24,11 @@ namespace FileSystemEmulator
         /// </summary>
         private EFile CurrentLocation;
 
+        /// <summary>
+        /// Local instance of <see cref="IFileSystem"/>
+        /// </summary>
+        private IFileSystem FileSystemInst;
+
         #endregion PrivateFields
 
 
@@ -34,7 +39,8 @@ namespace FileSystemEmulator
 
         private void FileSystemEmulatorGUI_Load(object sender, EventArgs e)
         {
-            CurrentLocation = FileSystemFactory.GetFileSystem().GetRoot();
+            FileSystemInst = FileSystemFactory.GetFileSystem();
+            CurrentLocation = FileSystemInst.GetRoot();
             UpdateList();
         }
 
@@ -65,7 +71,7 @@ namespace FileSystemEmulator
         {
             try
             {
-                EFile fetched = FileSystemFactory.GetFileSystem().GetFile(path);
+                EFile fetched = FileSystemInst.GetFile(path);
                 if (fetched.GetType().Equals(typeof(EDirectory)))
                 {
                     CurrentLocation = fetched;
