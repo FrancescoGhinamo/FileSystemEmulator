@@ -39,6 +39,11 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces
         /// <returns>Root of the file system</returns>
         EDirectory GetRoot();
 
+        /// <summary>
+        /// Location the methods are accessing
+        /// </summary>
+        /// <returns>Location the methods are accessing</returns>
+        string GetCurrentLocation();
 
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace FileSystemEmulator
         #region PrivateFields
 
         /// <summary>
-        /// Location the currently browsing
+        /// Location currently browsing
         /// </summary>
         private EFile CurrentLocation;
 
@@ -35,14 +35,15 @@ namespace FileSystemEmulator
 
         public FileSystemEmulatorGUI()
         {
+            FileSystemInst = FileSystemFactory.GetFileSystem();
+            CurrentLocation = FileSystemInst.GetRoot();
             InitializeComponent();
         }
 
         private void FileSystemEmulatorGUI_Load(object sender, EventArgs e)
         {
-            FileSystemInst = FileSystemFactory.GetFileSystem();
-            CurrentLocation = FileSystemInst.GetRoot();
-            UpdateList();
+            
+            UpdateDisplay();
         }
 
         #region EventHandlers
@@ -58,7 +59,28 @@ namespace FileSystemEmulator
             }
         }
 
-        
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformGoToDirectory(txtPath.Text);
+            }
+            catch (EFileNotFoundException)
+            {
+                MessageBox.Show(this, "The selected directory or file doesn't exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                UpdateDisplay();
+            }
+            
+        }
+
+        private void btnSuperDir_Click(object sender, EventArgs e)
+        {
+            PerformGoToSuperDirecotory();
+        }
+
         #endregion EventHandlers
 
         #region ActionMethods
@@ -74,10 +96,10 @@ namespace FileSystemEmulator
             try
             {
                 EFile fetched = FileSystemInst.GetFile(path);
-                if (fetched.GetType().Equals(typeof(EDirectory)))
+                if (fetched.Directory)
                 {
                     CurrentLocation = fetched;
-                    UpdateList();
+                    UpdateDisplay();
                 }
                 else
                 {
@@ -89,6 +111,56 @@ namespace FileSystemEmulator
                 throw e;
             }
             
+        }
+
+        /// <summary>
+        /// Opens the specified directory
+        /// </summary>
+        /// <param name="path">Path of the directory</param>
+        /// <exception cref="EFileNotFoundException">Thrown if the file doesn't exist</exception>
+        public void PerformGoToDirectory(string path)
+        {
+            if(!path.Equals(""))
+            {
+                try
+                {
+                    EFile fetched = FileSystemInst.GetFile(path);
+                    if (fetched.Directory)
+                    {
+                        CurrentLocation = fetched;
+                        UpdateDisplay();
+                    }
+                    else
+                    {
+                        //open the file
+                    }
+                }
+                catch (EFileNotFoundException e)
+                {
+                    throw e;
+                }
+            }
+            
+            
+        }
+
+        /// <summary>
+        /// Moves to the super directory of the current dir
+        /// </summary>
+        public void PerformGoToSuperDirecotory()
+        {
+            //if I'm not in the root yet...
+            if (!CurrentLocation.Path.Equals("C:"))
+            {
+                string superPath = CurrentLocation.ParentPath;
+                try
+                {
+                    PerformGoToDirectory(superPath);
+                }
+                catch (EFileNotFoundException) { }
+               
+
+            }
         }
         #endregion ActionMethods
 
@@ -105,6 +177,25 @@ namespace FileSystemEmulator
                 listDirectory.Items.Add(f.ToString());
             }
         }
+
+        /// <summary>
+        /// Updates the path text area referencing to the current location
+        /// </summary>
+        public void UpdatePathTextArea()
+        {
+            txtPath.Text = CurrentLocation.Path;
+        }
+
+        /// <summary>
+        /// Updates graphic info about current location
+        /// </summary>
+        public void UpdateDisplay()
+        {
+            UpdateList();
+            UpdatePathTextArea();
+        }
+
+
 
         #endregion DisplayMethods
 

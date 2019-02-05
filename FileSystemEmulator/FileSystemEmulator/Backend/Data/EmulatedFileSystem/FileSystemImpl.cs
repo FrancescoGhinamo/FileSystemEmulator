@@ -171,6 +171,8 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <exception cref="EFileNameAlreadyExistingException">The method is attempting to add a file that has the same of a file alread in directory</exception>
         public void Add(EFile f)
         {
+            //copy to restore the current location after the process
+            string _loc = CurrentLocation;
             //I begin adding file from C: directory
             CurrentLocation = "C:";
             StringTokenizer sT = new StringTokenizer(f.Path, DIR_SEPARATOR);
@@ -184,6 +186,10 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             catch (EFileNameAlreadyExistingException e)
             {
                 throw e;
+            }
+            finally
+            {
+                CurrentLocation = _loc;
             }
 
             
@@ -631,6 +637,15 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 catch (EFileNameAlreadyExistingException) { }
                 
             }
+        }
+
+        /// <summary>
+        /// Location the methods are accessing
+        /// </summary>
+        /// <returns>Location the methods are accessing</returns>
+        public string GetCurrentLocation()
+        {
+            return CurrentLocation;
         }
 
         
