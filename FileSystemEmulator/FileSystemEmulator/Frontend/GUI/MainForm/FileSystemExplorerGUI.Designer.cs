@@ -47,13 +47,14 @@
             this.listDirectory.ItemHeight = 22;
             this.listDirectory.Location = new System.Drawing.Point(0, 0);
             this.listDirectory.Name = "listDirectory";
-            this.listDirectory.Size = new System.Drawing.Size(800, 417);
+            this.listDirectory.Size = new System.Drawing.Size(800, 419);
             this.listDirectory.TabIndex = 0;
             this.listDirectory.SelectedIndexChanged += new System.EventHandler(this.listDirectory_SelectedIndexChanged);
             // 
             // splitContMain
             // 
-            this.splitContMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContMain.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitContMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContMain.Location = new System.Drawing.Point(0, 0);
             this.splitContMain.Name = "splitContMain";
             this.splitContMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -68,7 +69,7 @@
             // 
             this.splitContMain.Panel2.Controls.Add(this.listDirectory);
             this.splitContMain.Size = new System.Drawing.Size(800, 450);
-            this.splitContMain.SplitterDistance = 29;
+            this.splitContMain.SplitterDistance = 27;
             this.splitContMain.TabIndex = 1;
             // 
             // btnGo
@@ -77,7 +78,7 @@
             this.btnGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGo.Location = new System.Drawing.Point(706, 0);
             this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(94, 29);
+            this.btnGo.Size = new System.Drawing.Size(94, 27);
             this.btnGo.TabIndex = 2;
             this.btnGo.Text = "GO";
             this.btnGo.UseVisualStyleBackColor = true;
@@ -98,7 +99,7 @@
             this.btnSuperDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSuperDir.Location = new System.Drawing.Point(0, 0);
             this.btnSuperDir.Name = "btnSuperDir";
-            this.btnSuperDir.Size = new System.Drawing.Size(75, 29);
+            this.btnSuperDir.Size = new System.Drawing.Size(75, 27);
             this.btnSuperDir.TabIndex = 0;
             this.btnSuperDir.Text = "<";
             this.btnSuperDir.UseVisualStyleBackColor = true;

@@ -64,16 +64,16 @@
     <Compile Include="FileSystemEmulator\Backend\Utilities\Exceptions\NoSuchElementException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\PathList.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\StringTokenizer.cs" />
-    <Compile Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemEmulatorGUI.cs">
+    <Compile Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemExplorerGUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemEmulatorGUI.Designer.cs">
-      <DependentUpon>FileSystemEmulatorGUI.cs</DependentUpon>
+    <Compile Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemExplorerGUI.Designer.cs">
+      <DependentUpon>FileSystemExplorerGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="FileSystemEmulator\Launcher\FileSystemEmulatorLauncher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemEmulatorGUI.resx">
-      <DependentUpon>FileSystemEmulatorGUI.cs</DependentUpon>
+    <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemExplorerGUI.resx">
+      <DependentUpon>FileSystemExplorerGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
