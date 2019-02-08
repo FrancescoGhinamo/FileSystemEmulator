@@ -33,6 +33,7 @@ namespace FileSystemEmulator.Launcher
                 fs.Add(new EDirectory("C:\\Users\\Test"));
                 EFile f = fs.GetFile("C:\\Users");
                 EFileList list = fs.GetFileList();
+                EByteFile bytes = new EByteFile("Pippo", @"C:\Users\Francesco\Documents\cd.txt");
 
                 fs.MoveFile("C:\\Users", "C:\\System\\Copy\\Users");
                 fs.RenameFile("C:\\System\\Copy", "Test");

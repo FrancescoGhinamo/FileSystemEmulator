@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFileList\EFileList.cs" />
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFileSystem\FileSystemImpl.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFiles\Extensions\EByteFile.cs" />
     <Compile Include="FileSystemEmulator\Backend\Data\Interfaces\IFileSystem.cs" />
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFiles\Extensions\EDirectory.cs" />
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFiles\Extensions\ETextDocument.cs" />

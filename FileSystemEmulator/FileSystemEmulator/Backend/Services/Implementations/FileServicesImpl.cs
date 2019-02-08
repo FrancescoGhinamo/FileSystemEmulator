@@ -74,7 +74,16 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Services.Implementations
             {
                 if(saveStream != null)
                 {
-                    saveStream.Close();
+                    try
+                    {
+                        saveStream.Flush();
+                    }
+                    catch (IOException) { }
+                    finally
+                    {
+                        saveStream.Close();
+                    }                    
+                    
                 }
                 
             }
