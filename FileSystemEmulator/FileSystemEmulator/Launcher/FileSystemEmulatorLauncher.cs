@@ -44,7 +44,7 @@ namespace FileSystemEmulator.Launcher
             }
             catch (EFileException) { }
 
-            Application.Run(new FileSystemEmulatorGUI());
+            Application.Run(new FileSystemExplorerGUI());
 
             
         }

@@ -312,36 +312,40 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         {
             EFile res = null;
 
-            string token = sT.NextToken();
-            int subIndex = 0;
-            if ((subIndex = rRoot.SubFiles.IndexOfFileName(token)) != -1)
+            if(sT.HasMoreTokens())
             {
-                //if the sub file exists
-                if (!sT.HasMoreTokens())
+                string token = sT.NextToken();
+                int subIndex = 0;
+                if ((subIndex = rRoot.SubFiles.IndexOfFileName(token)) != -1)
                 {
-                    //if I reaced the last file name
-                    res = rRoot.SubFiles.ElementAt(subIndex);
+                    //if the sub file exists
+                    if (!sT.HasMoreTokens())
+                    {
+                        //if I reaced the last file name
+                        res = rRoot.SubFiles.ElementAt(subIndex);
+                    }
+                    else
+                    {
+                        //I explore the next subfolder
+                        //update the current location
+                        CurrentLocation = CurrentLocation + DIR_SEPARATOR + token;
+                        try
+                        {
+                            res = GetFile(rRoot.SubFiles.ElementAt(subIndex), sT);
+                        }
+                        catch (EFileNotFoundException e)
+                        {
+                            throw e;
+                        }
+
+                    }
                 }
                 else
                 {
-                    //I explore the next subfolder
-                    //update the current location
-                    CurrentLocation = CurrentLocation + DIR_SEPARATOR + token;
-                    try
-                    {
-                        res = GetFile(rRoot.SubFiles.ElementAt(subIndex), sT);
-                    }
-                    catch (EFileNotFoundException e)
-                    {
-                        throw e;
-                    }
-                    
+                    throw new EFileNotFoundException();
                 }
             }
-            else
-            {
-                throw new EFileNotFoundException();
-            }
+            
 
             return res;
             

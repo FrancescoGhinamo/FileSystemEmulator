@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace FileSystemEmulator
 {
-    public partial class FileSystemEmulatorGUI : Form
+    public partial class FileSystemExplorerGUI : Form
     {
 
         #region PrivateFields
@@ -33,7 +33,7 @@ namespace FileSystemEmulator
         #endregion PrivateFields
 
 
-        public FileSystemEmulatorGUI()
+        public FileSystemExplorerGUI()
         {
             FileSystemInst = FileSystemFactory.GetFileSystem();
             CurrentLocation = FileSystemInst.GetRoot();
@@ -122,18 +122,28 @@ namespace FileSystemEmulator
         {
             if(!path.Equals(""))
             {
+                //remove extra slashes
+                while(path.EndsWith("\\"))
+                {
+                    path = path.Substring(0, path.LastIndexOf("\\"));
+                }
+
                 try
                 {
                     EFile fetched = FileSystemInst.GetFile(path);
-                    if (fetched.Directory)
+                    if(fetched != null)
                     {
-                        CurrentLocation = fetched;
-                        UpdateDisplay();
+                        if (fetched.Directory)
+                        {
+                            CurrentLocation = fetched;
+                            UpdateDisplay();
+                        }
+                        else
+                        {
+                            //open the file
+                        }
                     }
-                    else
-                    {
-                        //open the file
-                    }
+                    
                 }
                 catch (EFileNotFoundException e)
                 {
