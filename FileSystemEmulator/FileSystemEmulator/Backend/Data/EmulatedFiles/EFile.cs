@@ -162,9 +162,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         /// <returns>Node for graphic rendering</returns>
         public TreeNode GetTreeNodes()
         {
-            TreeNode me = new TreeNode();
-            
-            me.Nodes.Add(new TreeNode(this.Name));
+            TreeNode me = new TreeNode(this.Name);
             foreach(EFile f in SubFiles)
             {
                 me.Nodes.Add(f.GetTreeNodes());
