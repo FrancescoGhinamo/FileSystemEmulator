@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
 {
@@ -153,6 +154,24 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
             res = Name;
             return res;
         }
+
+
+        /// <summary>
+        /// Returns nodes for current file and subfiles
+        /// </summary>
+        /// <returns>Node for graphic rendering</returns>
+        public TreeNode GetTreeNodes()
+        {
+            TreeNode me = new TreeNode();
+            
+            me.Nodes.Add(new TreeNode(this.Name));
+            foreach(EFile f in SubFiles)
+            {
+                me.Nodes.Add(f.GetTreeNodes());
+            }
+            return me;
+        }
+
         #endregion InterfaceMethods
 
     }

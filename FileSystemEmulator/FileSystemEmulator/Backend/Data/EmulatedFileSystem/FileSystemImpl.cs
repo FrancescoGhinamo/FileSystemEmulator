@@ -14,6 +14,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 {
@@ -652,7 +653,16 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             return CurrentLocation;
         }
 
-        
+
+        /// <summary>
+        /// Returns a <see cref="TreeNode"/> containing the tree representation of the FileSystem
+        /// </summary>
+        /// <returns>Nodes</returns>
+        public TreeNode GetTreeNodes()
+        {
+            return Root.GetTreeNodes();
+        }
+
         #endregion InterfaceMethods
 
     }

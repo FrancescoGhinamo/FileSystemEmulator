@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
 
 namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces
 {
@@ -146,6 +148,12 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces
         /// <param name="fileList">List of files to add</param>
         /// <param name="format">True if the file system must be formatted before adding the files </param>
         void LoadFromFileList(EFileList fileList, bool format);
+
+        /// <summary>
+        /// Returns a <see cref="TreeNode"/> containing the tree representation of the FileSystem
+        /// </summary>
+        /// <returns>Nodes</returns>
+        TreeNode GetTreeNodes();
 
     }
 }

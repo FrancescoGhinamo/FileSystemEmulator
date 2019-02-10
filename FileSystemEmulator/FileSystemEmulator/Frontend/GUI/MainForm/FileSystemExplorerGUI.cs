@@ -197,20 +197,33 @@ namespace FileSystemEmulator
         }
 
         /// <summary>
+        /// Updates the tree to the current situation of the file system
+        /// </summary>
+        public void UpdateTreeExplorer()
+        {
+            treeExplorer.BeginUpdate();
+            treeExplorer.Nodes.Clear();
+            treeExplorer.Nodes.Add(FileSystemInst.GetTreeNodes());
+            treeExplorer.EndUpdate();
+        }
+
+        /// <summary>
         /// Updates graphic info about current location
         /// </summary>
         public void UpdateDisplay()
         {
             UpdateList();
             UpdatePathTextArea();
+            UpdateTreeExplorer();
         }
+
 
 
 
 
         #endregion DisplayMethods
 
-      
+       
     }
 
 }
