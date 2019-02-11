@@ -22,7 +22,7 @@ namespace FileSystemEmulator.Launcher
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            try
+            /*try
             {
                 //remove this: written for tests
                 IFileSystem fs = FileSystemFactory.GetFileSystem();
@@ -43,7 +43,7 @@ namespace FileSystemEmulator.Launcher
                 
                 
             }
-            catch (EFileException) { }
+            catch (EFileException) { } */
 
             Application.Run(new FileSystemExplorerGUI());
 

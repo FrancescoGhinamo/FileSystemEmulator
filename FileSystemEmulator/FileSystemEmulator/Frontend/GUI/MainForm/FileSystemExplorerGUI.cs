@@ -18,7 +18,31 @@ namespace FileSystemEmulator
     public partial class FileSystemExplorerGUI : Form
     {
 
+
+        #region FileServiceInfo
+
+        /// <summary>
+        /// Default extension for the file system emulator 
+        /// </summary>
+        private const string DEFAULT_EXT = "efs";
+
+        /// <summary>
+        /// Current file to which is saved the serialization of the file system
+        /// </summary>
+        private string CurrentFile { get; set; }
+
+        /// <summary>
+        /// Keeps trace whether the file system has been modified (true if)
+        /// </summary>
+        private bool FSModified { get; set; }
+
+        #endregion FileServiceInfo
+
         #region PrivateFields
+
+
+
+
 
         /// <summary>
         /// Location currently browsing
@@ -37,13 +61,14 @@ namespace FileSystemEmulator
         {
             FileSystemInst = FileSystemFactory.GetFileSystem();
             CurrentLocation = FileSystemInst.GetRoot();
+            CurrentFile = "";
             InitializeComponent();
         }
 
         private void FileSystemEmulatorGUI_Load(object sender, EventArgs e)
         {
             
-            UpdateDisplay();
+            UpdateWholeDisplay();
         }
 
         #region EventHandlers
@@ -56,6 +81,10 @@ namespace FileSystemEmulator
             catch(EFileNotFoundException exc)
             {
                 MessageBox.Show(this, "Error: " + exc.Message, "Error");
+            }
+            finally
+            {
+                UpdateBasicExplorerGraphics();
             }
         }
 
@@ -71,7 +100,7 @@ namespace FileSystemEmulator
             }
             finally
             {
-                UpdateDisplay();
+                UpdateBasicExplorerGraphics();
             }
             
         }
@@ -79,6 +108,76 @@ namespace FileSystemEmulator
         private void btnSuperDir_Click(object sender, EventArgs e)
         {
             PerformGoToSuperDirecotory();
+            UpdateBasicExplorerGraphics();
+        }
+
+
+        private void treeExplorer_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                PerformGoToDirectory(e.Node.FullPath);
+            }
+            catch (EFileNotFoundException)
+            {
+                MessageBox.Show(this, "The selected directory or file doesn't exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                UpdateBasicExplorerGraphics();
+            }
+        }
+
+
+
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformOpen();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, exc.Message, "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformSave();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, exc.Message, "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformSaveAs();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, exc.Message, "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformExit();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, exc.Message, "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion EventHandlers
@@ -99,7 +198,6 @@ namespace FileSystemEmulator
                 if (fetched.Directory)
                 {
                     CurrentLocation = fetched;
-                    UpdateDisplay();
                 }
                 else
                 {
@@ -136,7 +234,6 @@ namespace FileSystemEmulator
                         if (fetched.Directory)
                         {
                             CurrentLocation = fetched;
-                            UpdateDisplay();
                         }
                         else
                         {
@@ -208,9 +305,18 @@ namespace FileSystemEmulator
         }
 
         /// <summary>
-        /// Updates graphic info about current location
+        /// Updates the basic explorer graphics: list and path area
         /// </summary>
-        public void UpdateDisplay()
+        public void UpdateBasicExplorerGraphics()
+        {
+            UpdateList();
+            UpdatePathTextArea();
+        }
+
+        /// <summary>
+        /// Updates the whole graphic info about current location
+        /// </summary>
+        public void UpdateWholeDisplay()
         {
             UpdateList();
             UpdatePathTextArea();
@@ -221,9 +327,183 @@ namespace FileSystemEmulator
 
 
 
+
         #endregion DisplayMethods
 
-       
+        #region FileService
+
+        /// <summary>
+        /// Initializes the file chooser to open a file
+        /// </summary>
+        /// <returns></returns>
+        public OpenFileDialog InitOpenFileDialog()
+        {
+            OpenFileDialog res = new OpenFileDialog
+            {
+                AddExtension = true,
+                DefaultExt = DEFAULT_EXT,
+                Filter = "Emulated File System file (*.efs)|*." + DEFAULT_EXT
+                
+            };
+            return res;
+        }
+
+        /// <summary>
+        /// Initializes the file chooser to save a file
+        /// </summary>
+        /// <returns></returns>
+        public SaveFileDialog InitSaveFileDialog()
+        {
+            SaveFileDialog res = new SaveFileDialog
+            {
+                AddExtension = true,
+                DefaultExt = DEFAULT_EXT,
+                Filter = "Emulated File System file (*.efs)|*." + DEFAULT_EXT
+
+            };
+            return res;
+        }
+
+        /// <summary>
+        /// Open a serialization of a file system object
+        /// </summary>
+        /// <exception cref="Exception">Thrown in case of file errors</exception>
+        public void PerformOpen()
+        {
+            if (FSModified)
+            {
+                DialogResult ans = MessageBox.Show(this, "File System has changed\nSave changes?", "Confirm", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (ans)
+                {
+                    case DialogResult.Yes:
+                        try
+                        {
+                            PerformSave();
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
+                        break;
+
+                    case DialogResult.No:
+                        break;
+
+                    case DialogResult.Cancel:
+                        return;
+                }
+            }
+
+            OpenFileDialog dOpen = InitOpenFileDialog();
+            if (dOpen.ShowDialog().Equals(DialogResult.OK))
+            {
+                CurrentFile = dOpen.FileName;
+                try
+                {
+                    FileSystemInst = FileSystemInst.DeserializeFileSystem(CurrentFile);
+                    CurrentLocation = FileSystemInst.GetRoot();
+                    UpdateWholeDisplay();
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Saves the current instance on the disk, if the file hasn't been chosen yet, the <see cref="PerformSaveAs"/> method is called
+        /// </summary>
+        /// <exception cref="Exception">Exception thrown in case of an error during persistation</exception>
+        public void PerformSave()
+        {
+            if(CurrentFile.Equals(""))
+            {
+                try
+                {
+                    PerformSaveAs();
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+
+            try
+            {
+                FileSystemInst.SerializeFileSystem(CurrentFile);
+                FSModified = false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
+
+        }
+
+        /// <summary>
+        /// Saves the current instance on the disk, choosing the file destination
+        /// </summary>
+        /// <exception cref="Exception">Exception thrown in case of an error during persistation</exception>
+        public void PerformSaveAs()
+        {
+            SaveFileDialog dSave = InitSaveFileDialog();
+            if(dSave.ShowDialog().Equals(DialogResult.OK))
+            {
+                CurrentFile = dSave.FileName;
+                try
+                {
+                    PerformSave();
+                    FSModified = false;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            
+
+        }
+
+        /// <summary>
+        /// Exits the program, checking for file changes
+        /// </summary>
+        /// <exception cref="Exception">Thrown in case of file problem</exception>
+        public void PerformExit()
+        {
+            if (FSModified)
+            {
+                DialogResult ans = MessageBox.Show(this, "File System has changed\nSave changes?", "Confirm", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (ans)
+                {
+                    case DialogResult.Yes:
+                        try
+                        {
+                            PerformSave();
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
+                        break;
+
+                    case DialogResult.No:
+                        break;
+
+                    case DialogResult.Cancel:
+                        return;
+                }
+            }
+            Environment.Exit(0);
+        }
+
+
+
+        #endregion FileService
+
+        
     }
 
 }
