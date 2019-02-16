@@ -19,13 +19,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.EDirectoryDialog
         /// <summary>
         /// Path of the new directory
         /// </summary>
-        public string GenPath
-        {
-            get
-            {
-                return txtPath.Text;
-            }
-        }
+        public string GenPath { get; set; }
 
         /// <summary>
         /// Constructor for the dialog
@@ -39,6 +33,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.EDirectoryDialog
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            this.GenPath = txtPath.Text;
             this.DialogResult = DialogResult.OK;
             this.Dispose();
         }
