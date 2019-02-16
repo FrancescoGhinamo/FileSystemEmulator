@@ -32,7 +32,11 @@
             this.btnsPan = new System.Windows.Forms.FlowLayoutPanel();
             this.btnOK = new System.Windows.Forms.Button();
             this.txtPath = new System.Windows.Forms.TextBox();
+            this.contPan = new System.Windows.Forms.SplitContainer();
             this.btnsPan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contPan)).BeginInit();
+            this.contPan.Panel2.SuspendLayout();
+            this.contPan.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -69,10 +73,30 @@
             // 
             // txtPath
             // 
-            this.txtPath.Location = new System.Drawing.Point(12, 38);
+            this.txtPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPath.Location = new System.Drawing.Point(0, 0);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(726, 22);
+            this.txtPath.Size = new System.Drawing.Size(750, 22);
             this.txtPath.TabIndex = 2;
+            // 
+            // contPan
+            // 
+            this.contPan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contPan.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.contPan.Location = new System.Drawing.Point(0, 0);
+            this.contPan.Name = "contPan";
+            this.contPan.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // contPan.Panel1
+            // 
+            this.contPan.Panel1.Enabled = false;
+            // 
+            // contPan.Panel2
+            // 
+            this.contPan.Panel2.Controls.Add(this.txtPath);
+            this.contPan.Size = new System.Drawing.Size(750, 103);
+            this.contPan.SplitterDistance = 36;
+            this.contPan.TabIndex = 3;
             // 
             // EDirectoryDialog
             // 
@@ -81,13 +105,16 @@
             this.AutoSize = true;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(750, 152);
-            this.Controls.Add(this.txtPath);
+            this.Controls.Add(this.contPan);
             this.Controls.Add(this.btnsPan);
             this.Name = "EDirectoryDialog";
             this.Text = "EDirectoryDialog";
             this.btnsPan.ResumeLayout(false);
+            this.contPan.Panel2.ResumeLayout(false);
+            this.contPan.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contPan)).EndInit();
+            this.contPan.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -97,5 +124,6 @@
         private System.Windows.Forms.FlowLayoutPanel btnsPan;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.TextBox txtPath;
+        private System.Windows.Forms.SplitContainer contPan;
     }
 }
