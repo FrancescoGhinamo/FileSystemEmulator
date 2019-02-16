@@ -3,6 +3,7 @@ using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extension
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
+using FileSystemEmulator.FileSystemEmulator.Frontend.GUI.EDirectoryDialog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,9 @@ using System.Windows.Forms;
 
 namespace FileSystemEmulator
 {
+    /// <summary>
+    /// Main form of the application
+    /// </summary>
     public partial class FileSystemExplorerGUI : Form
     {
 
@@ -180,9 +184,27 @@ namespace FileSystemEmulator
             }
         }
 
+
+
+
+
+
+        private void eDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformCreateEDirectory();
+                UpdateWholeDisplay();
+            }
+            catch(EFileNameAlreadyExistingException exc)
+            {
+                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
+        }
         #endregion EventHandlers
 
-        #region ActionMethods
+        #region BrowsingMethods
 
         /// <summary>
         /// Enters a specified <see cref="EDirectory"/>
@@ -269,7 +291,31 @@ namespace FileSystemEmulator
 
             }
         }
-        #endregion ActionMethods
+        #endregion BrowsingMethods
+
+        #region FileCreationMethods
+
+        /// <summary>
+        /// Alloes the user to create an <see cref="EDirectory"/> displaying the relative dialog
+        /// </summary>
+        /// <exception cref="EFileNameAlreadyExistingException">A dir with the same name already exists</exception>
+        public void PerformCreateEDirectory()
+        {
+            EDirectoryDialog dirD = new EDirectoryDialog(CurrentLocation.Path);
+            if(dirD.ShowDialog(this) == DialogResult.OK)
+            {
+                try
+                {
+                    FileSystemInst.Add(new EDirectory(dirD.GenPath));
+                }
+                catch(EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
+                
+            }
+        }
+        #endregion FileCreationsMethods
 
         #region DisplayMethods
 
@@ -498,6 +544,7 @@ namespace FileSystemEmulator
             }
             Environment.Exit(0);
         }
+
 
 
 

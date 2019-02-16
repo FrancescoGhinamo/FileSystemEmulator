@@ -65,6 +65,12 @@
     <Compile Include="FileSystemEmulator\Backend\Utilities\Exceptions\NoSuchElementException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\PathList.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\StringTokenizer.cs" />
+    <Compile Include="FileSystemEmulator\Frontend\GUI\EDirectoryDialog\EDirectoryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileSystemEmulator\Frontend\GUI\EDirectoryDialog\EDirectoryDialog.Designer.cs">
+      <DependentUpon>EDirectoryDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemExplorerGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     </Compile>
     <Compile Include="FileSystemEmulator\Launcher\FileSystemEmulatorLauncher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\EDirectoryDialog\EDirectoryDialog.resx">
+      <DependentUpon>EDirectoryDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemExplorerGUI.resx">
       <DependentUpon>FileSystemExplorerGUI.cs</DependentUpon>
     </EmbeddedResource>
