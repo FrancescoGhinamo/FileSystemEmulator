@@ -1,4 +1,6 @@
-﻿namespace FileSystemEmulator
+﻿
+
+namespace FileSystemEmulator
 {
     partial class FileSystemExplorerGUI
     {
@@ -46,6 +48,8 @@
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.byteFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -230,7 +234,8 @@
             // createToolStripMenuItem
             // 
             this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.folderToolStripMenuItem});
+            this.folderToolStripMenuItem,
+            this.fileToolStripMenuItem1});
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
             this.createToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.createToolStripMenuItem.Text = "Create";
@@ -246,9 +251,24 @@
             // eDirectoryToolStripMenuItem
             // 
             this.eDirectoryToolStripMenuItem.Name = "eDirectoryToolStripMenuItem";
-            this.eDirectoryToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.eDirectoryToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.eDirectoryToolStripMenuItem.Text = "EDirectory";
             this.eDirectoryToolStripMenuItem.Click += new System.EventHandler(this.eDirectoryToolStripMenuItem_Click);
+            // 
+            // fileToolStripMenuItem1
+            // 
+            this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.byteFileToolStripMenuItem});
+            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
+            this.fileToolStripMenuItem1.Text = "File";
+            // 
+            // byteFileToolStripMenuItem
+            // 
+            this.byteFileToolStripMenuItem.Name = "byteFileToolStripMenuItem";
+            this.byteFileToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.byteFileToolStripMenuItem.Text = "Byte file";
+            this.byteFileToolStripMenuItem.Click += new System.EventHandler(this.byteFileToolStripMenuItem_Click);
             // 
             // FileSystemExplorerGUI
             // 
@@ -297,6 +317,8 @@
         private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem folderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eDirectoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem byteFileToolStripMenuItem;
     }
 }
 

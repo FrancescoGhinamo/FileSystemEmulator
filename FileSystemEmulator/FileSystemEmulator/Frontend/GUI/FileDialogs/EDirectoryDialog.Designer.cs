@@ -1,4 +1,4 @@
-﻿namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.EDirectoryDialog
+﻿namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialog
 {
     partial class EDirectoryDialog
     {
@@ -33,8 +33,10 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.txtPath = new System.Windows.Forms.TextBox();
             this.contPan = new System.Windows.Forms.SplitContainer();
+            this.lblPath = new System.Windows.Forms.Label();
             this.btnsPan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contPan)).BeginInit();
+            this.contPan.Panel1.SuspendLayout();
             this.contPan.Panel2.SuspendLayout();
             this.contPan.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +91,7 @@
             // 
             // contPan.Panel1
             // 
+            this.contPan.Panel1.Controls.Add(this.lblPath);
             this.contPan.Panel1.Enabled = false;
             // 
             // contPan.Panel2
@@ -97,6 +100,17 @@
             this.contPan.Size = new System.Drawing.Size(750, 103);
             this.contPan.SplitterDistance = 36;
             this.contPan.TabIndex = 3;
+            // 
+            // lblPath
+            // 
+            this.lblPath.AutoSize = true;
+            this.lblPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPath.Location = new System.Drawing.Point(0, 0);
+            this.lblPath.Name = "lblPath";
+            this.lblPath.Size = new System.Drawing.Size(130, 24);
+            this.lblPath.TabIndex = 0;
+            this.lblPath.Text = "Directory path:";
             // 
             // EDirectoryDialog
             // 
@@ -107,9 +121,13 @@
             this.ClientSize = new System.Drawing.Size(750, 152);
             this.Controls.Add(this.contPan);
             this.Controls.Add(this.btnsPan);
+            this.MaximizeBox = false;
             this.Name = "EDirectoryDialog";
             this.Text = "EDirectoryDialog";
+            this.Load += new System.EventHandler(this.EDirectoryDialog_Load);
             this.btnsPan.ResumeLayout(false);
+            this.contPan.Panel1.ResumeLayout(false);
+            this.contPan.Panel1.PerformLayout();
             this.contPan.Panel2.ResumeLayout(false);
             this.contPan.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contPan)).EndInit();
@@ -125,5 +143,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.SplitContainer contPan;
+        private System.Windows.Forms.Label lblPath;
     }
 }

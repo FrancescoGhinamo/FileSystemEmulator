@@ -11,6 +11,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
     /// Estension of class <see cref="Efile"/>
     /// This is a file made of a sequence of bytes: this can be the copy of file in the Windows file system
     /// </summary>
+    [Serializable]
     public class EByteFile : EFile
     {
 

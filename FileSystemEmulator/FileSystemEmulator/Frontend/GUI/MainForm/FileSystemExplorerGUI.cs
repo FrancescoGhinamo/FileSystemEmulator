@@ -3,7 +3,8 @@ using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extension
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
-using FileSystemEmulator.FileSystemEmulator.Frontend.GUI.EDirectoryDialog;
+using FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialog;
+using FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -202,6 +203,19 @@ namespace FileSystemEmulator
             }
             
         }
+
+        private void byteFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformCreateEByteFile();
+                UpdateWholeDisplay();
+            }
+            catch (EFileNameAlreadyExistingException exc)
+            {
+                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         #endregion EventHandlers
 
         #region BrowsingMethods
@@ -296,7 +310,7 @@ namespace FileSystemEmulator
         #region FileCreationMethods
 
         /// <summary>
-        /// Alloes the user to create an <see cref="EDirectory"/> displaying the relative dialog
+        /// Allows the user to create an <see cref="EDirectory"/> displaying the relative dialog
         /// </summary>
         /// <exception cref="EFileNameAlreadyExistingException">A dir with the same name already exists</exception>
         public void PerformCreateEDirectory()
@@ -306,7 +320,7 @@ namespace FileSystemEmulator
             {
                 try
                 {
-                    FileSystemInst.Add(new EDirectory(dirD.GenPath));
+                    FileSystemInst.Add(dirD.genDir);
                 }
                 catch(EFileNameAlreadyExistingException e)
                 {
@@ -315,6 +329,20 @@ namespace FileSystemEmulator
                 
             }
         }
+
+        /// <summary>
+        /// Allows the user to create an <see cref="EByteFile"/> displaying the relative dialog
+        /// </summary>
+        /// <exception cref="EFileNameAlreadyExistingException">A file with the same name already exists</exception>
+        public void PerformCreateEByteFile()
+        {
+            EByteFileDialog fD = new EByteFileDialog(CurrentLocation.Path);
+            if(fD.ShowDialog(this) == DialogResult.OK)
+            {
+                FileSystemInst.Add(fD.byteFile);
+            }
+        }
+
         #endregion FileCreationsMethods
 
         #region DisplayMethods
@@ -544,6 +572,7 @@ namespace FileSystemEmulator
             }
             Environment.Exit(0);
         }
+
 
 
 

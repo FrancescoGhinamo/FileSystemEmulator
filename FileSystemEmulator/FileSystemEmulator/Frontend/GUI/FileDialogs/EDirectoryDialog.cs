@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.EDirectoryDialog
+namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialog
 {
     /// <summary>
     /// Dialog to guide the creation of a directory
@@ -17,9 +18,9 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.EDirectoryDialog
     {
 
         /// <summary>
-        /// Path of the new directory
+        /// New <see cref="EDirectory"/>
         /// </summary>
-        public string GenPath { get; set; }
+        public EDirectory genDir { get; set; }
 
         /// <summary>
         /// Constructor for the dialog
@@ -33,15 +34,28 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.EDirectoryDialog
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.GenPath = txtPath.Text;
-            this.DialogResult = DialogResult.OK;
-            this.Dispose();
+            if (!txtPath.Text.Equals(""))
+            {
+                this.genDir = new EDirectory(txtPath.Text);
+                this.DialogResult = DialogResult.OK;
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show(this, "Not all the fields have been filled in", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Dispose();
+        }
+
+        private void EDirectoryDialog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

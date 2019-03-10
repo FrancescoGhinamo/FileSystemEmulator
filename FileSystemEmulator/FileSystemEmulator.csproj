@@ -65,10 +65,16 @@
     <Compile Include="FileSystemEmulator\Backend\Utilities\Exceptions\NoSuchElementException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\PathList.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\StringTokenizer.cs" />
-    <Compile Include="FileSystemEmulator\Frontend\GUI\EDirectoryDialog\EDirectoryDialog.cs">
+    <Compile Include="FileSystemEmulator\Frontend\GUI\FileDialogs\EByteFileDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileSystemEmulator\Frontend\GUI\EDirectoryDialog\EDirectoryDialog.Designer.cs">
+    <Compile Include="FileSystemEmulator\Frontend\GUI\FileDialogs\EByteFileDialog.Designer.cs">
+      <DependentUpon>EByteFileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileSystemEmulator\Frontend\GUI\FileDialogs\EDirectoryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileSystemEmulator\Frontend\GUI\FileDialogs\EDirectoryDialog.Designer.cs">
       <DependentUpon>EDirectoryDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemExplorerGUI.cs">
@@ -79,7 +85,10 @@
     </Compile>
     <Compile Include="FileSystemEmulator\Launcher\FileSystemEmulatorLauncher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\EDirectoryDialog\EDirectoryDialog.resx">
+    <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\FileDialogs\EByteFileDialog.resx">
+      <DependentUpon>EByteFileDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\FileDialogs\EDirectoryDialog.resx">
       <DependentUpon>EDirectoryDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemExplorerGUI.resx">
