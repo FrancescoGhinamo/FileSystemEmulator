@@ -121,6 +121,23 @@
   <data name="mainPan.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txtPath.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="txtPath.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="txtPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="txtPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>713, 24</value>
+  </data>
+  <data name="txtPath.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
   <data name="&gt;&gt;txtPath.Name" xml:space="preserve">
     <value>txtPath</value>
   </data>
@@ -132,6 +149,21 @@
   </data>
   <data name="&gt;&gt;txtPath.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="btnChoose.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnChoose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>722, 3</value>
+  </data>
+  <data name="btnChoose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 27</value>
+  </data>
+  <data name="btnChoose.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnChoose.Text" xml:space="preserve">
+    <value>Choose file</value>
   </data>
   <data name="&gt;&gt;btnChoose.Name" xml:space="preserve">
     <value>btnChoose</value>
@@ -145,11 +177,9 @@
   <data name="&gt;&gt;btnChoose.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pathPan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pathPan.Location" type="System.Drawing.Point, System.Drawing">
     <value>164, 3</value>
   </data>
@@ -293,57 +323,6 @@
   </data>
   <data name="mainPan.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pathPan" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblSource" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDest" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtDest" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,16.59836,Percent,83.40164" /&gt;&lt;Rows Styles="Percent,29.90196,Percent,70.09804" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="txtPath.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="txtPath.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
-  </data>
-  <data name="txtPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="txtPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>713, 24</value>
-  </data>
-  <data name="txtPath.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;txtPath.Name" xml:space="preserve">
-    <value>txtPath</value>
-  </data>
-  <data name="&gt;&gt;txtPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtPath.Parent" xml:space="preserve">
-    <value>pathPan</value>
-  </data>
-  <data name="&gt;&gt;txtPath.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnChoose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>722, 3</value>
-  </data>
-  <data name="btnChoose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 27</value>
-  </data>
-  <data name="btnChoose.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="btnChoose.Text" xml:space="preserve">
-    <value>Choose file</value>
-  </data>
-  <data name="&gt;&gt;btnChoose.Name" xml:space="preserve">
-    <value>btnChoose</value>
-  </data>
-  <data name="&gt;&gt;btnChoose.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnChoose.Parent" xml:space="preserve">
-    <value>pathPan</value>
-  </data>
-  <data name="&gt;&gt;btnChoose.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="btnCreate.Location" type="System.Drawing.Point, System.Drawing">
     <value>851, 3</value>

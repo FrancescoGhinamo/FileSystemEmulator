@@ -114,6 +114,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowButtons);
             this.Controls.Add(this.mainPan);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "EByteFileDialog";
             this.Load += new System.EventHandler(this.EByteFileDialog_Load);

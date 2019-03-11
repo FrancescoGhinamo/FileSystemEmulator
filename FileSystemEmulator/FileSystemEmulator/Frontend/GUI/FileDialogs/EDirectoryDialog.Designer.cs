@@ -121,6 +121,7 @@
             this.ClientSize = new System.Drawing.Size(750, 152);
             this.Controls.Add(this.contPan);
             this.Controls.Add(this.btnsPan);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "EDirectoryDialog";
             this.Text = "EDirectoryDialog";
