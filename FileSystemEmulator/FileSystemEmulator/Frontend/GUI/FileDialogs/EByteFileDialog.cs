@@ -23,6 +23,10 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
         /// </summary>
         public EByteFile byteFile { get; set; }
 
+        /// <summary>
+        /// Constructor for the dialog
+        /// </summary>
+        /// <param name="currentLocation">Current browsing location</param>
         public EByteFileDialog(string currentLocation)
         {
             InitializeComponent();

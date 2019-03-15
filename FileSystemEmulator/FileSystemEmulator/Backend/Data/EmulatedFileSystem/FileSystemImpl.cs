@@ -404,13 +404,14 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             try
             {
                 EFile _source = GetFile(sourceFile);
+                EFile newFile = _source.GetCopy();
                 //update of file path and name
-                _source.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
-                _source.Name = destinationFile.Substring(destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
-                _source.UpdateSubFilesPath();
+                newFile.ParentPath = destinationFile.Substring(0, destinationFile.LastIndexOf(DIR_SEPARATOR));
+                newFile.Name = destinationFile.Substring(destinationFile.LastIndexOf(DIR_SEPARATOR) + 1);
+                newFile.UpdateSubFilesPath();
                 try
                 {
-                    this.Add(_source);
+                    this.Add(newFile);
                 }
                 catch (EFileNameAlreadyExistingException e)
                 {

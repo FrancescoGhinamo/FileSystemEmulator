@@ -111,6 +111,22 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
             return res;
         }
 
+
+
         #endregion RetrievingFileFromWindows
+
+        #region MaintenanceMethods
+
+        /// <summary>
+        /// Creates a copy of the current <see cref="EByteFile"/>
+        /// </summary>
+        /// <returns>Returs a proper copy of the current <see cref="EByteFile"/></returns
+        public override EFile GetCopy()
+        {
+            EByteFile res = new EByteFile(this.Path);
+            res.Content = this.Content;
+            return res;
+        }
+        #endregion MaintenanceMethods
     }
 }

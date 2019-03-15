@@ -216,6 +216,20 @@ namespace FileSystemEmulator
                 MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformCopyFile();
+                UpdateWholeDisplay();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         #endregion EventHandlers
 
         #region BrowsingMethods
@@ -224,7 +238,7 @@ namespace FileSystemEmulator
         /// Enters a specified <see cref="EDirectory"/>
         /// If the selection is not a directory, the file is opened
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="path">Path of the clicked file</param>
         /// <exception cref="EFileNotFoundException">The requested file was not found</exception>
         public void PerformClickOnList(string path)
         {
@@ -339,11 +353,47 @@ namespace FileSystemEmulator
             EByteFileDialog fD = new EByteFileDialog(CurrentLocation.Path);
             if(fD.ShowDialog(this) == DialogResult.OK)
             {
-                FileSystemInst.Add(fD.byteFile);
+                try
+                {
+                    FileSystemInst.Add(fD.byteFile);
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
+                
             }
         }
 
         #endregion FileCreationsMethods
+
+        #region FileManagingMethods
+
+        /// <summary>
+        /// Allows the user to copy an <see cref="EFile"/> in the instance of <see cref="IFileSystem"/>
+        /// </summary>
+        /// /// <exception cref="EFileNotFoundException">The specified source file doesn't exist</exception>
+        /// <exception cref="EFileNameAlreadyExistingException">The destination directory already contains an <see cref="EFile"/> with the same name</exception>
+        public void PerformCopyFile()
+        {
+            CopyFileDialog cD = new CopyFileDialog(CurrentLocation.Path);
+            if(cD.ShowDialog(this) == DialogResult.OK)
+            {
+                try
+                {
+                    FileSystemInst.CopyFile(cD.CopyCoords[0], cD.CopyCoords[1]);
+                }
+                catch(EFileNotFoundException e)
+                {
+                    throw e;
+                }
+                catch(EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
+            }
+        }
+        #endregion FileManagingMethods
 
         #region DisplayMethods
 
@@ -572,6 +622,7 @@ namespace FileSystemEmulator
             }
             Environment.Exit(0);
         }
+
 
 
 

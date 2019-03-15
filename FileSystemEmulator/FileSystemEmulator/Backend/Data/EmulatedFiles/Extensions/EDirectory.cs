@@ -34,5 +34,18 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
             return res;
         }
         #endregion InterfaceMethods
+
+        #region MaintenanceMethods
+
+        /// <summary>
+        /// Creates a copy of the current <see cref="EDirectory"/>
+        /// </summary>
+        /// <returns>Returs a proper copy of the current <see cref="EDirectory"/></returns
+        public override EFile GetCopy()
+        {
+            EDirectory res = new EDirectory(this.Path);
+            return res;
+        }
+        #endregion MaintenanceMethods
     }
 }

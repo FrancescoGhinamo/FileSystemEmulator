@@ -104,5 +104,21 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Exten
             ResetBuffer();
         }
         #endregion AccessMethods
+
+
+        #region MaintenanceMethods
+
+        /// <summary>
+        /// Creates a copy of the current <see cref="ETextDocument/>
+        /// </summary>
+        /// <returns>Returs a proper copy of the current <see cref="ETextDocument"/></returns
+        public override EFile GetCopy()
+        {
+            ETextDocument res = new ETextDocument(this.Path);
+            res.Text = this.Text;
+            res._buffer = this._buffer;
+            return res;
+        }
+        #endregion MaintenanceMethods
     }
 }

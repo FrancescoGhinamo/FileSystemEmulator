@@ -128,6 +128,13 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
         #region MaintenanceMethods
 
         /// <summary>
+        /// Creates a copy of the current <see cref="EFile"/>
+        /// </summary>
+        /// <returns>Returs a proper copy of the current <see cref="EFile"/></returns>
+        public abstract EFile GetCopy();
+
+
+        /// <summary>
         /// Updates the path of the sub files to meet the position in file system
         /// Useful after copying, moving or renaming a file
         /// </summary>

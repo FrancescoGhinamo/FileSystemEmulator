@@ -124,7 +124,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "EDirectoryDialog";
-            this.Text = "EDirectoryDialog";
+            this.Text = "Create EDirectory";
             this.Load += new System.EventHandler(this.EDirectoryDialog_Load);
             this.btnsPan.ResumeLayout(false);
             this.contPan.Panel1.ResumeLayout(false);
