@@ -11,25 +11,29 @@ using System.Windows.Forms;
 namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
     /// <summary>
-    /// UI to copy <see cref="Efile"/> instances
+    /// UI to rename a <see cref="Efile"/>
     /// </summary>
-    public partial class CopyFileDialog : Form
+    public partial class RenameFileDialog : Form
     {
         /// <summary>
-        /// Copy coordinates, in [0] is stored source file, in [1] is stored destination file
+        /// Rename coordinates, in [0] is stored source file, in [1] is stored destination file
         /// </summary>
-        public string[] CopyCoords { get; set; }
+        public string[] RenameCoords { get; set; }
+
+        /// <summary>
+        /// Path of the file will be renamed
+        /// </summary>
+        private string FilePath;
 
         /// <summary>
         /// Constructor for the dialog
         /// </summary>
         /// <param name="currentLocation">Current browsing location</param>
-        public CopyFileDialog(string currentLocation)
+        public RenameFileDialog(string currentLocation)
         {
             InitializeComponent();
-            txtSourcePath.Text = currentLocation;
-            txtDestPath.Text = currentLocation;
-            CopyCoords = new string[2];
+            FilePath = currentLocation;
+            RenameCoords = new string[2];
         }
 
 
@@ -39,12 +43,12 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
 
         }
 
-        private void btnCopy_Click(object sender, EventArgs e)
+        private void btnRename_Click(object sender, EventArgs e)
         {
-            if(!txtDestPath.Text.Equals("") && !txtSourcePath.Text.Equals(""))
+            if (!txtDestPath.Text.Equals("") && !txtSourcePath.Text.Equals(""))
             {
-                CopyCoords[0] = txtSourcePath.Text;
-                CopyCoords[1] = txtDestPath.Text;
+                RenameCoords[0] = FilePath + "\\" + txtSourcePath.Text;
+                RenameCoords[1] = FilePath + "\\" + txtDestPath.Text;
                 DialogResult = DialogResult.OK;
             }
             else

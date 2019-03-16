@@ -230,6 +230,32 @@ namespace FileSystemEmulator
             }
         }
 
+        private void moveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformMoveFile();
+                UpdateWholeDisplay();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformRenameFile();
+                UpdateWholeDisplay();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         #endregion EventHandlers
 
         #region BrowsingMethods
@@ -393,6 +419,57 @@ namespace FileSystemEmulator
                 }
             }
         }
+
+        /// <summary>
+        /// Allows the user the move an <see cref="EFile"/>
+        /// </summary>
+        /// <exception cref="EFileNotFoundException">The specified source file doesn't exist</exception>
+        /// <exception cref="EFileNameAlreadyExistingException">The destination directory already contains an <see cref="EFile"/> with the same name</exception>
+        public void PerformMoveFile()
+        {
+            MoveFileDialog mD = new MoveFileDialog(CurrentLocation.Path);
+            if(mD.ShowDialog(this) == DialogResult.OK)
+            {
+                try
+                {
+                    FileSystemInst.MoveFile(mD.MoveCoords[0], mD.MoveCoords[1]);
+                }
+                catch (EFileNotFoundException e)
+                {
+                    throw e;
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Allows the user the rename an <see cref="EFile"/>
+        /// </summary>
+        /// <exception cref="EFileNotFoundException">The specified source file doesn't exist</exception>
+        /// <exception cref="EFileNameAlreadyExistingException">The destination directory already contains an <see cref="EFile"/> with the same name</exception>
+        public void PerformRenameFile()
+        {
+            RenameFileDialog rD = new RenameFileDialog(CurrentLocation.Path);
+            if(rD.ShowDialog(this) == DialogResult.OK)
+            {
+                try
+                {
+                    FileSystemInst.MoveFile(rD.RenameCoords[0], rD.RenameCoords[1]);
+                }
+                catch (EFileNotFoundException e)
+                {
+                    throw e;
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         #endregion FileManagingMethods
 
         #region DisplayMethods
@@ -622,6 +699,8 @@ namespace FileSystemEmulator
             }
             Environment.Exit(0);
         }
+
+
 
 
 

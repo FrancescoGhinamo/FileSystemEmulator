@@ -11,25 +11,25 @@ using System.Windows.Forms;
 namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
     /// <summary>
-    /// UI to copy <see cref="Efile"/> instances
+    /// UI to move <see cref="EFile"/> instances
     /// </summary>
-    public partial class CopyFileDialog : Form
+    public partial class MoveFileDialog : Form
     {
         /// <summary>
-        /// Copy coordinates, in [0] is stored source file, in [1] is stored destination file
+        /// Move coordinates, in [0] is stored source file, in [1] is stored destination file
         /// </summary>
-        public string[] CopyCoords { get; set; }
+        public string[] MoveCoords { get; set; }
 
         /// <summary>
         /// Constructor for the dialog
         /// </summary>
         /// <param name="currentLocation">Current browsing location</param>
-        public CopyFileDialog(string currentLocation)
+        public MoveFileDialog(string currentLocation)
         {
             InitializeComponent();
             txtSourcePath.Text = currentLocation;
             txtDestPath.Text = currentLocation;
-            CopyCoords = new string[2];
+            MoveCoords = new string[2];
         }
 
 
@@ -39,12 +39,12 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
 
         }
 
-        private void btnCopy_Click(object sender, EventArgs e)
+        private void btnMove_Click(object sender, EventArgs e)
         {
-            if(!txtDestPath.Text.Equals("") && !txtSourcePath.Text.Equals(""))
+            if (!txtDestPath.Text.Equals("") && !txtSourcePath.Text.Equals(""))
             {
-                CopyCoords[0] = txtSourcePath.Text;
-                CopyCoords[1] = txtDestPath.Text;
+                MoveCoords[0] = txtSourcePath.Text;
+                MoveCoords[1] = txtDestPath.Text;
                 DialogResult = DialogResult.OK;
             }
             else
@@ -58,5 +58,6 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
             DialogResult = DialogResult.Cancel;
             Dispose();
         }
+
     }
 }

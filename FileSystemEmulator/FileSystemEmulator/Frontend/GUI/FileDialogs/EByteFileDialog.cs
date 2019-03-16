@@ -11,6 +11,10 @@ using System.Windows.Forms;
 
 namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
+
+    /// <summary>
+    /// UI to create <see cref="EByteFile"/> instances
+    /// </summary>
     public partial class EByteFileDialog : Form
     {
         /// <summary>

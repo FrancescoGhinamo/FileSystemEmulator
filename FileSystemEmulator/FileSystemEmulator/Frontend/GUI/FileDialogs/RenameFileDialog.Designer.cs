@@ -1,6 +1,6 @@
 ﻿namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
-    partial class CopyFileDialog
+    partial class RenameFileDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.flowButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnRename = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.mainPan = new System.Windows.Forms.TableLayoutPanel();
             this.pathPan = new System.Windows.Forms.FlowLayoutPanel();
             this.txtSourcePath = new System.Windows.Forms.TextBox();
             this.lblSource = new System.Windows.Forms.Label();
             this.lblDest = new System.Windows.Forms.Label();
             this.txtDestPath = new System.Windows.Forms.TextBox();
-            this.flowButtons = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnCopy = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.flowButtons.SuspendLayout();
             this.mainPan.SuspendLayout();
             this.pathPan.SuspendLayout();
-            this.flowButtons.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // flowButtons
+            // 
+            this.flowButtons.Controls.Add(this.btnRename);
+            this.flowButtons.Controls.Add(this.btnCancel);
+            this.flowButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowButtons.Location = new System.Drawing.Point(0, 93);
+            this.flowButtons.Name = "flowButtons";
+            this.flowButtons.Size = new System.Drawing.Size(976, 51);
+            this.flowButtons.TabIndex = 6;
+            // 
+            // btnRename
+            // 
+            this.btnRename.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRename.Location = new System.Drawing.Point(851, 3);
+            this.btnRename.Name = "btnRename";
+            this.btnRename.Size = new System.Drawing.Size(122, 39);
+            this.btnRename.TabIndex = 2;
+            this.btnRename.Text = "Rename";
+            this.btnRename.UseVisualStyleBackColor = true;
+            this.btnRename.Click += new System.EventHandler(this.btnRename_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCancel.Location = new System.Drawing.Point(723, 3);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(122, 39);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // mainPan
             // 
@@ -58,7 +90,7 @@
             this.mainPan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.90196F));
             this.mainPan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.09804F));
             this.mainPan.Size = new System.Drawing.Size(976, 144);
-            this.mainPan.TabIndex = 1;
+            this.mainPan.TabIndex = 5;
             // 
             // pathPan
             // 
@@ -111,40 +143,7 @@
             this.txtDestPath.Size = new System.Drawing.Size(809, 24);
             this.txtDestPath.TabIndex = 3;
             // 
-            // flowButtons
-            // 
-            this.flowButtons.Controls.Add(this.btnCopy);
-            this.flowButtons.Controls.Add(this.btnCancel);
-            this.flowButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowButtons.Location = new System.Drawing.Point(0, 93);
-            this.flowButtons.Name = "flowButtons";
-            this.flowButtons.Size = new System.Drawing.Size(976, 51);
-            this.flowButtons.TabIndex = 2;
-            // 
-            // btnCopy
-            // 
-            this.btnCopy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCopy.Location = new System.Drawing.Point(851, 3);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(122, 39);
-            this.btnCopy.TabIndex = 2;
-            this.btnCopy.Text = "Copy";
-            this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(723, 3);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(122, 39);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // CopyFileDialog
+            // RenameFileDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,28 +152,27 @@
             this.Controls.Add(this.mainPan);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "CopyFileDialog";
-            this.Text = "Copy EFile";
-            this.Load += new System.EventHandler(this.CopyFileDialog_Load);
+            this.Name = "RenameFileDialog";
+            this.Text = "RenameFileDialog";
+            this.flowButtons.ResumeLayout(false);
             this.mainPan.ResumeLayout(false);
             this.mainPan.PerformLayout();
             this.pathPan.ResumeLayout(false);
             this.pathPan.PerformLayout();
-            this.flowButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.FlowLayoutPanel flowButtons;
+        private System.Windows.Forms.Button btnRename;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TableLayoutPanel mainPan;
         private System.Windows.Forms.FlowLayoutPanel pathPan;
         private System.Windows.Forms.TextBox txtSourcePath;
         private System.Windows.Forms.Label lblSource;
         private System.Windows.Forms.Label lblDest;
         private System.Windows.Forms.TextBox txtDestPath;
-        private System.Windows.Forms.FlowLayoutPanel flowButtons;
-        private System.Windows.Forms.Button btnCopy;
-        private System.Windows.Forms.Button btnCancel;
     }
 }
