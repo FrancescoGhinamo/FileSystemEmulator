@@ -256,6 +256,19 @@ namespace FileSystemEmulator
             }
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformDeleteFile();
+                UpdateWholeDisplay();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         #endregion EventHandlers
 
         #region BrowsingMethods
@@ -464,6 +477,26 @@ namespace FileSystemEmulator
                     throw e;
                 }
                 catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Allows the user to delete an instance of <see cref="EFile"/>
+        /// </summary>
+        /// <exception cref="EFileNotFoundException">Thrown if it's attempting to rename a file that doesn't exist</exception>
+        public void PerformDeleteFile()
+        {
+            DeleteFileDialog dD = new DeleteFileDialog(CurrentLocation.Path);
+            if(dD.ShowDialog(this) == DialogResult.OK)
+            {
+                try
+                {
+                    FileSystemInst.DeleteFile(dD.ToDelFile);
+                }
+                catch(EFileNotFoundException e)
                 {
                     throw e;
                 }
@@ -707,9 +740,9 @@ namespace FileSystemEmulator
 
 
 
+
         #endregion FileService
 
-        
     }
 
 }
