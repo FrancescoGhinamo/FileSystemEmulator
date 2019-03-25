@@ -5,6 +5,7 @@ using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
 using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
 using FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialog;
 using FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs;
+using FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileSystemDialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,7 +73,7 @@ namespace FileSystemEmulator
 
         private void FileSystemEmulatorGUI_Load(object sender, EventArgs e)
         {
-            
+
             UpdateWholeDisplay();
         }
 
@@ -83,7 +84,7 @@ namespace FileSystemEmulator
             {
                 PerformClickOnList(CurrentLocation.SubFiles.ElementAt(listDirectory.Items.IndexOf(listDirectory.SelectedItems[0])).Path);
             }
-            catch(EFileNotFoundException exc)
+            catch (EFileNotFoundException exc)
             {
                 MessageBox.Show(this, "Error: " + exc.Message, "Error");
             }
@@ -107,7 +108,7 @@ namespace FileSystemEmulator
             {
                 UpdateBasicExplorerGraphics();
             }
-            
+
         }
 
         private void btnSuperDir_Click(object sender, EventArgs e)
@@ -197,11 +198,11 @@ namespace FileSystemEmulator
                 PerformCreateEDirectory();
                 UpdateWholeDisplay();
             }
-            catch(EFileNameAlreadyExistingException exc)
+            catch (EFileNameAlreadyExistingException exc)
             {
                 MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
+
         }
 
         private void byteFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -269,6 +270,26 @@ namespace FileSystemEmulator
             }
         }
 
+
+
+        private void formatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PerformFormat();
+            UpdateWholeDisplay();
+        }
+
+        private void attemptRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformAttemptRecovery();
+                UpdateWholeDisplay();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         #endregion EventHandlers
 
         #region BrowsingMethods
@@ -297,7 +318,7 @@ namespace FileSystemEmulator
             {
                 throw e;
             }
-            
+
         }
 
         /// <summary>
@@ -307,10 +328,10 @@ namespace FileSystemEmulator
         /// <exception cref="EFileNotFoundException">Thrown if the file doesn't exist</exception>
         public void PerformGoToDirectory(string path)
         {
-            if(!path.Equals(""))
+            if (!path.Equals(""))
             {
                 //remove extra slashes
-                while(path.EndsWith("\\"))
+                while (path.EndsWith("\\"))
                 {
                     path = path.Substring(0, path.LastIndexOf("\\"));
                 }
@@ -318,7 +339,7 @@ namespace FileSystemEmulator
                 try
                 {
                     EFile fetched = FileSystemInst.GetFile(path);
-                    if(fetched != null)
+                    if (fetched != null)
                     {
                         if (fetched.Directory)
                         {
@@ -329,15 +350,15 @@ namespace FileSystemEmulator
                             //open the file
                         }
                     }
-                    
+
                 }
                 catch (EFileNotFoundException e)
                 {
                     throw e;
                 }
             }
-            
-            
+
+
         }
 
         /// <summary>
@@ -354,7 +375,7 @@ namespace FileSystemEmulator
                     PerformGoToDirectory(superPath);
                 }
                 catch (EFileNotFoundException) { }
-               
+
 
             }
         }
@@ -369,17 +390,17 @@ namespace FileSystemEmulator
         public void PerformCreateEDirectory()
         {
             EDirectoryDialog dirD = new EDirectoryDialog(CurrentLocation.Path);
-            if(dirD.ShowDialog(this) == DialogResult.OK)
+            if (dirD.ShowDialog(this) == DialogResult.OK)
             {
                 try
                 {
                     FileSystemInst.Add(dirD.genDir);
                 }
-                catch(EFileNameAlreadyExistingException e)
+                catch (EFileNameAlreadyExistingException e)
                 {
                     throw e;
                 }
-                
+
             }
         }
 
@@ -390,7 +411,7 @@ namespace FileSystemEmulator
         public void PerformCreateEByteFile()
         {
             EByteFileDialog fD = new EByteFileDialog(CurrentLocation.Path);
-            if(fD.ShowDialog(this) == DialogResult.OK)
+            if (fD.ShowDialog(this) == DialogResult.OK)
             {
                 try
                 {
@@ -400,7 +421,7 @@ namespace FileSystemEmulator
                 {
                     throw e;
                 }
-                
+
             }
         }
 
@@ -416,17 +437,17 @@ namespace FileSystemEmulator
         public void PerformCopyFile()
         {
             CopyFileDialog cD = new CopyFileDialog(CurrentLocation.Path);
-            if(cD.ShowDialog(this) == DialogResult.OK)
+            if (cD.ShowDialog(this) == DialogResult.OK)
             {
                 try
                 {
                     FileSystemInst.CopyFile(cD.CopyCoords[0], cD.CopyCoords[1]);
                 }
-                catch(EFileNotFoundException e)
+                catch (EFileNotFoundException e)
                 {
                     throw e;
                 }
-                catch(EFileNameAlreadyExistingException e)
+                catch (EFileNameAlreadyExistingException e)
                 {
                     throw e;
                 }
@@ -441,7 +462,7 @@ namespace FileSystemEmulator
         public void PerformMoveFile()
         {
             MoveFileDialog mD = new MoveFileDialog(CurrentLocation.Path);
-            if(mD.ShowDialog(this) == DialogResult.OK)
+            if (mD.ShowDialog(this) == DialogResult.OK)
             {
                 try
                 {
@@ -466,7 +487,7 @@ namespace FileSystemEmulator
         public void PerformRenameFile()
         {
             RenameFileDialog rD = new RenameFileDialog(CurrentLocation.Path);
-            if(rD.ShowDialog(this) == DialogResult.OK)
+            if (rD.ShowDialog(this) == DialogResult.OK)
             {
                 try
                 {
@@ -490,13 +511,13 @@ namespace FileSystemEmulator
         public void PerformDeleteFile()
         {
             DeleteFileDialog dD = new DeleteFileDialog(CurrentLocation.Path);
-            if(dD.ShowDialog(this) == DialogResult.OK)
+            if (dD.ShowDialog(this) == DialogResult.OK)
             {
                 try
                 {
                     FileSystemInst.DeleteFile(dD.ToDelFile);
                 }
-                catch(EFileNotFoundException e)
+                catch (EFileNotFoundException e)
                 {
                     throw e;
                 }
@@ -504,6 +525,55 @@ namespace FileSystemEmulator
         }
 
         #endregion FileManagingMethods
+
+        #region FileSystemManagingMethods
+
+        /// <summary>
+        /// Formats the current file system
+        /// </summary>
+        public void PerformFormat()
+        {
+            FormatFileSystemDialog fD = new FormatFileSystemDialog();
+            if(fD.ShowDialog(this) == DialogResult.OK)
+            {
+                FileSystemInst.Format(fD.KeepCopy);
+            }
+        }
+
+        /// <summary>
+        /// Attempts to recover the file system after the format from a saved temporary copy, if available
+        /// </summary>
+        /// <exception cref="NoFilesException">Thrown if there are no files in the recovery data</exception>
+        public void PerformAttemptRecovery()
+        {
+
+            DialogResult res = MessageBox.Show(this, "Overwright the current file sytem?", "File system recovery", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            bool overwright = false;
+            switch (res)
+            {
+                case DialogResult.Yes:
+                    overwright = true;
+                    break;
+
+                case DialogResult.No:
+                    overwright = false;
+                    break;
+
+                case DialogResult.Cancel:
+                    return;
+            }
+            try
+            {
+                FileSystemInst.AttemptRecovery(overwright);
+            }
+            catch(NoFilesException e)
+            {
+                throw e;
+            }
+            
+        }
+
+        #endregion FileSystemManagingMethods
 
         #region DisplayMethods
 
@@ -741,8 +811,10 @@ namespace FileSystemEmulator
 
 
 
+
         #endregion FileService
 
+        
     }
 
 }

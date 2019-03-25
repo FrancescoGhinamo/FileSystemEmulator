@@ -73,6 +73,7 @@
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // mainPan
             // 
@@ -153,7 +154,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "RenameFileDialog";
-            this.Text = "RenameFileDialog";
+            this.Text = "Rename EFile";
             this.flowButtons.ResumeLayout(false);
             this.mainPan.ResumeLayout(false);
             this.mainPan.PerformLayout();

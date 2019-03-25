@@ -123,6 +123,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         {
             if (copy)
             {
+                _temporaryCopy.Clear();
                 foreach(EFile f in Root.SubFiles)
                 {
                     _temporaryCopy.Add(f);

@@ -154,7 +154,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "MoveFileDialog";
-            this.Text = "MoveFileDialog";
+            this.Text = "Move EFile";
             this.flowButtons.ResumeLayout(false);
             this.mainPan.ResumeLayout(false);
             this.mainPan.PerformLayout();

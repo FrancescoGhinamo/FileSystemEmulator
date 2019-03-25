@@ -62,5 +62,6 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
             DialogResult = DialogResult.Cancel;
             Dispose();
         }
+        
     }
 }
