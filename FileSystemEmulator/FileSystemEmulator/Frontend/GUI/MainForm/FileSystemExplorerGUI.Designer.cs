@@ -257,7 +257,7 @@ namespace FileSystemEmulator
             this.folderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eDirectoryToolStripMenuItem});
             this.folderToolStripMenuItem.Name = "folderToolStripMenuItem";
-            this.folderToolStripMenuItem.Size = new System.Drawing.Size(126, 26);
+            this.folderToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.folderToolStripMenuItem.Text = "Folder";
             // 
             // eDirectoryToolStripMenuItem
@@ -272,13 +272,13 @@ namespace FileSystemEmulator
             this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.byteFileToolStripMenuItem});
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(126, 26);
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
             this.fileToolStripMenuItem1.Text = "File";
             // 
             // byteFileToolStripMenuItem
             // 
             this.byteFileToolStripMenuItem.Name = "byteFileToolStripMenuItem";
-            this.byteFileToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
+            this.byteFileToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.byteFileToolStripMenuItem.Text = "Byte file";
             this.byteFileToolStripMenuItem.Click += new System.EventHandler(this.byteFileToolStripMenuItem_Click);
             // 
@@ -322,14 +322,14 @@ namespace FileSystemEmulator
             // formatToolStripMenuItem
             // 
             this.formatToolStripMenuItem.Name = "formatToolStripMenuItem";
-            this.formatToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.formatToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.formatToolStripMenuItem.Text = "Format";
             this.formatToolStripMenuItem.Click += new System.EventHandler(this.formatToolStripMenuItem_Click);
             // 
             // attemptRecoveryToolStripMenuItem
             // 
             this.attemptRecoveryToolStripMenuItem.Name = "attemptRecoveryToolStripMenuItem";
-            this.attemptRecoveryToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.attemptRecoveryToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.attemptRecoveryToolStripMenuItem.Text = "Attempt recovery";
             this.attemptRecoveryToolStripMenuItem.Click += new System.EventHandler(this.attemptRecoveryToolStripMenuItem_Click);
             // 

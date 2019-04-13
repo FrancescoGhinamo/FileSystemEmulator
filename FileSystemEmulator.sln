@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemEmulator", "FileSystemEmulator\FileSystemEmulator.csproj", "{DE8B1BEA-4EC1-498D-BE60-34412CCC349F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteFileEditor", "ByteFileEditor\ByteFileEditor.csproj", "{0EE93A0F-9783-4DC1-AFBF-2153F3932A5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DE8B1BEA-4EC1-498D-BE60-34412CCC349F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE8B1BEA-4EC1-498D-BE60-34412CCC349F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE8B1BEA-4EC1-498D-BE60-34412CCC349F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EE93A0F-9783-4DC1-AFBF-2153F3932A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EE93A0F-9783-4DC1-AFBF-2153F3932A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EE93A0F-9783-4DC1-AFBF-2153F3932A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EE93A0F-9783-4DC1-AFBF-2153F3932A5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
