@@ -17,8 +17,9 @@ namespace FileSystemEmulator.Launcher
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        /// <param name="args">Launching parameters</param>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -45,7 +46,7 @@ namespace FileSystemEmulator.Launcher
             }
             catch (EFileException) { } */
 
-            Application.Run(new FileSystemExplorerGUI());
+            Application.Run(new FileSystemExplorerGUI(args));
 
             
         }

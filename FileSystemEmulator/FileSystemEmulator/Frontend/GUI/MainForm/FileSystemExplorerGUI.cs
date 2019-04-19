@@ -62,13 +62,20 @@ namespace FileSystemEmulator
 
         #endregion PrivateFields
 
-
-        public FileSystemExplorerGUI()
+        /// <summary>
+        /// GUI Constructor
+        /// </summary>
+        /// <param name="args">Launching parameters (file to open)</param>
+        public FileSystemExplorerGUI(string[] args)
         {
             FileSystemInst = FileSystemFactory.GetFileSystem();
             CurrentLocation = FileSystemInst.GetRoot();
             CurrentFile = "";
             InitializeComponent();
+            if(args != null && args.Length > 0)
+            {
+                OpenFile(args[0]);
+            }
         }
 
         private void FileSystemEmulatorGUI_Load(object sender, EventArgs e)
@@ -701,7 +708,8 @@ namespace FileSystemEmulator
             OpenFileDialog dOpen = InitOpenFileDialog();
             if (dOpen.ShowDialog().Equals(DialogResult.OK))
             {
-                CurrentFile = dOpen.FileName;
+                OpenFile(dOpen.FileName);
+                /*CurrentFile = dOpen.FileName;
                 try
                 {
                     FileSystemInst = FileSystemInst.DeserializeFileSystem(CurrentFile);
@@ -711,9 +719,26 @@ namespace FileSystemEmulator
                 catch (Exception e)
                 {
                     throw e;
-                }
+                }*/
             }
 
+        }
+
+        /// <summary>
+        /// Opens the specified file and loads the correspondant file system
+        /// </summary>
+        /// <param name="fileName">File to open</param>
+        private void OpenFile(string fileName)
+        {
+            CurrentFile = fileName;
+            try
+            {
+                FileSystemInst = FileSystemInst.DeserializeFileSystem(CurrentFile);
+                CurrentLocation = FileSystemInst.GetRoot();
+                UpdateWholeDisplay();
+            }
+            catch (Exception) { }
+            
         }
 
         /// <summary>
