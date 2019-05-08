@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ByteFileEditor\Backend\Exceptions\TypeMismatchException.cs" />
     <Compile Include="ByteFileEditor\Frontend\GUI\MainForm\ByteFileEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,9 +79,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ByteFileEditor\Backend\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FileSystemEmulator\FileSystemEmulator.csproj">
       <Project>{de8b1bea-4ec1-498d-be60-34412ccc349f}</Project>

@@ -318,7 +318,13 @@ namespace FileSystemEmulator
                 }
                 else
                 {
-                    //open the file
+                    switch(fetched.Extension)
+                    {
+                        case EByteFileDialog.EXTENSION:
+                            //correggere e aggiungere funzioni di export e apertura file al ByteFileEditor
+                            ByteFileEditorLauncher.Main(fetched.Path);
+                            break;
+                    }
                 }
             }
             catch (EFileNotFoundException e)

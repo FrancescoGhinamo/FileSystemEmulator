@@ -1,3 +1,4 @@
+using ByteFileEditor.ByteFileEditor.Backend.Exceptions;
 using ByteFileEditor.Frontend.GUI.MainForm;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,12 @@ namespace ByteFileEditor.Launcher
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ByteFileEditorForm(args));
+            try
+            {
+                Application.Run(new ByteFileEditorForm(args));
+            }
+            catch (TypeMismatchException) { }
+            
         }
     }
 }

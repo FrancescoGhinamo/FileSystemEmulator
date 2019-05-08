@@ -20,7 +20,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
         /// <summary>
         /// Extension given to the <see cref="EByteFile"/>
         /// </summary>
-        private const string EXTENSION = "bf";
+        public const string EXTENSION = "bf";
 
         /// <summary>
         /// <see cref="EByteFile"/> created by the dialog
@@ -70,5 +70,7 @@ namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
             DialogResult = DialogResult.Cancel;
             Dispose();
         }
+
+       
     }
 }
