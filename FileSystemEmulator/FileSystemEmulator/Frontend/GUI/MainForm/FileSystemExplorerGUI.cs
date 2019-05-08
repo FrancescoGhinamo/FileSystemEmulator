@@ -321,7 +321,8 @@ namespace FileSystemEmulator
                     switch(fetched.Extension)
                     {
                         case EByteFileDialog.EXTENSION:
-                            //correggere e aggiungere funzioni di export e apertura file al ByteFileEditor
+                            //correggere e aggiungere funzioni di export e apertura file dal ByteFileEditor
+                            //risolvere questa referenza
                             ByteFileEditorLauncher.Main(fetched.Path);
                             break;
                     }
