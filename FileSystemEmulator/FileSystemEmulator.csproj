@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -63,6 +63,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ByteFileEditor\Backend\Exceptions\TypeMismatchException.cs" />
+    <Compile Include="ByteFileEditor\Frontend\GUI\MainForm\ByteFileEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ByteFileEditor\Frontend\GUI\MainForm\ByteFileEditorForm.Designer.cs">
+      <DependentUpon>ByteFileEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFileList\EFileList.cs" />
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFileSystem\FileSystemImpl.cs" />
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFiles\Extensions\EByteFile.cs" />
@@ -132,6 +139,9 @@
     </Compile>
     <Compile Include="FileSystemEmulator\Launcher\FileSystemEmulatorLauncher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ByteFileEditor\Frontend\GUI\MainForm\ByteFileEditorForm.resx">
+      <DependentUpon>ByteFileEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\FileDialogs\CopyFileDialog.resx">
       <DependentUpon>CopyFileDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +199,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FileSystemExplorer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

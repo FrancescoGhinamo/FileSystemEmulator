@@ -1,4 +1,5 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
+﻿using ByteFileEditor.Frontend.GUI.MainForm;
+using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
@@ -318,14 +319,7 @@ namespace FileSystemEmulator
                 }
                 else
                 {
-                    switch(fetched.Extension)
-                    {
-                        case EByteFileDialog.EXTENSION:
-                            //correggere e aggiungere funzioni di export e apertura file dal ByteFileEditor
-                            //risolvere questa referenza
-                            ByteFileEditorLauncher.Main(fetched.Path);
-                            break;
-                    }
+                    OpenEFile(fetched);
                 }
             }
             catch (EFileNotFoundException e)
@@ -361,7 +355,7 @@ namespace FileSystemEmulator
                         }
                         else
                         {
-                            //open the file
+                            OpenEFile(fetched);
                         }
                     }
 
@@ -373,6 +367,25 @@ namespace FileSystemEmulator
             }
 
 
+        }
+
+        /// <summary>
+        /// Provides functionality to open an <see cref="EFile"/> with the specifies program
+        /// </summary>
+        /// <param name="fetched">Requested file</param>
+        public void OpenEFile(EFile fetched)
+        {
+            switch (fetched.Extension)
+            {
+                case EByteFileDialog.EXTENSION:
+                    string[] param = new string[1];
+                    param[0] = fetched.Path;
+                    new ByteFileEditorForm(param).Show();
+                    break;
+
+                //add other cases for the other types of file
+
+            }
         }
 
         /// <summary>
