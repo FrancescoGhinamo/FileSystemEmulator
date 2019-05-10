@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Exceptions
+namespace FileChooser.FileSystemEmulator.Backend.Exceptions
 {
     /// <summary>
     /// Exception indicating the parameter passed to a method is not valid

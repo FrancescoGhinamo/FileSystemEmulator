@@ -1,11 +1,11 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Services.Interfaces
+namespace FileChooser.FileSystemEmulator.Backend.Services.Interfaces
 {
     /// <summary>
     /// Interface containing methods to make <see cref="FileSystemImpl"/> and disk interact

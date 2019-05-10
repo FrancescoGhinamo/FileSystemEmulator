@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Exceptions
+namespace FileChooser.FileSystemEmulator.Backend.Exceptions
 {
     /// <summary>
     /// General class for <see cref="EFileSystem"/> exception

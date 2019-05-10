@@ -1,11 +1,11 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Utilities.Exceptions;
+﻿using FileChooser.FileSystemEmulator.Backend.Utilities.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Utilities
+namespace FileChooser.FileSystemEmulator.Backend.Utilities
 {
     /// <summary>
     /// Provides a division in tokens of the string

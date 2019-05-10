@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FileSystemEmulator.Properties
+namespace FileChooser.Properties
 {
 
 

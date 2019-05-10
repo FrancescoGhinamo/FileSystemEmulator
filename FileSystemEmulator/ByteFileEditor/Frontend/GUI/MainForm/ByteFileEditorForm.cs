@@ -1,8 +1,9 @@
-using ByteFileEditor.ByteFileEditor.Backend.Exceptions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
+using FileChooser;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileChooser.FileSystemEmulator.Backend.Data.Interfaces;
+using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,37 +47,58 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
         {
             InitializeComponent();
             LocFileSystem = FileSystemFactory.GetFileSystem();
-            EFile fetched = LocFileSystem.GetFile(args[0]);
+            if(args != null)
+            {
+                EFile fetched = LocFileSystem.GetFile(args[0]);
 
-            /*
-             * test wether the fetched variable is of EByteFile type
-             */
-            if(true)
-            {
-                CurrentFile = (EByteFile) fetched;
-                DisplayCurrentFile();
+                if (fetched.Extension.Equals(EByteFileDialog.EXTENSION))
+                {
+                    CurrentFile = (EByteFile)fetched;
+                    DisplayCurrentFile();
+                }
+                else
+                {
+                    MessageBox.Show(this, "The selected file is not of the correct file type", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
-            {
-                throw new TypeMismatchException();
-            }
+            
         }
 
         #endregion Constructor
 
 
-        #region EvetnHandlers
-        private void ByteFileEditor_Load(object sender, EventArgs e)
+        #region EventHandlers
+
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            OpenFile();
         }
-
 
         #endregion EventHandlers
 
 
         #region FunctionMethods
 
+        /// <summary>
+        /// Allows the user to open an <see cref="EByteFile"/>
+        /// </summary>
+        public void OpenFile()
+        {
+            FileChooser.FileChooser exp = new FileChooser.FileChooser();
+            if(exp.ShowDialog(this) == DialogResult.OK)
+            {
+                EFile f = exp.SelectedFile;
+                if(f.Extension.Equals(EByteFileDialog.EXTENSION))
+                {
+                    CurrentFile = (EByteFile)exp.SelectedFile;
+                    DisplayCurrentFile();
+                }
+                else
+                {
+                    MessageBox.Show(this, "The selected file is not of the correct file type", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
 
 
         #endregion FunctionMethods
@@ -101,5 +123,8 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
         }
 
         #endregion DisplayMethods
+
+
+
     }
 }

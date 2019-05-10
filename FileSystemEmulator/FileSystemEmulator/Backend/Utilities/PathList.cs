@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Utilities
+namespace FileChooser.FileSystemEmulator.Backend.Utilities
 {
     /// <summary>
     /// Extension of class <see cref="List{string}"/> to deal with paths

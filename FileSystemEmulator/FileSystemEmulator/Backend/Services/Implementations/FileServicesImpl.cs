@@ -1,5 +1,5 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
-using FileSystemEmulator.FileSystemEmulator.Backend.Services.Interfaces;
+﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileChooser.FileSystemEmulator.Backend.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Services.Implementations
+namespace FileChooser.FileSystemEmulator.Backend.Services.Implementations
 {
     /// <summary>
     /// Implementation of the <see cref="IFileServices"/> interface

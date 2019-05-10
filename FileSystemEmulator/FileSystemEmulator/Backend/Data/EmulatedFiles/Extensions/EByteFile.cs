@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions
+namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions
 {
     /// <summary>
     /// Estension of class <see cref="Efile"/>

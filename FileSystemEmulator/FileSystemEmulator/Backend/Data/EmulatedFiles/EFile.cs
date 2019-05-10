@@ -1,6 +1,6 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
-using FileSystemEmulator.FileSystemEmulator.Backend.Utilities;
+﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileList;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileChooser.FileSystemEmulator.Backend.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles
+namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles
 {
     /// <summary>
     /// Abstract file writable in the emulated file system

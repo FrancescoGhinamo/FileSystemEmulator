@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
+namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
     /// <summary>
     /// GUI implementation of the delete function of the <see cref="IFileSystem"/>

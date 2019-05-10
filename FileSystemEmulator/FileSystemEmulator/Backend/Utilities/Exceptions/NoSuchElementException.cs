@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Utilities.Exceptions
+namespace FileChooser.FileSystemEmulator.Backend.Utilities.Exceptions
 {
     /// <summary>
     /// The requested datum was not found

@@ -1,8 +1,8 @@
 using ByteFileEditor.ByteFileEditor.Backend.Exceptions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileChooser.FileSystemEmulator.Backend.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

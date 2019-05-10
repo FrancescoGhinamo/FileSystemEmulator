@@ -1,4 +1,4 @@
-﻿namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
+﻿namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
     partial class DeleteFileDialog
     {

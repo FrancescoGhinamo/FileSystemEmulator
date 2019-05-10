@@ -1,12 +1,12 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
+﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileChooser.FileSystemEmulator.Backend.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
+namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 {
     /// <summary>
     /// Factory class for the File System

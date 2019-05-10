@@ -1,16 +1,16 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
-using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
+﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileList;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileChooser.FileSystemEmulator.Backend.Data.Interfaces;
+using FileChooser.FileSystemEmulator.Backend.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSystemEmulator.Launcher
+namespace FileChooser.Launcher
 {
     static class FileSystemEmulatorLauncher
     {

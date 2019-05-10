@@ -22,7 +22,7 @@ namespace FileChooser
     /// <summary>
     /// Main form of the application
     /// </summary>
-    public partial class FileSystemExplorerGUI : Form
+    public partial class FileSystemExplorer : Form
     {
 
 
@@ -64,22 +64,22 @@ namespace FileChooser
         #endregion PrivateFields
 
         /// <summary>
+        /// Selected file in the dialog
+        /// </summary>
+        public EFile SelectedFile;
+
+        /// <summary>
         /// GUI Constructor
         /// </summary>
-        /// <param name="args">Launching parameters (file to open)</param>
-        public FileSystemExplorerGUI(string[] args)
+        public FileSystemExplorer()
         {
             FileSystemInst = FileSystemFactory.GetFileSystem();
             CurrentLocation = FileSystemInst.GetRoot();
             CurrentFile = "";
             InitializeComponent();
-            if(args != null && args.Length > 0)
-            {
-                OpenFile(args[0]);
-            }
         }
 
-        private void FileSystemEmulatorGUI_Load(object sender, EventArgs e)
+        private void FileSystemEmulator_Load(object sender, EventArgs e)
         {
 
             UpdateWholeDisplay();
@@ -143,63 +143,7 @@ namespace FileChooser
         }
 
 
-
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PerformOpen();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(this, exc.Message, "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PerformSave();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(this, exc.Message, "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PerformSaveAs();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(this, exc.Message, "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PerformExit();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(this, exc.Message, "Internal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-
-
-
-
-        private void eDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -210,23 +154,10 @@ namespace FileChooser
             {
                 MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
-        private void byteFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PerformCreateEByteFile();
-                UpdateWholeDisplay();
-            }
-            catch (EFileNameAlreadyExistingException exc)
-            {
-                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
 
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -239,7 +170,7 @@ namespace FileChooser
             }
         }
 
-        private void moveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -252,7 +183,7 @@ namespace FileChooser
             }
         }
 
-        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RenameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -265,7 +196,7 @@ namespace FileChooser
             }
         }
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -278,32 +209,16 @@ namespace FileChooser
             }
         }
 
-
-
-        private void formatToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BtnOK_Click(object sender, EventArgs e)
         {
-            PerformFormat();
-            UpdateWholeDisplay();
+            PerformOK();
         }
 
-        private void attemptRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
-            try
-            {
-                PerformAttemptRecovery();
-                UpdateWholeDisplay();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            PerformCancel();
         }
 
-
-        private void EByteFileEditorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LaunchEByteFileEditor();
-        }
         #endregion EventHandlers
 
         #region BrowsingMethods
@@ -325,8 +240,9 @@ namespace FileChooser
                 }
                 else
                 {
-                    OpenEFile(fetched);
+                    SelectedFile = fetched;
                 }
+                
             }
             catch (EFileNotFoundException e)
             {
@@ -361,7 +277,7 @@ namespace FileChooser
                         }
                         else
                         {
-                            OpenEFile(fetched);
+                            SelectedFile = fetched;
                         }
                     }
 
@@ -375,25 +291,7 @@ namespace FileChooser
 
         }
 
-        /// <summary>
-        /// Provides functionality to open an <see cref="EFile"/> with the specifies program
-        /// </summary>
-        /// <param name="fetched">Requested file</param>
-        public void OpenEFile(EFile fetched)
-        {
-            switch (fetched.Extension)
-            {
-                case EByteFileDialog.EXTENSION:
-                    string[] param = new string[1];
-                    param[0] = fetched.Path;
-                    new ByteFileEditorForm(param).Show(this);
-                    break;
-
-                //add other cases for the other types of file
-
-            }
-        }
-
+        
         /// <summary>
         /// Moves to the super directory of the current dir
         /// </summary>
@@ -437,26 +335,6 @@ namespace FileChooser
             }
         }
 
-        /// <summary>
-        /// Allows the user to create an <see cref="EByteFile"/> displaying the relative dialog
-        /// </summary>
-        /// <exception cref="EFileNameAlreadyExistingException">A file with the same name already exists</exception>
-        public void PerformCreateEByteFile()
-        {
-            EByteFileDialog fD = new EByteFileDialog(CurrentLocation.Path);
-            if (fD.ShowDialog(this) == DialogResult.OK)
-            {
-                try
-                {
-                    FileSystemInst.Add(fD.byteFile);
-                }
-                catch (EFileNameAlreadyExistingException e)
-                {
-                    throw e;
-                }
-
-            }
-        }
 
         #endregion FileCreationMethods
 
@@ -559,54 +437,6 @@ namespace FileChooser
 
         #endregion FileManagingMethods
 
-        #region FileSystemManagingMethods
-
-        /// <summary>
-        /// Formats the current file system
-        /// </summary>
-        public void PerformFormat()
-        {
-            FormatFileSystemDialog fD = new FormatFileSystemDialog();
-            if(fD.ShowDialog(this) == DialogResult.OK)
-            {
-                FileSystemInst.Format(fD.KeepCopy);
-            }
-        }
-
-        /// <summary>
-        /// Attempts to recover the file system after the format from a saved temporary copy, if available
-        /// </summary>
-        /// <exception cref="NoFilesException">Thrown if there are no files in the recovery data</exception>
-        public void PerformAttemptRecovery()
-        {
-
-            DialogResult res = MessageBox.Show(this, "Overwright the current file sytem?", "File system recovery", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            bool overwright = false;
-            switch (res)
-            {
-                case DialogResult.Yes:
-                    overwright = true;
-                    break;
-
-                case DialogResult.No:
-                    overwright = false;
-                    break;
-
-                case DialogResult.Cancel:
-                    return;
-            }
-            try
-            {
-                FileSystemInst.AttemptRecovery(overwright);
-            }
-            catch(NoFilesException e)
-            {
-                throw e;
-            }
-            
-        }
-
-        #endregion FileSystemManagingMethods
 
         #region DisplayMethods
 
@@ -616,7 +446,7 @@ namespace FileChooser
         public void UpdateList()
         {
             listDirectory.Items.Clear();
-            foreach(EFile f in CurrentLocation.SubFiles)
+            foreach (EFile f in CurrentLocation.SubFiles)
             {
                 listDirectory.Items.Add(f.ToString());
             }
@@ -665,218 +495,42 @@ namespace FileChooser
 
 
 
+
+
+
         #endregion DisplayMethods
 
-        #region FileService
+        #region DialogMethods
 
         /// <summary>
-        /// Initializes the file chooser to open a file
+        /// Responds to the OK butto pressure, prepare the results for the owner form
         /// </summary>
-        /// <returns></returns>
-        public OpenFileDialog InitOpenFileDialog()
+        public void PerformOK()
         {
-            OpenFileDialog res = new OpenFileDialog
+            if (SelectedFile != null)
             {
-                AddExtension = true,
-                DefaultExt = DEFAULT_EXT,
-                Filter = "Emulated File System file (*.efs)|*." + DEFAULT_EXT
-                
-            };
-            return res;
+                this.DialogResult = DialogResult.OK;
+                Dispose();
+            }
+            else
+            {
+                MessageBox.Show(this, "No file selected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         /// <summary>
-        /// Initializes the file chooser to save a file
+        /// Responds to the Cancel butto pressure, prepare the results for the owner form
         /// </summary>
-        /// <returns></returns>
-        public SaveFileDialog InitSaveFileDialog()
+        public void PerformCancel()
         {
-            SaveFileDialog res = new SaveFileDialog
-            {
-                AddExtension = true,
-                DefaultExt = DEFAULT_EXT,
-                Filter = "Emulated File System file (*.efs)|*." + DEFAULT_EXT
-
-            };
-            return res;
+            this.DialogResult = DialogResult.Cancel;
+            Dispose();
         }
 
-        /// <summary>
-        /// Open a serialization of a file system object
-        /// </summary>
-        /// <exception cref="Exception">Thrown in case of file errors</exception>
-        public void PerformOpen()
-        {
-            if (FSModified)
-            {
-                DialogResult ans = MessageBox.Show(this, "File System has changed\nSave changes?", "Confirm", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (ans)
-                {
-                    case DialogResult.Yes:
-                        try
-                        {
-                            PerformSave();
-                        }
-                        catch (Exception e)
-                        {
-                            throw e;
-                        }
-                        break;
+        #endregion DialogMethods
 
-                    case DialogResult.No:
-                        break;
-
-                    case DialogResult.Cancel:
-                        return;
-                }
-            }
-
-            OpenFileDialog dOpen = InitOpenFileDialog();
-            if (dOpen.ShowDialog().Equals(DialogResult.OK))
-            {
-                OpenFile(dOpen.FileName);
-                /*CurrentFile = dOpen.FileName;
-                try
-                {
-                    FileSystemInst = FileSystemInst.DeserializeFileSystem(CurrentFile);
-                    CurrentLocation = FileSystemInst.GetRoot();
-                    UpdateWholeDisplay();
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }*/
-            }
-
-        }
-
-        /// <summary>
-        /// Opens the specified file and loads the correspondant file system
-        /// </summary>
-        /// <param name="fileName">File to open</param>
-        private void OpenFile(string fileName)
-        {
-            CurrentFile = fileName;
-            try
-            {
-                FileSystemInst = FileSystemInst.DeserializeFileSystem(CurrentFile);
-                CurrentLocation = FileSystemInst.GetRoot();
-                UpdateWholeDisplay();
-            }
-            catch (Exception) { }
-            
-        }
-
-        /// <summary>
-        /// Saves the current instance on the disk, if the file hasn't been chosen yet, the <see cref="PerformSaveAs"/> method is called
-        /// </summary>
-        /// <exception cref="Exception">Exception thrown in case of an error during persistation</exception>
-        public void PerformSave()
-        {
-            if(CurrentFile.Equals(""))
-            {
-                try
-                {
-                    PerformSaveAs();
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-            }
-
-            try
-            {
-                FileSystemInst.SerializeFileSystem(CurrentFile);
-                FSModified = false;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            
-
-        }
-
-        /// <summary>
-        /// Saves the current instance on the disk, choosing the file destination
-        /// </summary>
-        /// <exception cref="Exception">Exception thrown in case of an error during persistation</exception>
-        public void PerformSaveAs()
-        {
-            SaveFileDialog dSave = InitSaveFileDialog();
-            if(dSave.ShowDialog().Equals(DialogResult.OK))
-            {
-                CurrentFile = dSave.FileName;
-                try
-                {
-                    PerformSave();
-                    FSModified = false;
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-            }
-            
-
-        }
-
-        /// <summary>
-        /// Exits the program, checking for file changes
-        /// </summary>
-        /// <exception cref="Exception">Thrown in case of file problem</exception>
-        public void PerformExit()
-        {
-            if (FSModified)
-            {
-                DialogResult ans = MessageBox.Show(this, "File System has changed\nSave changes?", "Confirm", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (ans)
-                {
-                    case DialogResult.Yes:
-                        try
-                        {
-                            PerformSave();
-                        }
-                        catch (Exception e)
-                        {
-                            throw e;
-                        }
-                        break;
-
-                    case DialogResult.No:
-                        break;
-
-                    case DialogResult.Cancel:
-                        return;
-                }
-            }
-            Environment.Exit(0);
-        }
-
-
-
-
-
-
-
-
-
-
-
-        #endregion FileService
-
-        #region ExtPrograms
-
-        /// <summary>
-        /// Launches an instance of <see cref="ByteFileEditorForm"/>
-        /// </summary>
-        public void LaunchEByteFileEditor()
-        {
-            new ByteFileEditorForm(null).Show(this);
-        }
-        #endregion ExtPrograms
-
+        
     }
+
 
 }

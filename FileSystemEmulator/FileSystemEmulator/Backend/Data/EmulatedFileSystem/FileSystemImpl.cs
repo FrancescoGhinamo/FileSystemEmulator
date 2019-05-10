@@ -1,11 +1,11 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.Interfaces;
-using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
-using FileSystemEmulator.FileSystemEmulator.Backend.Services.Implementations;
-using FileSystemEmulator.FileSystemEmulator.Backend.Services.Interfaces;
-using FileSystemEmulator.FileSystemEmulator.Backend.Utilities;
+﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileList;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileChooser.FileSystemEmulator.Backend.Data.Interfaces;
+using FileChooser.FileSystemEmulator.Backend.Exceptions;
+using FileChooser.FileSystemEmulator.Backend.Services.Implementations;
+using FileChooser.FileSystemEmulator.Backend.Services.Interfaces;
+using FileChooser.FileSystemEmulator.Backend.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileSystem
+namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 {
     /// <summary>
     /// File system emulation, with methods to access the file system

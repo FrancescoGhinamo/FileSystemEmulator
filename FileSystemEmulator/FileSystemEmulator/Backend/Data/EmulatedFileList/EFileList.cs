@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles;
-using FileSystemEmulator.FileSystemEmulator.Backend.Exceptions;
+using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooser.FileSystemEmulator.Backend.Exceptions;
 
-namespace FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFileList
+namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileList
 {
     /// <summary>
     /// Dynamic list of <see cref="EFile"/>, extension of class <see cref="List{EFile}"/>

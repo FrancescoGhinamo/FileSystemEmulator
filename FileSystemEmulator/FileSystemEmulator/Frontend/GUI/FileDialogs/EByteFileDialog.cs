@@ -1,4 +1,4 @@
-﻿using FileSystemEmulator.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSystemEmulator.FileSystemEmulator.Frontend.GUI.FileDialogs
+namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
 
     /// <summary>
