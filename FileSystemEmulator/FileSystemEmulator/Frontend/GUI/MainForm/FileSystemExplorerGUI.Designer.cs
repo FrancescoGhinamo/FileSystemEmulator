@@ -347,7 +347,7 @@ namespace FileChooser
             // eByteFileEditorToolStripMenuItem
             // 
             this.eByteFileEditorToolStripMenuItem.Name = "eByteFileEditorToolStripMenuItem";
-            this.eByteFileEditorToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.eByteFileEditorToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.eByteFileEditorToolStripMenuItem.Text = "EByteFileEditor";
             this.eByteFileEditorToolStripMenuItem.Click += new System.EventHandler(this.EByteFileEditorToolStripMenuItem_Click);
             // 

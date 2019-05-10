@@ -63,6 +63,8 @@ namespace FileChooser
 
         #endregion PrivateFields
 
+
+        #region Construnctor
         /// <summary>
         /// GUI Constructor
         /// </summary>
@@ -84,6 +86,8 @@ namespace FileChooser
 
             UpdateWholeDisplay();
         }
+
+        #endregion Constructor
 
         #region EventHandlers
         private void listDirectory_SelectedIndexChanged(object sender, EventArgs e)
