@@ -307,6 +307,7 @@ namespace FileChooser
         private void EByteFileEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LaunchEByteFileEditor();
+            UpdateWholeDisplay();
         }
         #endregion EventHandlers
 
@@ -878,6 +879,7 @@ namespace FileChooser
         public void LaunchEByteFileEditor()
         {
             new ByteFileEditorForm(null).Show(this);
+            
         }
         #endregion ExtPrograms
 
