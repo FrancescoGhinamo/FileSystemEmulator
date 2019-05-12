@@ -2,6 +2,7 @@
 using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileSystemEmulator.Common.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,18 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.Interfaces
     /// </summary>
     public interface IFileSystem
     {
+
+        /// <summary>
+        /// Adds an observer to the object
+        /// </summary>
+        /// <param name="obs">Observer to link</param>
+        void AddObserver(IObserver obs);
+
+        /// <summary>
+        /// Removes the specified observer
+        /// </summary>
+        /// <param name="obs">Observer to remove</param>
+        void RemoveObserver(IObserver obs);
 
         /// <summary>
         /// Formats the file system: all the references to the files are lost

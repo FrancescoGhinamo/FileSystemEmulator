@@ -325,14 +325,14 @@ namespace FileChooser
             // formatToolStripMenuItem
             // 
             this.formatToolStripMenuItem.Name = "formatToolStripMenuItem";
-            this.formatToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.formatToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.formatToolStripMenuItem.Text = "Format";
             this.formatToolStripMenuItem.Click += new System.EventHandler(this.formatToolStripMenuItem_Click);
             // 
             // attemptRecoveryToolStripMenuItem
             // 
             this.attemptRecoveryToolStripMenuItem.Name = "attemptRecoveryToolStripMenuItem";
-            this.attemptRecoveryToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.attemptRecoveryToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.attemptRecoveryToolStripMenuItem.Text = "Attempt recovery";
             this.attemptRecoveryToolStripMenuItem.Click += new System.EventHandler(this.attemptRecoveryToolStripMenuItem_Click);
             // 

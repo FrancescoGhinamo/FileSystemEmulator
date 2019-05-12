@@ -6,6 +6,7 @@ using FileChooser.FileSystemEmulator.Backend.Exceptions;
 using FileChooser.FileSystemEmulator.Backend.Services.Implementations;
 using FileChooser.FileSystemEmulator.Backend.Services.Interfaces;
 using FileChooser.FileSystemEmulator.Backend.Utilities;
+using FileSystemEmulator.Common.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +24,7 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
     /// Singleton class, only the same instance of this object can be used in the program
     /// </summary>
     [Serializable]
-    public class FileSystemImpl : IFileSystem
+    public class FileSystemImpl : Subject, IFileSystem
     {
 
         #region Singleton
@@ -39,6 +40,8 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             {
                 //if this objecy hasn't been instances yet, I instance it here
                 me = new FileSystemImpl();
+                me.SetChanged();
+                me.NotifyObserves("whole");
             }
             //return the instance
             return me;
@@ -130,6 +133,8 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 }
             }
             Root.SubFiles.Clear();
+            SetChanged();
+            NotifyObserves("whole");
         }
 
         /// <summary>
@@ -192,6 +197,8 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             finally
             {
                 CurrentLocation = _loc;
+                SetChanged();
+                NotifyObserves("whole");
             }
 
             
@@ -297,6 +304,9 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 }
             }
 
+            SetChanged();
+            NotifyObserves("basic");
+
             return res;
            
         }
@@ -380,12 +390,22 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 {
                     throw e;
                 }
-                
+                finally
+                {
+                    SetChanged();
+                    NotifyObserves("whole");
+                }
+
             }
             catch (EFileNotFoundException e)
             {
 
                 throw e;
+            }
+            finally
+            {
+                SetChanged();
+                NotifyObserves("whole");
             }
 
             return _deleted;
@@ -418,11 +438,21 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 {
                     throw e;
                 }
-                
+                finally
+                {
+                    SetChanged();
+                    NotifyObserves("whole");
+                }
+
             }
             catch (EFileNotFoundException e)
             {
                 throw e;
+            }
+            finally
+            {
+                SetChanged();
+                NotifyObserves("whole");
             }
         }
 
@@ -452,10 +482,20 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 {
                     throw e;
                 }
+                finally
+                {
+                    SetChanged();
+                    NotifyObserves("whole");
+                }
             }
             catch (EFileNotFoundException e)
             {
                 throw e;
+            }
+            finally
+            {
+                SetChanged();
+                NotifyObserves("whole");
             }
         }
 
@@ -483,10 +523,20 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 {
                     throw e;
                 }
+                finally
+                {
+                    SetChanged();
+                    NotifyObserves("whole");
+                }
             }
             catch (EFileNotFoundException e)
             {
                 throw e;
+            }
+            finally
+            {
+                SetChanged();
+                NotifyObserves("whole");
             }
 
         }
@@ -516,10 +566,20 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 {
                     throw e;
                 }
+                finally
+                {
+                    SetChanged();
+                    NotifyObserves("whole");
+                }
             }
             catch (EFileNotFoundException e)
             {
                 throw e;
+            }
+            finally
+            {
+                SetChanged();
+                NotifyObserves("whole");
             }
         }
 
@@ -546,10 +606,20 @@ namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
                 {
                     throw e;
                 }
+                finally
+                {
+                    SetChanged();
+                    NotifyObserves("whole");
+                }
             }
             catch(EFileNotFoundException e)
             {
                 throw e;
+            }
+            finally
+            {
+                SetChanged();
+                NotifyObserves("whole");
             }
         }
 

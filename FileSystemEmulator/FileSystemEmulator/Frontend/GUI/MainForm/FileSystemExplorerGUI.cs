@@ -7,6 +7,7 @@ using FileChooser.FileSystemEmulator.Backend.Exceptions;
 using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialog;
 using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs;
 using FileChooser.FileSystemEmulator.Frontend.GUI.FileSystemDialogs;
+using FileSystemEmulator.Common.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,7 +24,7 @@ namespace FileChooser
     /// <summary>
     /// Main form of the application
     /// </summary>
-    public partial class FileSystemExplorerGUI : Form
+    public partial class FileSystemExplorerGUI : Form, IObserver
     {
 
 
@@ -72,6 +74,7 @@ namespace FileChooser
         public FileSystemExplorerGUI(string[] args)
         {
             FileSystemInst = FileSystemFactory.GetFileSystem();
+            //FileSystemInst.AddObserver(this);
             CurrentLocation = FileSystemInst.GetRoot();
             CurrentFile = "";
             InitializeComponent();
@@ -672,6 +675,32 @@ namespace FileChooser
 
         #endregion DisplayMethods
 
+        #region Observer
+
+        /// <summary>
+        /// <see cref="IObserver"/>
+        /// </summary>
+        /// <param name="s"><see cref="IObserver"/></param>
+        /// <param name="obj"><see cref="IObserver"/></param>
+        public void Update(Subject s, object obj)
+        {
+            if(s.Equals(FileSystemInst))
+            {
+                string msg = (string)obj;
+                msg = msg.ToLower();
+                if (msg.Contains("whole"))
+                {
+                    UpdateWholeDisplay();
+                }
+
+                if (msg.Contains("basic"))
+                {
+                    UpdateBasicExplorerGraphics();
+                }
+            }
+        }
+        #endregion Observer
+
         #region FileService
 
         /// <summary>
@@ -881,7 +910,10 @@ namespace FileChooser
             new ByteFileEditorForm(null).Show(this);
             
         }
+
+        
         #endregion ExtPrograms
+
 
     }
 
