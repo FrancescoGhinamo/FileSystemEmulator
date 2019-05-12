@@ -8,6 +8,7 @@ using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialog;
 using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs;
 using FileChooser.FileSystemEmulator.Frontend.GUI.FileSystemDialogs;
 using FileSystemEmulator.Common.Util;
+using FileSystemEmulator.FileSystemEmulator.Frontend.GUI.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -908,6 +909,7 @@ namespace FileChooser
         public void LaunchEByteFileEditor()
         {
             new ByteFileEditorForm(null).Show(this);
+                       
             
         }
 
