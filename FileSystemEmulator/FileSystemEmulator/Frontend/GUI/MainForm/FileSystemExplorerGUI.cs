@@ -8,7 +8,6 @@ using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialog;
 using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs;
 using FileChooser.FileSystemEmulator.Frontend.GUI.FileSystemDialogs;
 using FileSystemEmulator.Common.Util;
-using FileSystemEmulator.FileSystemEmulator.Frontend.GUI.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -650,6 +649,14 @@ namespace FileChooser
             treeExplorer.EndUpdate();
         }
 
+
+
+        /*
+         * Commentare il contenuto dei seguenti due metodi per testare il pattern observer
+         * Quando funziona eliminare i due metodi ancora successivi che finiscono con 1 e chiamare nell'update quelli giusti (primi 2 qui sotto)
+         */
+
+
         /// <summary>
         /// Updates the basic explorer graphics: list and path area
         /// </summary>
@@ -664,12 +671,31 @@ namespace FileChooser
         /// </summary>
         public void UpdateWholeDisplay()
         {
+            
             UpdateList();
             UpdatePathTextArea();
             UpdateTreeExplorer();
         }
 
+        /// <summary>
+        /// Updates the basic explorer graphics: list and path area
+        /// </summary>
+        public void UpdateBasicExplorerGraphics1()
+        {
+            
+            UpdateList();
+            UpdatePathTextArea();
+        }
 
+        /// <summary>
+        /// Updates the whole graphic info about current location
+        /// </summary>
+        public void UpdateWholeDisplay1()
+        {
+            UpdateList();
+            UpdatePathTextArea();
+            UpdateTreeExplorer();
+        }
 
 
 
@@ -691,14 +717,15 @@ namespace FileChooser
                 msg = msg.ToLower();
                 if (msg.Contains("whole"))
                 {
-                    UpdateWholeDisplay();
+                    UpdateWholeDisplay1();
                 }
 
                 if (msg.Contains("basic"))
                 {
-                    UpdateBasicExplorerGraphics();
+                    UpdateBasicExplorerGraphics1();
                 }
             }
+
         }
         #endregion Observer
 
