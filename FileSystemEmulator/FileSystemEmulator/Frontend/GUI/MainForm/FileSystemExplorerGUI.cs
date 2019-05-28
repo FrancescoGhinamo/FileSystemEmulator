@@ -74,6 +74,7 @@ namespace FileChooser
         public FileSystemExplorerGUI(string[] args)
         {
             FileSystemInst = FileSystemFactory.GetFileSystem();
+            FileSystemInst.AddObserver(this);
             //FileSystemInst.AddObserver(this);
             CurrentLocation = FileSystemInst.GetRoot();
             CurrentFile = "";
@@ -211,7 +212,7 @@ namespace FileChooser
             try
             {
                 PerformCreateEDirectory();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (EFileNameAlreadyExistingException exc)
             {
@@ -225,7 +226,7 @@ namespace FileChooser
             try
             {
                 PerformCreateEByteFile();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (EFileNameAlreadyExistingException exc)
             {
@@ -238,7 +239,7 @@ namespace FileChooser
             try
             {
                 PerformCopyFile();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (Exception exc)
             {
@@ -251,7 +252,7 @@ namespace FileChooser
             try
             {
                 PerformMoveFile();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (Exception exc)
             {
@@ -264,7 +265,7 @@ namespace FileChooser
             try
             {
                 PerformRenameFile();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (Exception exc)
             {
@@ -277,7 +278,7 @@ namespace FileChooser
             try
             {
                 PerformDeleteFile();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (Exception exc)
             {
@@ -290,7 +291,7 @@ namespace FileChooser
         private void formatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PerformFormat();
-            UpdateWholeDisplay();
+            //UpdateWholeDisplay();
         }
 
         private void attemptRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -298,7 +299,7 @@ namespace FileChooser
             try
             {
                 PerformAttemptRecovery();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (Exception exc)
             {
@@ -310,7 +311,7 @@ namespace FileChooser
         private void EByteFileEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LaunchEByteFileEditor();
-            UpdateWholeDisplay();
+            //UpdateWholeDisplay();
         }
         #endregion EventHandlers
 
@@ -650,13 +651,6 @@ namespace FileChooser
         }
 
 
-
-        /*
-         * Commentare il contenuto dei seguenti due metodi per testare il pattern observer
-         * Quando funziona eliminare i due metodi ancora successivi che finiscono con 1 e chiamare nell'update quelli giusti (primi 2 qui sotto)
-         */
-
-
         /// <summary>
         /// Updates the basic explorer graphics: list and path area
         /// </summary>
@@ -677,26 +671,7 @@ namespace FileChooser
             UpdateTreeExplorer();
         }
 
-        /// <summary>
-        /// Updates the basic explorer graphics: list and path area
-        /// </summary>
-        public void UpdateBasicExplorerGraphics1()
-        {
-            
-            UpdateList();
-            UpdatePathTextArea();
-        }
-
-        /// <summary>
-        /// Updates the whole graphic info about current location
-        /// </summary>
-        public void UpdateWholeDisplay1()
-        {
-            UpdateList();
-            UpdatePathTextArea();
-            UpdateTreeExplorer();
-        }
-
+        
 
 
 
@@ -717,12 +692,12 @@ namespace FileChooser
                 msg = msg.ToLower();
                 if (msg.Contains("whole"))
                 {
-                    UpdateWholeDisplay1();
+                    UpdateWholeDisplay();
                 }
 
                 if (msg.Contains("basic"))
                 {
-                    UpdateBasicExplorerGraphics1();
+                    UpdateBasicExplorerGraphics();
                 }
             }
 
@@ -936,7 +911,7 @@ namespace FileChooser
         public void LaunchEByteFileEditor()
         {
             new ByteFileEditorForm(null).Show(this);
-                       
+            UpdateWholeDisplay();      
             
         }
 
