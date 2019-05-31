@@ -79,6 +79,7 @@ namespace FileChooserDialog
             CurrentLocation = FileSystemInst.GetRoot();
             CurrentFile = "";
             InitializeComponent();
+            this.Text = title;
         }
 
         private void FileSystemEmulator_Load(object sender, EventArgs e)
