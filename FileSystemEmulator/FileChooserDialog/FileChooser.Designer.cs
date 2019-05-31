@@ -1,6 +1,6 @@
 ﻿
 
-namespace FileChooser
+namespace FileChooserDialog
 {
     partial class FileChooser
     {

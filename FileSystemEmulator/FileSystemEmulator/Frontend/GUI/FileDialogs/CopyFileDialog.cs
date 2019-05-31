@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs
+namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
     /// <summary>
     /// UI to copy <see cref="Efile"/> instances

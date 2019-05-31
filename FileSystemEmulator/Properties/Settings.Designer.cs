@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FileChooser.Properties
+namespace FileChooserDialog.Properties
 {
 
 

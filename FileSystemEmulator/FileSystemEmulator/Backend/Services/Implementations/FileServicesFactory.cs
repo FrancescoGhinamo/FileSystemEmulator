@@ -1,12 +1,12 @@
-﻿using FileChooser.FileSystemEmulator.Backend.Services.Implementations;
-using FileChooser.FileSystemEmulator.Backend.Services.Interfaces;
+﻿using FileChooserDialog.FileSystemEmulator.Backend.Services.Implementations;
+using FileChooserDialog.FileSystemEmulator.Backend.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileChooser.FileSystemEmulator.Backend.Services.Implementations
+namespace FileChooserDialog.FileSystemEmulator.Backend.Services.Implementations
 {
     /// <summary>
     /// Factory class to provide file <see cref="IFileServices"/> functionalities

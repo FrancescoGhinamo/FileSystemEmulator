@@ -139,10 +139,10 @@
       <DependentUpon>FileSystemExplorerGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="FileSystemEmulator\Launcher\FileSystemEmulatorLauncher.cs" />
-    <Compile Include="FileChooser\FileChooser.cs">
+    <Compile Include="FileChooserDialog\FileChooser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileChooser\FileChooser.Designer.cs">
+    <Compile Include="FileChooserDialog\FileChooser.Designer.cs">
       <DependentUpon>FileChooser.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,7 +173,7 @@
     <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\MainForm\FileSystemExplorerGUI.resx">
       <DependentUpon>FileSystemExplorerGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileChooser\FileChooser.resx">
+    <EmbeddedResource Include="FileChooserDialog\FileChooser.resx">
       <DependentUpon>FileChooser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

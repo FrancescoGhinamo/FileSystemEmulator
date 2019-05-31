@@ -1,12 +1,12 @@
 ﻿using ByteFileEditor.Frontend.GUI.MainForm;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
-using FileChooser.FileSystemEmulator.Backend.Data.Interfaces;
-using FileChooser.FileSystemEmulator.Backend.Exceptions;
-using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialog;
-using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs;
-using FileChooser.FileSystemEmulator.Frontend.GUI.FileSystemDialogs;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces;
+using FileChooserDialog.FileSystemEmulator.Backend.Exceptions;
+using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialog;
+using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs;
+using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileSystemDialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileChooser
+namespace FileChooserDialog
 {
     /// <summary>
     /// Main form of the application

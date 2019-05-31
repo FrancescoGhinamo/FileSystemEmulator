@@ -1,9 +1,10 @@
-using FileChooser;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
-using FileChooser.FileSystemEmulator.Backend.Data.Interfaces;
-using FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs;
+using FileChooserDialog;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces;
+using FileChooserDialog.FileSystemEmulator.Backend.Exceptions;
+using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -76,6 +77,10 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
 
         #endregion EventHandlers
 
+        private void ImportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImportFile();
+        }
 
         #region FunctionMethods
 
@@ -84,19 +89,51 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
         /// </summary>
         public void OpenFile()
         {
-            FileChooser.FileChooser exp = new FileChooser.FileChooser();
+            FileChooser exp = new FileChooser();
             if(exp.ShowDialog(this) == DialogResult.OK)
             {
                 EFile f = exp.SelectedFile;
                 if(f.Extension.Equals(EByteFileDialog.EXTENSION))
                 {
-                    CurrentFile = (EByteFile)exp.SelectedFile;
-                    DisplayCurrentFile();
+                    /*CurrentFile = (EByteFile)exp.SelectedFile;
+                    DisplayCurrentFile();*/
+                    OpenFile((EByteFile)exp.SelectedFile);
                 }
                 else
                 {
                     MessageBox.Show(this, "The selected file is not of the correct file type", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Performs operations to open an <see cref="EByteFile"/>
+        /// </summary>
+        /// <param name="file">File to open</param>
+        private void OpenFile(EByteFile file)
+        {
+            CurrentFile = file;
+            DisplayCurrentFile();
+        }
+
+        /// <summary>
+        /// Creates and <see cref="EByteFile"/> from a specified file
+        /// </summary>
+        public void ImportFile()
+        {
+            EByteFileDialog dialog = new EByteFileDialog(LocFileSystem.GetCurrentLocation());
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                try
+                {
+                    LocFileSystem.Add(dialog.byteFile);
+                    OpenFile(dialog.byteFile);
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    MessageBox.Show(this, e.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
         }
 
@@ -122,9 +159,10 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
             }
         }
 
+
+
         #endregion DisplayMethods
 
-
-
+        
     }
 }

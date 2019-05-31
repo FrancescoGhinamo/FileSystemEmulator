@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileChooser.FileSystemEmulator.Backend.Exceptions
+namespace FileChooserDialog.FileSystemEmulator.Backend.Exceptions
 {
     /// <summary>
     /// The looked <see cref="EFile"/> was not found

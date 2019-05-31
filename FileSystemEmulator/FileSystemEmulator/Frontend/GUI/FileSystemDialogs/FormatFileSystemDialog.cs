@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileSystemDialogs
+namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileSystemDialogs
 {
     /// <summary>
     /// GUI implementation for the format funcion of <see cref="IFileSystem"/>

@@ -1,11 +1,11 @@
-﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileList;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
-using FileChooser.FileSystemEmulator.Backend.Data.Interfaces;
-using FileChooser.FileSystemEmulator.Backend.Exceptions;
-using FileChooser.FileSystemEmulator.Backend.Services.Implementations;
-using FileChooser.FileSystemEmulator.Backend.Services.Interfaces;
-using FileChooser.FileSystemEmulator.Backend.Utilities;
+﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileList;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces;
+using FileChooserDialog.FileSystemEmulator.Backend.Exceptions;
+using FileChooserDialog.FileSystemEmulator.Backend.Services.Implementations;
+using FileChooserDialog.FileSystemEmulator.Backend.Services.Interfaces;
+using FileChooserDialog.FileSystemEmulator.Backend.Utilities;
 using FileSystemEmulator.Common.Util;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem
+namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
 {
     /// <summary>
     /// File system emulation, with methods to access the file system

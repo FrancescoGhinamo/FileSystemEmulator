@@ -1,4 +1,4 @@
-﻿namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileSystemDialogs
+﻿namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileSystemDialogs
 {
     partial class FormatFileSystemDialog
     {

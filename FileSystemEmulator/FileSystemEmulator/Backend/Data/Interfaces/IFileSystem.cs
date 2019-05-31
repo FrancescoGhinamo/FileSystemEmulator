@@ -1,7 +1,7 @@
-﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileList;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
-using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
+﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileList;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileSystemEmulator.Common.Util;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace FileChooser.FileSystemEmulator.Backend.Data.Interfaces
+namespace FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces
 {
     /// <summary>
     /// Decalration functionalities for a file system

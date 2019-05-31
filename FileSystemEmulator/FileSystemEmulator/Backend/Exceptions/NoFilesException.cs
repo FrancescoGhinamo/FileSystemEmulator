@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileChooser.FileSystemEmulator.Backend.Exceptions
+namespace FileChooserDialog.FileSystemEmulator.Backend.Exceptions
 {
     /// <summary>
     /// Exception thrown when there are no files available in the current process

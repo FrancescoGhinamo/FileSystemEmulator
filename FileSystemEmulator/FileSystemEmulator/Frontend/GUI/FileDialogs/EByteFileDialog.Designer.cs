@@ -1,4 +1,4 @@
-﻿namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs
+﻿namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
     partial class EByteFileDialog
     {
@@ -86,6 +86,7 @@
             // 
             resources.ApplyResources(this.txtDest, "txtDest");
             this.txtDest.Name = "txtDest";
+            this.txtDest.Click += new System.EventHandler(this.TxtDest_Click);
             // 
             // flowButtons
             // 

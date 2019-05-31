@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileChooser.FileSystemEmulator.Backend.Exceptions
+namespace FileChooserDialog.FileSystemEmulator.Backend.Exceptions
 {
     /// <summary>
     /// Exception thrown if an <see cref="EFile"/> is beeing added to a directory that already contains a fie with the same name

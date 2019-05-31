@@ -1,4 +1,4 @@
-﻿namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs
+﻿namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
     partial class CopyFileDialog
     {

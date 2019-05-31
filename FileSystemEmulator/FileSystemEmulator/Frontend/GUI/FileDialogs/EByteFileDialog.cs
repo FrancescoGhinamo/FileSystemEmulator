@@ -1,4 +1,4 @@
-﻿using FileChooser.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs
+namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
 
     /// <summary>
@@ -71,6 +71,12 @@ namespace FileChooser.FileSystemEmulator.Frontend.GUI.FileDialogs
             Dispose();
         }
 
-       
+        private void TxtDest_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Dispose();
+           
+        }
+
     }
 }
