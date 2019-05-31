@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,6 +51,30 @@ namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs
             else
             {
                 MessageBox.Show(this, "Not all the fields have been filled in", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void txtSourcePath_DoubleClick(object sender, EventArgs e)
+        {
+            FileChooser chooser = new FileChooser("Choose file");
+            if (chooser.ShowDialog(this) == DialogResult.OK)
+            {
+                EFile selected = chooser.SelectedFile;
+
+                txtSourcePath.Text = selected.Path;
+
+            }
+        }
+
+        private void txtDestPath_DoubleClick(object sender, EventArgs e)
+        {
+            FileChooser chooser = new FileChooser("Choose file");
+            if (chooser.ShowDialog(this) == DialogResult.OK)
+            {
+                EFile selected = chooser.SelectedFile;
+
+                txtDestPath.Text = selected.Path;
+
             }
         }
 

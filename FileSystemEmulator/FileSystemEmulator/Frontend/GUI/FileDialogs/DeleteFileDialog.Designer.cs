@@ -99,6 +99,7 @@
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(882, 22);
             this.txtFileName.TabIndex = 1;
+            this.txtFileName.DoubleClick += new System.EventHandler(this.txtFileName_DoubleClick);
             // 
             // DeleteFileDialog
             // 

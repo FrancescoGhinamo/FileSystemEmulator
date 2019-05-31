@@ -89,7 +89,7 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
         /// </summary>
         public void OpenFile()
         {
-            FileChooser exp = new FileChooser();
+            FileChooser exp = new FileChooser("Open file");
             if(exp.ShowDialog(this) == DialogResult.OK)
             {
                 EFile f = exp.SelectedFile;

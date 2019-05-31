@@ -184,7 +184,7 @@
     <value>164, 3</value>
   </data>
   <data name="pathPan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>809, 42</value>
+    <value>809, 38</value>
   </data>
   <data name="pathPan.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -214,7 +214,7 @@
     <value>3, 0</value>
   </data>
   <data name="lblSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 48</value>
+    <value>155, 44</value>
   </data>
   <data name="lblSource.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -244,10 +244,10 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lblDest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 48</value>
+    <value>3, 44</value>
   </data>
   <data name="lblDest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 96</value>
+    <value>155, 79</value>
   </data>
   <data name="lblDest.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -274,7 +274,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="txtDest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 51</value>
+    <value>164, 47</value>
   </data>
   <data name="txtDest.Size" type="System.Drawing.Size, System.Drawing">
     <value>799, 24</value>
@@ -301,7 +301,7 @@
     <value>0, 0</value>
   </data>
   <data name="mainPan.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="mainPan.Size" type="System.Drawing.Size, System.Drawing">
     <value>976, 144</value>
@@ -322,7 +322,7 @@
     <value>1</value>
   </data>
   <data name="mainPan.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pathPan" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblSource" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDest" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtDest" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,16.59836,Percent,83.40164" /&gt;&lt;Rows Styles="Percent,33.33333,Percent,66.66666" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pathPan" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblSource" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDest" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtDest" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,16.59836,Percent,83.40164" /&gt;&lt;Rows Styles="Percent,35.77236,Percent,64.22765,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnCreate.Location" type="System.Drawing.Point, System.Drawing">
     <value>851, 3</value>

@@ -121,7 +121,7 @@
             this.lblSource.Name = "lblSource";
             this.lblSource.Size = new System.Drawing.Size(155, 43);
             this.lblSource.TabIndex = 0;
-            this.lblSource.Text = "Source EFile";
+            this.lblSource.Text = "Source EFile name";
             // 
             // lblDest
             // 
@@ -133,7 +133,7 @@
             this.lblDest.Name = "lblDest";
             this.lblDest.Size = new System.Drawing.Size(155, 101);
             this.lblDest.TabIndex = 1;
-            this.lblDest.Text = "Destination EFile";
+            this.lblDest.Text = "New EFile name";
             // 
             // txtDestPath
             // 

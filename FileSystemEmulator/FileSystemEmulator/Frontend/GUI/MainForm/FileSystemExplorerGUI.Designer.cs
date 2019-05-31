@@ -81,7 +81,7 @@ namespace FileChooserDialog
             this.listDirectory.Name = "listDirectory";
             this.listDirectory.Size = new System.Drawing.Size(641, 391);
             this.listDirectory.TabIndex = 0;
-            this.listDirectory.SelectedIndexChanged += new System.EventHandler(this.listDirectory_SelectedIndexChanged);
+            this.listDirectory.DoubleClick += new System.EventHandler(this.listDirectory_DoubleClick);
             // 
             // splitContMain
             // 

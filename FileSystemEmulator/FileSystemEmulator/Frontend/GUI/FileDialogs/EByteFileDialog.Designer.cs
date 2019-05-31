@@ -86,7 +86,7 @@
             // 
             resources.ApplyResources(this.txtDest, "txtDest");
             this.txtDest.Name = "txtDest";
-            this.txtDest.Click += new System.EventHandler(this.TxtDest_Click);
+            this.txtDest.DoubleClick += new System.EventHandler(this.TxtDest_DoubleClick);
             // 
             // flowButtons
             // 

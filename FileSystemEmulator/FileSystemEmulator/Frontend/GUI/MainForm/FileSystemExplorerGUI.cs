@@ -94,7 +94,7 @@ namespace FileChooserDialog
         #endregion Constructor
 
         #region EventHandlers
-        private void listDirectory_SelectedIndexChanged(object sender, EventArgs e)
+        private void listDirectory_DoubleClick(object sender, EventArgs e)
         {
             try
             {

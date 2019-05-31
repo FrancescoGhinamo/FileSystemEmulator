@@ -1,4 +1,5 @@
-﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,6 +53,8 @@ namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialog
             this.DialogResult = DialogResult.Cancel;
             this.Dispose();
         }
+
+        
 
         private void EDirectoryDialog_Load(object sender, EventArgs e)
         {

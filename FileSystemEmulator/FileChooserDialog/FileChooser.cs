@@ -71,8 +71,10 @@ namespace FileChooserDialog
         /// <summary>
         /// GUI Constructor
         /// </summary>
-        public FileChooser()
+        /// <param name="title">Title of the window</param>
+        public FileChooser(string title)
         {
+            this.Text = title;
             FileSystemInst = FileSystemFactory.GetFileSystem();
             CurrentLocation = FileSystemInst.GetRoot();
             CurrentFile = "";
@@ -86,7 +88,7 @@ namespace FileChooserDialog
         }
 
         #region EventHandlers
-        private void listDirectory_SelectedIndexChanged(object sender, EventArgs e)
+        private void listDirectory_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -507,8 +509,18 @@ namespace FileChooserDialog
         /// </summary>
         public void PerformOK()
         {
+            try
+            {
+                SelectedFile = CurrentLocation.SubFiles.ElementAt(listDirectory.Items.IndexOf(listDirectory.SelectedItems[0]));
+            }
+            catch (IndexOutOfRangeException)
+            {
+                SelectedFile = null;
+            }
+            
             if (SelectedFile != null)
             {
+                
                 this.DialogResult = DialogResult.OK;
                 Dispose();
             }

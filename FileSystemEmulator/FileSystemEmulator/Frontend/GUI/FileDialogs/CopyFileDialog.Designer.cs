@@ -68,6 +68,7 @@
             this.pathPan.Name = "pathPan";
             this.pathPan.Size = new System.Drawing.Size(809, 37);
             this.pathPan.TabIndex = 3;
+            this.pathPan.Paint += new System.Windows.Forms.PaintEventHandler(this.PathPan_Paint);
             // 
             // txtSourcePath
             // 
@@ -77,6 +78,7 @@
             this.txtSourcePath.Name = "txtSourcePath";
             this.txtSourcePath.Size = new System.Drawing.Size(806, 24);
             this.txtSourcePath.TabIndex = 4;
+            this.txtSourcePath.DoubleClick += new System.EventHandler(this.txtSourcePath_DoubleClick);
             // 
             // lblSource
             // 
@@ -110,6 +112,7 @@
             this.txtDestPath.Name = "txtDestPath";
             this.txtDestPath.Size = new System.Drawing.Size(809, 24);
             this.txtDestPath.TabIndex = 3;
+            this.txtDestPath.DoubleClick += new System.EventHandler(this.txtDestPath_DoubleClick);
             // 
             // flowButtons
             // 

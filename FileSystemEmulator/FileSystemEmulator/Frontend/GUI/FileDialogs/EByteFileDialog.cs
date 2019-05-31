@@ -1,4 +1,5 @@
-﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,10 +72,20 @@ namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs
             Dispose();
         }
 
-        private void TxtDest_Click(object sender, EventArgs e)
+        private void TxtDest_DoubleClick(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
-            Dispose();
+            FileChooser chooser = new FileChooser("Choose directory");
+            if (chooser.ShowDialog(this) == DialogResult.OK) {
+                EFile selected = chooser.SelectedFile;
+                if(selected.Directory)
+                {
+                    txtDest.Text = selected.Path;
+                }
+                else
+                {
+                    txtDest.Text = selected.ParentPath;
+                }
+            }
            
         }
 

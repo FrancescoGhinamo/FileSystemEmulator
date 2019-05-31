@@ -70,7 +70,7 @@ namespace FileChooserDialog
             this.listDirectory.Name = "listDirectory";
             this.listDirectory.Size = new System.Drawing.Size(643, 391);
             this.listDirectory.TabIndex = 0;
-            this.listDirectory.SelectedIndexChanged += new System.EventHandler(this.listDirectory_SelectedIndexChanged);
+            this.listDirectory.DoubleClick += new System.EventHandler(this.listDirectory_DoubleClick);
             // 
             // splitContMain
             // 
@@ -259,7 +259,7 @@ namespace FileChooserDialog
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FileChooser";
-            this.Text = "FileSystemEmulator";
+            this.Text = "File chooser";
             this.Load += new System.EventHandler(this.FileSystemEmulator_Load);
             this.splitContMain.Panel1.ResumeLayout(false);
             this.splitContMain.Panel1.PerformLayout();

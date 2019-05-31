@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,6 +46,20 @@ namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs
         {
             DialogResult = DialogResult.Cancel;
             Dispose();
+        }
+
+       
+
+        private void txtFileName_DoubleClick(object sender, EventArgs e)
+        {
+            FileChooser chooser = new FileChooser("Choose file");
+            if (chooser.ShowDialog(this) == DialogResult.OK)
+            {
+                EFile selected = chooser.SelectedFile;
+
+                txtFileName.Text = selected.Path;
+
+            }
         }
     }
 }
