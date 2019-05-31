@@ -31,8 +31,9 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtFileContent = new System.Windows.Forms.TextBox();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtFileContent = new System.Windows.Forms.TextBox();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +52,8 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.importToolStripMenuItem});
+            this.importToolStripMenuItem,
+            this.exportToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -63,21 +65,30 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
-            // txtFileContent
-            // 
-            this.txtFileContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFileContent.Location = new System.Drawing.Point(0, 28);
-            this.txtFileContent.Multiline = true;
-            this.txtFileContent.Name = "txtFileContent";
-            this.txtFileContent.Size = new System.Drawing.Size(709, 383);
-            this.txtFileContent.TabIndex = 1;
-            // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.ImportToolStripMenuItem_Click);
+            // 
+            // txtFileContent
+            // 
+            this.txtFileContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFileContent.Location = new System.Drawing.Point(0, 28);
+            this.txtFileContent.Multiline = true;
+            this.txtFileContent.Name = "txtFileContent";
+            this.txtFileContent.ReadOnly = true;
+            this.txtFileContent.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtFileContent.Size = new System.Drawing.Size(709, 383);
+            this.txtFileContent.TabIndex = 1;
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.exportToolStripMenuItem.Text = "Export";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.ExportToolStripMenuItem_Click);
             // 
             // ByteFileEditorForm
             // 
@@ -101,6 +112,7 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
         private System.Windows.Forms.TextBox txtFileContent;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
     }
 }
 

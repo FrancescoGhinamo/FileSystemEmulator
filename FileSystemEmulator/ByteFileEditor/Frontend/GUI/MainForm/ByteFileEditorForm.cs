@@ -5,6 +5,7 @@ using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces;
 using FileChooserDialog.FileSystemEmulator.Backend.Exceptions;
 using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs;
+using FileSystemEmulator.ByteFileEditor.Backend.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -75,12 +76,19 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
             OpenFile();
         }
 
-        #endregion EventHandlers
-
         private void ImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ImportFile();
         }
+
+        private void ExportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportFile();
+        }
+
+        #endregion EventHandlers
+
+        
 
         #region FunctionMethods
 
@@ -137,6 +145,27 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
             }
         }
 
+        
+
+        /// <summary>
+        /// Export operations to export the current <see cref="EByteFile"/>
+        /// </summary>
+        public void ExportFile()
+        {
+            if(CurrentFile != null)
+            {
+                SaveFileDialog dSave = new SaveFileDialog();
+                if (dSave.ShowDialog().Equals(DialogResult.OK))
+                {
+                    FileServiceFactory.getFileService().WriteBytes(CurrentFile.Content, dSave.FileName);
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, "No file currently open!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
 
         #endregion FunctionMethods
 
@@ -150,14 +179,16 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
         {
             if(CurrentFile != null)
             {
-                char[] chars = new char[CurrentFile.Content.Length];
+                byte[] cont = CurrentFile.Content;
+                char[] chars = new char[cont.Length];
                 for(int i = 0; i < chars.Length; i++)
                 {
-                    chars[i] = (char)CurrentFile.Content[i];
+                    chars[i] = (char)cont[i];
                 }
                 txtFileContent.Text = new string(chars);
             }
         }
+
 
 
 

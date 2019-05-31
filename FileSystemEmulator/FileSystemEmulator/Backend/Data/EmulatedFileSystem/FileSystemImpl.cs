@@ -99,6 +99,7 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         private FileSystemImpl()
         { 
             Root = new EDirectory("C:");
+            CurrentLocation = Root.Path;
             _temporaryCopy = new EFileList();
         }
 

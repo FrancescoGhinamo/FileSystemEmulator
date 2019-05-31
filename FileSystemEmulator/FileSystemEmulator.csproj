@@ -63,6 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ByteFileEditor\Backend\Service\FileServiceFactory.cs" />
+    <Compile Include="ByteFileEditor\Backend\Service\FileServiceImpl.cs" />
+    <Compile Include="ByteFileEditor\Backend\Service\IFileService.cs" />
     <Compile Include="ByteFileEditor\Frontend\GUI\MainForm\ByteFileEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,7 +214,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ByteFileEditor\Backend\" />
     <Folder Include="FileSystemEmulator\Frontend\GUI\Components\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
