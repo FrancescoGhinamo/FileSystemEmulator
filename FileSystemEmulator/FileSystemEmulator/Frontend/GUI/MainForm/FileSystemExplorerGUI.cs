@@ -644,10 +644,30 @@ namespace FileChooserDialog
         /// </summary>
         public void UpdateTreeExplorer()
         {
+            Dictionary<string, bool> nodeStates = new Dictionary<string, bool>();
+            for (int i = 0; i < treeExplorer.Nodes.Count; i++)
+            {
+                if (treeExplorer.Nodes[i].Nodes.Count > 0)
+                {
+                    nodeStates.Add(treeExplorer.Nodes[i].Name, treeExplorer.Nodes[i].IsExpanded);
+                }
+            }
+
             treeExplorer.BeginUpdate();
             treeExplorer.Nodes.Clear();
             treeExplorer.Nodes.Add(FileSystemInst.GetTreeNodes());
             treeExplorer.EndUpdate();
+
+            for (int i = 0; i < treeExplorer.Nodes.Count; i++)
+            {
+                if (nodeStates.ContainsKey(treeExplorer.Nodes[i].Name))
+                {
+                    if (nodeStates[treeExplorer.Nodes[i].Name])
+                        treeExplorer.Nodes[i].Expand();
+                    else
+                        treeExplorer.Nodes[i].Collapse();
+                }
+            }
         }
 
 
