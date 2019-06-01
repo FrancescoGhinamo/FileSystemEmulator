@@ -7,6 +7,7 @@ using FileChooserDialog.FileSystemEmulator.Backend.Exceptions;
 using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialog;
 using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs;
 using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileSystemDialogs;
+using FileSystemEmulator.Common.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +23,7 @@ namespace FileChooserDialog
     /// <summary>
     /// Main form of the application
     /// </summary>
-    public partial class FileChooser : Form
+    public partial class FileChooser : Form, IObserver
     {
 
 
@@ -76,6 +77,7 @@ namespace FileChooserDialog
         {
             this.Text = title;
             FileSystemInst = FileSystemFactory.GetFileSystem();
+            FileSystemInst.AddObserver(this);
             CurrentLocation = FileSystemInst.GetRoot();
             CurrentFile = "";
             InitializeComponent();
@@ -151,7 +153,7 @@ namespace FileChooserDialog
             try
             {
                 PerformCreateEDirectory();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (EFileNameAlreadyExistingException exc)
             {
@@ -165,7 +167,7 @@ namespace FileChooserDialog
             try
             {
                 PerformCopyFile();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (Exception exc)
             {
@@ -178,7 +180,7 @@ namespace FileChooserDialog
             try
             {
                 PerformMoveFile();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (Exception exc)
             {
@@ -191,7 +193,7 @@ namespace FileChooserDialog
             try
             {
                 PerformRenameFile();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (Exception exc)
             {
@@ -204,7 +206,7 @@ namespace FileChooserDialog
             try
             {
                 PerformDeleteFile();
-                UpdateWholeDisplay();
+                //UpdateWholeDisplay();
             }
             catch (Exception exc)
             {
@@ -562,7 +564,49 @@ namespace FileChooserDialog
 
         #endregion DialogMethods
 
-        
+        #region Overrides
+
+        /// <summary>
+        /// Disposes the dialog removing it as an observer
+        /// </summary>
+        public new void Dispose()
+        {
+            FileSystemInst.RemoveObserver(this);
+            base.Dispose();
+
+        }
+
+       
+
+        #endregion Overrides
+
+        #region Observer
+
+        /// <summary>
+        /// <see cref="IObserver"/>
+        /// </summary>
+        /// <param name="s"><see cref="IObserver"/></param>
+        /// <param name="obj"><see cref="IObserver"/></param>
+        public void Update(Subject s, object obj)
+        {
+            if (s.Equals(FileSystemInst))
+            {
+                string msg = (string)obj;
+                msg = msg.ToLower();
+                if (msg.Contains("whole"))
+                {
+                    UpdateWholeDisplay();
+                }
+
+                if (msg.Contains("basic"))
+                {
+                    UpdateBasicExplorerGraphics();
+                }
+            }
+
+        }
+#endregion Observer
+
     }
 
 
