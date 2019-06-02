@@ -59,6 +59,7 @@ namespace FileChooserDialog
             this.attemptRecoveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.programsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eByteFileEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -252,7 +253,7 @@ namespace FileChooserDialog
             this.folderToolStripMenuItem,
             this.fileToolStripMenuItem1});
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.createToolStripMenuItem.Text = "Create";
             // 
             // folderToolStripMenuItem
@@ -260,56 +261,57 @@ namespace FileChooserDialog
             this.folderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eDirectoryToolStripMenuItem});
             this.folderToolStripMenuItem.Name = "folderToolStripMenuItem";
-            this.folderToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
+            this.folderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.folderToolStripMenuItem.Text = "Folder";
             // 
             // eDirectoryToolStripMenuItem
             // 
             this.eDirectoryToolStripMenuItem.Name = "eDirectoryToolStripMenuItem";
-            this.eDirectoryToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.eDirectoryToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.eDirectoryToolStripMenuItem.Text = "EDirectory";
             this.eDirectoryToolStripMenuItem.Click += new System.EventHandler(this.eDirectoryToolStripMenuItem_Click);
             // 
             // fileToolStripMenuItem1
             // 
             this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.byteFileToolStripMenuItem});
+            this.byteFileToolStripMenuItem,
+            this.textDocumentToolStripMenuItem});
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(134, 26);
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.fileToolStripMenuItem1.Text = "File";
             // 
             // byteFileToolStripMenuItem
             // 
             this.byteFileToolStripMenuItem.Name = "byteFileToolStripMenuItem";
-            this.byteFileToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.byteFileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.byteFileToolStripMenuItem.Text = "Byte file";
             this.byteFileToolStripMenuItem.Click += new System.EventHandler(this.byteFileToolStripMenuItem_Click);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // moveToolStripMenuItem
             // 
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.moveToolStripMenuItem.Text = "Move";
             this.moveToolStripMenuItem.Click += new System.EventHandler(this.moveToolStripMenuItem_Click);
             // 
             // renameToolStripMenuItem
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.renameToolStripMenuItem.Text = "Rename";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -350,6 +352,13 @@ namespace FileChooserDialog
             this.eByteFileEditorToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.eByteFileEditorToolStripMenuItem.Text = "EByteFileEditor";
             this.eByteFileEditorToolStripMenuItem.Click += new System.EventHandler(this.EByteFileEditorToolStripMenuItem_Click);
+            // 
+            // textDocumentToolStripMenuItem
+            // 
+            this.textDocumentToolStripMenuItem.Name = "textDocumentToolStripMenuItem";
+            this.textDocumentToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.textDocumentToolStripMenuItem.Text = "Text document";
+            this.textDocumentToolStripMenuItem.Click += new System.EventHandler(this.TextDocumentToolStripMenuItem_Click);
             // 
             // FileSystemExplorerGUI
             // 
@@ -410,6 +419,7 @@ namespace FileChooserDialog
         private System.Windows.Forms.ToolStripMenuItem attemptRecoveryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem programsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eByteFileEditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem textDocumentToolStripMenuItem;
     }
 }
 

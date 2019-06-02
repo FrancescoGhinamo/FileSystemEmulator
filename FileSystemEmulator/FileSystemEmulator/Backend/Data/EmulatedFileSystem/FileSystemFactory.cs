@@ -16,10 +16,10 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <summary>
         /// File system factory getter
         /// </summary>
-        /// <returns>Instance of <see cref="FileSystemImpl"/> casted to <see cref="IFileSystem"/></returns>
+        /// <returns>Instance of <see cref="IFileSystemImpl"/> casted to <see cref="IFileSystem"/></returns>
         public static IFileSystem GetFileSystem()
         {
-            return (IFileSystem) FileSystemImpl.GetInstance();
+            return (IFileSystem) IFileSystemImpl.GetInstance();
         }
     }
 }

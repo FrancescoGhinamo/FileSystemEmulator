@@ -1,5 +1,6 @@
 ﻿using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
+using FileChooserDialog.FileSystemEmulator.Backend.Services.Implementations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,35 +15,35 @@ namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs
 {
 
     /// <summary>
-    /// UI to create <see cref="EByteFile"/> instances
+    /// UI to create <see cref="ETextDocument"/> instances
     /// </summary>
-    public partial class EByteFileDialog : Form
+    public partial class ETextDocumentDialog : Form
     {
-        
+    
 
         /// <summary>
-        /// <see cref="EByteFile"/> created by the dialog
+        /// <see cref="ETextDocument"/> created by the dialog
         /// </summary>
-        public EByteFile byteFile { get; set; }
+        public ETextDocument textDocument { get; set; }
 
         /// <summary>
         /// Constructor for the dialog
         /// </summary>
         /// <param name="currentLocation">Current browsing location</param>
-        public EByteFileDialog(string currentLocation)
+        public ETextDocumentDialog(string currentLocation)
         {
             InitializeComponent();
             txtDest.Text = currentLocation;
         }
 
-        private void EByteFileDialog_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btnChoose_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openD = new OpenFileDialog();
+            OpenFileDialog openD = new OpenFileDialog()
+            {
+                DefaultExt = "txt"
+            };
             if(openD.ShowDialog() == DialogResult.OK)
             {
                 txtPath.Text = openD.FileName;
@@ -53,7 +54,21 @@ namespace FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs
         {
             if(!txtPath.Text.Equals("") && !txtDest.Equals(""))
             {
-                byteFile = new EByteFile(txtDest.Text + "." + EByteFile.EXTENSION, txtPath.Text);
+                textDocument = new ETextDocument(txtDest.Text + "." + ETextDocument.EXTENSION);
+
+                byte[] winFileContent = FileServicesFactory.GetGenFileServices().ReadBytes(txtPath.Text);
+                if(winFileContent != null)
+                {
+                    char[] _t = new char[winFileContent.Length];
+                    for(int i = 0; i < _t.Length; i++)
+                    {
+                        _t[i] = (char)winFileContent[i];
+                    }
+                    textDocument.WriteToBuffer(new string(_t), false);
+                    textDocument.Flush(false);
+                }
+                
+               
                 DialogResult = DialogResult.OK;
                 Dispose();
             }

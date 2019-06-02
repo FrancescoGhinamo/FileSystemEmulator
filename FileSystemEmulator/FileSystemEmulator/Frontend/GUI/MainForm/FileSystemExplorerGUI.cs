@@ -234,6 +234,20 @@ namespace FileChooserDialog
             }
         }
 
+        private void TextDocumentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PerformCreateETextDocument();
+                //UpdateWholeDisplay();
+            }
+            catch (EFileNameAlreadyExistingException exc)
+            {
+                MessageBox.Show(this, exc.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -392,7 +406,7 @@ namespace FileChooserDialog
         {
             switch (fetched.Extension)
             {
-                case EByteFileDialog.EXTENSION:
+                case EByteFile.EXTENSION:
                     string[] param = new string[1];
                     param[0] = fetched.Path;
                     new ByteFileEditorForm(param).Show(this);
@@ -458,6 +472,27 @@ namespace FileChooserDialog
                 try
                 {
                     FileSystemInst.Add(fD.byteFile);
+                }
+                catch (EFileNameAlreadyExistingException e)
+                {
+                    throw e;
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Allows the user to create a <see cref="ETextDocument"/> displaying the relative dialog
+        /// </summary>
+        /// <exception cref="EFileNameAlreadyExistingException">A file with the same name already exists</exception>
+        public void PerformCreateETextDocument()
+        {
+            ETextDocumentDialog fD = new ETextDocumentDialog(CurrentLocation.Path);
+            if (fD.ShowDialog(this) == DialogResult.OK)
+            {
+                try
+                {
+                    FileSystemInst.Add(fD.textDocument);
                 }
                 catch (EFileNameAlreadyExistingException e)
                 {
@@ -935,10 +970,11 @@ namespace FileChooserDialog
             
         }
 
-        
+
+
         #endregion ExtPrograms
 
-
+        
     }
 
 }

@@ -26,6 +26,12 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extens
         /// Size of a sector
         /// </summary>
         public const int SECTOR_SIZE = 4096;
+
+        /// <summary>
+        /// DefaultExtension
+        /// </summary>
+        public const string EXTENSION = "bf";
+
         #endregion Constants
 
         #region PublicFields

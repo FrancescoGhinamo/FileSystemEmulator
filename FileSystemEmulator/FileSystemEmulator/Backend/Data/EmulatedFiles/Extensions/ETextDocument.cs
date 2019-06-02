@@ -13,6 +13,14 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extens
     [Serializable]
     public class ETextDocument : EFile
     {
+        #region Constants
+
+        /// <summary>
+        /// Default file extension
+        /// </summary>
+        public const string EXTENSION = "txt";
+        #endregion Constants
+
         #region PublicFields
         /// <summary>
         /// Text content of the document

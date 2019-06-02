@@ -88,8 +88,10 @@
     <Compile Include="FileSystemEmulator\Backend\Exceptions\NoFilesException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Services\Implementations\FileServicesFactory.cs" />
     <Compile Include="FileSystemEmulator\Backend\Data\EmulatedFileSystem\FileSystemFactory.cs" />
-    <Compile Include="FileSystemEmulator\Backend\Services\Implementations\FileServicesImpl.cs" />
-    <Compile Include="FileSystemEmulator\Backend\Services\Interfaces\IFileServices.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Services\Implementations\GenFileServiceImpl.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Services\Implementations\SerFileServicesImpl.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Services\Interfaces\IGenFileService.cs" />
+    <Compile Include="FileSystemEmulator\Backend\Services\Interfaces\ISerFileServices.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\Exceptions\NoSuchElementException.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\PathList.cs" />
     <Compile Include="FileSystemEmulator\Backend\Utilities\StringTokenizer.cs" />
@@ -104,6 +106,12 @@
     </Compile>
     <Compile Include="FileSystemEmulator\Frontend\GUI\FileDialogs\DeleteFileDialog.Designer.cs">
       <DependentUpon>DeleteFileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileSystemEmulator\Frontend\GUI\FileDialogs\ETextDocumentDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileSystemEmulator\Frontend\GUI\FileDialogs\ETextDocumentDialog.Designer.cs">
+      <DependentUpon>ETextDocumentDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="FileSystemEmulator\Frontend\GUI\FileDialogs\EByteFileDialog.cs">
       <SubType>Form</SubType>
@@ -157,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\FileDialogs\DeleteFileDialog.resx">
       <DependentUpon>DeleteFileDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\FileDialogs\ETextDocumentDialog.resx">
+      <DependentUpon>ETextDocumentDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileSystemEmulator\Frontend\GUI\FileDialogs\EByteFileDialog.resx">
       <DependentUpon>EByteFileDialog.cs</DependentUpon>

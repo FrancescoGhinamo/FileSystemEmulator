@@ -147,7 +147,7 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces
         /// <param name="filePath">Path from which retrieve the instance</param>
         /// <returns>Instance of EFileSystem</returns>
         /// <exception cref="Exception">An exception occured</exception>
-        FileSystemImpl DeserializeFileSystem(string filePath);
+        IFileSystemImpl DeserializeFileSystem(string filePath);
 
         /// <summary>
         /// Returns an <see cref="EFileList"/> containing all the <see cref="EFile"/> and directories of the EFileSystem
@@ -156,7 +156,7 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces
         EFileList GetFileList();
 
         /// <summary>
-        /// Loads all the <see cref="EFile"/> contained in a <see cref="EFileList"/> in the current <see cref="FileSystemImpl"/>
+        /// Loads all the <see cref="EFile"/> contained in a <see cref="EFileList"/> in the current <see cref="IFileSystemImpl"/>
         /// </summary>
         /// <param name="fileList">List of files to add</param>
         /// <param name="format">True if the file system must be formatted before adding the files </param>
