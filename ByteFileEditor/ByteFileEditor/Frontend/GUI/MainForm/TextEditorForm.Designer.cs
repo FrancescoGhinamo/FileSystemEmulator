@@ -1,6 +1,6 @@
 namespace ByteFileEditor.Frontend.GUI.MainForm
 {
-    partial class ByteFileEditorForm
+    partial class TextEditorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtFileContent = new System.Windows.Forms.TextBox();
+            this.txtText = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,32 +41,32 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(608, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(709, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // txtFileContent
+            // txtText
             // 
-            this.txtFileContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFileContent.Location = new System.Drawing.Point(0, 28);
-            this.txtFileContent.Multiline = true;
-            this.txtFileContent.Name = "txtFileContent";
-            this.txtFileContent.Size = new System.Drawing.Size(608, 319);
-            this.txtFileContent.TabIndex = 1;
+            this.txtText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtText.Location = new System.Drawing.Point(0, 28);
+            this.txtText.Multiline = true;
+            this.txtText.Name = "txtText";
+            this.txtText.Size = new System.Drawing.Size(709, 383);
+            this.txtText.TabIndex = 1;
             // 
-            // ByteFileEditorForm
+            // TextEditorForm
             // 
-            this.ClientSize = new System.Drawing.Size(608, 347);
-            this.Controls.Add(this.txtFileContent);
+            this.ClientSize = new System.Drawing.Size(709, 411);
+            this.Controls.Add(this.txtText);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "ByteFileEditorForm";
+            this.Name = "TextEditorForm";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -79,7 +79,7 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.TextBox txtFileContent;
+        private System.Windows.Forms.TextBox txtText;
     }
 }
 

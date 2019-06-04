@@ -53,7 +53,7 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
             {
                 EFile fetched = LocFileSystem.GetFile(args[0]);
 
-                if (fetched.Extension.Equals(EByteFileDialog.EXTENSION))
+                if (fetched.Extension.Equals(EByteFile.EXTENSION))
                 {
                     CurrentFile = (EByteFile)fetched;
                     DisplayCurrentFile();
@@ -101,7 +101,7 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
             if(exp.ShowDialog(this) == DialogResult.OK)
             {
                 EFile f = exp.SelectedFile;
-                if(f.Extension.Equals(EByteFileDialog.EXTENSION))
+                if(f.Extension.Equals(EByteFile.EXTENSION))
                 {
                     /*CurrentFile = (EByteFile)exp.SelectedFile;
                     DisplayCurrentFile();*/

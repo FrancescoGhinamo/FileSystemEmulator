@@ -1,8 +1,11 @@
-using ByteFileEditor.ByteFileEditor.Backend.Exceptions;
+using FileChooserDialog;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces;
+using FileChooserDialog.FileSystemEmulator.Backend.Exceptions;
+using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs;
+using FileSystemEmulator.ByteFileEditor.Backend.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,15 +21,15 @@ using System.Windows.Forms;
 namespace ByteFileEditor.Frontend.GUI.MainForm
 {
     /// <summary>
-    /// Main form of the ByteFileEditor
+    /// Main form of the TextEditor
     /// </summary>
-    public partial class ByteFileEditorForm : Form
+    public partial class TextEditorForm : Form
     {
         #region Fields
         /// <summary>
-        /// Current <see cref="EByteFile"/> the program is working on
+        /// Current <see cref="ETextDocument"/> the program is working on
         /// </summary>
-        private EByteFile CurrentFile;
+        private ETextDocument CurrentFile;
 
         /// <summary>
         /// Reference to the <see cref="IFileSystem"/> instance
@@ -42,64 +45,52 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
         /// Constructor
         /// </summary>
         /// <param name="args">Parameters passed to the staring program: file that has to be opened</param>
-        public ByteFileEditorForm(string[] args)
+        public TextEditorForm(string[] args)
         {
             InitializeComponent();
             LocFileSystem = FileSystemFactory.GetFileSystem();
-            EFile fetched = LocFileSystem.GetFile(args[0]);
+            if(args != null)
+            {
+                EFile fetched = LocFileSystem.GetFile(args[0]);
 
-            /*
-             * test wether the fetched variable is of EByteFile type
-             */
-            if(true)
-            {
-                CurrentFile = (EByteFile) fetched;
-                DisplayCurrentFile();
+                if (fetched.Extension.Equals(ETextDocument.EXTENSION))
+                {
+                    CurrentFile = (ETextDocument)fetched;
+                    //mostrare il file
+                }
+                else
+                {
+                    MessageBox.Show(this, "The selected file is not of the correct file type", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
-            {
-                throw new TypeMismatchException();
-            }
+            
         }
 
         #endregion Constructor
 
 
-        #region EvetnHandlers
-        private void ByteFileEditor_Load(object sender, EventArgs e)
-        {
+        #region EventHandlers
 
-        }
-
+        
 
         #endregion EventHandlers
 
+        
 
         #region FunctionMethods
 
-
+       
 
         #endregion FunctionMethods
 
 
         #region DisplayMethods
 
-        /// <summary>
-        /// Displays the content of the current <seealso cref="EByteFile"/>
-        /// </summary>
-        public void DisplayCurrentFile()
-        {
-            if(CurrentFile != null)
-            {
-                char[] chars = new char[CurrentFile.Content.Length];
-                for(int i = 0; i < chars.Length; i++)
-                {
-                    chars[i] = (char)CurrentFile.Content[i];
-                }
-                txtFileContent.Text = new string(chars);
-            }
-        }
+       
+
 
         #endregion DisplayMethods
+
+        
     }
 }

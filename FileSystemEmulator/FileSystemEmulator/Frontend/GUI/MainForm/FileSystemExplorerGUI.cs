@@ -965,8 +965,7 @@ namespace FileChooserDialog
         /// </summary>
         public void LaunchEByteFileEditor()
         {
-            new ByteFileEditorForm(null).Show(this);
-            UpdateWholeDisplay();      
+            new ByteFileEditorForm(null).Show(this);   
             
         }
 
