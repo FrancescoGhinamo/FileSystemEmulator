@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ByteFileEditor.Properties
+namespace TextDocumentEditor.Properties
 {
 
 

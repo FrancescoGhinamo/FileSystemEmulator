@@ -1,4 +1,4 @@
-﻿using ByteFileEditor.Frontend.GUI.MainForm;
+﻿using TextDocumentEditor.Frontend.GUI.MainForm;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ByteFileEditor.Frontend.GUI.MainForm;
 
 namespace FileChooserDialog
 {
@@ -327,6 +328,11 @@ namespace FileChooserDialog
             LaunchEByteFileEditor();
             //UpdateWholeDisplay();
         }
+
+        private void ETextDocumentEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LaunchTextDocumentEditor();
+        }
         #endregion EventHandlers
 
         #region BrowsingMethods
@@ -404,15 +410,23 @@ namespace FileChooserDialog
         /// <param name="fetched">Requested file</param>
         public void OpenEFile(EFile fetched)
         {
+            string[] param = new string[1];
             switch (fetched.Extension)
             {
                 case EByteFile.EXTENSION:
-                    string[] param = new string[1];
+                    
                     param[0] = fetched.Path;
                     new ByteFileEditorForm(param).Show(this);
                     break;
 
-                //add other cases for the other types of file
+                case ETextDocument.EXTENSION:
+                    
+                    param[0] = fetched.Path;
+                    new TextEditorForm(param).Show(this);
+                    break;
+
+
+                    //add other cases for the other types of file
 
             }
         }
@@ -968,6 +982,16 @@ namespace FileChooserDialog
             new ByteFileEditorForm(null).Show(this);   
             
         }
+
+        /// <summary>
+        /// Launches an instance of <see cref="TextEditorForm"/>
+        /// </summary>
+        public void LaunchTextDocumentEditor()
+        {
+            new TextEditorForm(null).Show(this);
+
+        }
+
 
 
 

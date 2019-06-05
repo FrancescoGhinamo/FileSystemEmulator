@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.ByteFileEditor.Backend.Service
+namespace ByteFileEditor.Backend.Service
 {
     /// <summary>
     /// Standard implementation of IFileService

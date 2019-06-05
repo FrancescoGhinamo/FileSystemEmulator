@@ -1,4 +1,4 @@
-﻿using ByteFileEditor.Frontend.GUI.MainForm;
+﻿using TextDocumentEditor.Frontend.GUI.MainForm;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem;

@@ -1,3 +1,4 @@
+using ByteFileEditor.Backend.Service;
 using FileChooserDialog;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFiles.Extensions;
@@ -5,7 +6,6 @@ using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces;
 using FileChooserDialog.FileSystemEmulator.Backend.Exceptions;
 using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs;
-using FileSystemEmulator.ByteFileEditor.Backend.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

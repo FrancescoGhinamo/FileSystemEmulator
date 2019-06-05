@@ -5,7 +5,7 @@ using FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem;
 using FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces;
 using FileChooserDialog.FileSystemEmulator.Backend.Exceptions;
 using FileChooserDialog.FileSystemEmulator.Frontend.GUI.FileDialogs;
-using FileSystemEmulator.ByteFileEditor.Backend.Service;
+using FileSystemEmulator.TextDocumentEditor.Backend.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ using System.Windows.Forms;
 
 
 
-namespace ByteFileEditor.Frontend.GUI.MainForm
+namespace TextDocumentEditor.Frontend.GUI.MainForm
 {
     /// <summary>
     /// Main form of the TextEditor
@@ -56,7 +56,7 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
                 if (fetched.Extension.Equals(ETextDocument.EXTENSION))
                 {
                     CurrentFile = (ETextDocument)fetched;
-                    //mostrare il file
+                    ShowFile();
                 }
                 else
                 {
@@ -71,22 +71,80 @@ namespace ByteFileEditor.Frontend.GUI.MainForm
 
         #region EventHandlers
 
-        
+        public static void Main()
+        {
+
+        }
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PerformNewFile();
+        }
+
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
         #endregion EventHandlers
 
-        
+
 
         #region FunctionMethods
 
-       
+        /// <summary>
+        /// Prompts operations to create a new file
+        /// </summary>
+        public void PerformNewFile()
+        {
+            DialogResult res = DialogResult.Yes;
+            if(CurrentFile != null)
+            {
+                res = MessageBox.Show(this, "A file is already open, do you wish to create a new one?", "New File", MessageBoxButtons.YesNo);
+            }
+
+            if(res.Equals(DialogResult.Yes))
+            {
+                CurrentFile = null;
+                txtText.Text = "";
+            }
+        }
+
+        /// <summary>
+        /// Opens a file
+        /// </summary>
+        public void PerformOpen()
+        {
+            FileChooser fc = new FileChooser(LocFileSystem.GetCurrentLocation());
+            if(fc.ShowDialog(this) == DialogResult.OK)
+            {
+                EFile got = fc.SelectedFile;
+                if(got.Extension.Equals(ETextDocument.EXTENSION))
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show(this, "The selected file is of wrong type", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+
 
         #endregion FunctionMethods
 
-
         #region DisplayMethods
 
-       
+        /// <summary>
+        /// Shows the <see cref="CurrentFile"/> on the form
+        /// </summary>
+        public void ShowFile()
+        {
+            txtText.Text = CurrentFile.Text;
+        }
+
+
+
 
 
         #endregion DisplayMethods

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSystemEmulator.ByteFileEditor.Backend.Service
+namespace TextDocumentEditor.Backend.Service
 {
     /// <summary>
     /// Container for <see cref="IFileService"/> factory methods

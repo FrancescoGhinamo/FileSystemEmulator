@@ -45,17 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ByteFileEditor\Backend\Service\FileServiceFactory.cs" />
-    <Compile Include="ByteFileEditor\Backend\Service\FileServiceImpl.cs" />
-    <Compile Include="ByteFileEditor\Backend\Service\IFileService.cs" />
-    <Compile Include="ByteFileEditor\Frontend\GUI\MainForm\TextEditorForm.cs">
+    <Compile Include="TextDocumentEditor\Backend\Service\FileServiceFactory.cs" />
+    <Compile Include="TextDocumentEditor\Backend\Service\FileServiceImpl.cs" />
+    <Compile Include="TextDocumentEditor\Backend\Service\IFileService.cs" />
+    <Compile Include="TextDocumentEditor\Frontend\GUI\MainForm\TextEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ByteFileEditor\Frontend\GUI\MainForm\TextEditorForm.Designer.cs">
+    <Compile Include="TextDocumentEditor\Frontend\GUI\MainForm\TextEditorForm.Designer.cs">
       <DependentUpon>TextEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ByteFileEditor\Frontend\GUI\MainForm\TextEditorForm.resx">
+    <EmbeddedResource Include="TextDocumentEditor\Frontend\GUI\MainForm\TextEditorForm.resx">
       <DependentUpon>TextEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
