@@ -21,20 +21,20 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Services.Implementations
         }
 
         /// <summary>
-        /// Mathod to retrieve an instance of <see cref="IFileSystemImpl"/> from fixed disk
+        /// Mathod to retrieve an instance of <see cref="FileSystemImpl"/> from fixed disk
         /// </summary>
         /// <param name="path">Source path</param>
-        /// <returns><see cref="IFileSystemImpl"/> instance retrieved from disk</returns>
+        /// <returns><see cref="FileSystemImpl"/> instance retrieved from disk</returns>
         /// /// <exception cref="Exception">A problem occured while accessing the file system</exception>
-        public IFileSystemImpl LoadFromDisk(string path)
+        public FileSystemImpl LoadFromDisk(string path)
         {
             Stream openStream = null;
-            IFileSystemImpl ris = null;
+            FileSystemImpl ris = null;
             try
             {
                 openStream = File.OpenRead(path);
                 BinaryFormatter formatter = new BinaryFormatter();
-                ris = (IFileSystemImpl) formatter.Deserialize(openStream);
+                ris = (FileSystemImpl) formatter.Deserialize(openStream);
             }
             catch (Exception e)
             {
@@ -52,12 +52,12 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Services.Implementations
         }
 
         /// <summary>
-        /// Method to persist the <see cref="IFileSystemImpl"/> on fixed disk
+        /// Method to persist the <see cref="FileSystemImpl"/> on fixed disk
         /// </summary>
-        /// <param name="fs"><see cref="IFileSystemImpl"/> to save on the disk</param>
+        /// <param name="fs"><see cref="FileSystemImpl"/> to save on the disk</param>
         /// <param name="path">Destination path of the file</param>
         
-        public void SaveOnDisk(IFileSystemImpl fs, string path)
+        public void SaveOnDisk(FileSystemImpl fs, string path)
         {
             Stream saveStream = null;
             try

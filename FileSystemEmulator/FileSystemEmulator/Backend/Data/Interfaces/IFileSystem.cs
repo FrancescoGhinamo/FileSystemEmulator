@@ -6,6 +6,7 @@ using FileSystemEmulator.Common.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces
     /// <summary>
     /// Decalration functionalities for a file system
     /// </summary>
-    public interface IFileSystem
+    public interface IFileSystem : ISerializable
     {
 
         /// <summary>
@@ -147,7 +148,7 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces
         /// <param name="filePath">Path from which retrieve the instance</param>
         /// <returns>Instance of EFileSystem</returns>
         /// <exception cref="Exception">An exception occured</exception>
-        IFileSystemImpl DeserializeFileSystem(string filePath);
+        FileSystemImpl DeserializeFileSystem(string filePath);
 
         /// <summary>
         /// Returns an <see cref="EFileList"/> containing all the <see cref="EFile"/> and directories of the EFileSystem
@@ -156,7 +157,7 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.Interfaces
         EFileList GetFileList();
 
         /// <summary>
-        /// Loads all the <see cref="EFile"/> contained in a <see cref="EFileList"/> in the current <see cref="IFileSystemImpl"/>
+        /// Loads all the <see cref="EFile"/> contained in a <see cref="EFileList"/> in the current <see cref="FileSystemImpl"/>
         /// </summary>
         /// <param name="fileList">List of files to add</param>
         /// <param name="format">True if the file system must be formatted before adding the files </param>

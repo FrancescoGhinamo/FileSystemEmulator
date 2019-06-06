@@ -24,22 +24,22 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
     /// Singleton class, only the same instance of this object can be used in the program
     /// </summary>
     [Serializable]
-    public class IFileSystemImpl : Subject, IFileSystem
+    public class FileSystemImpl : Subject, IFileSystem
     {
 
         #region Singleton
-        private static IFileSystemImpl me;
+        private static FileSystemImpl me;
 
         /// <summary>
         /// Internal instance getter
         /// </summary>
-        /// <returns>Instance of <see cref="IFileSystemImpl"/></returns>
-        internal static IFileSystemImpl GetInstance()
+        /// <returns>Instance of <see cref="FileSystemImpl"/></returns>
+        internal static FileSystemImpl GetInstance()
         {
             if (me == null)
             {
                 //if this objecy hasn't been instances yet, I instance it here
-                me = new IFileSystemImpl();
+                me = new FileSystemImpl();
                 me.SetChanged();
                 me.NotifyObserves("whole");
             }
@@ -71,6 +71,11 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             {
                 return Root.SubPaths;
             }
+
+            set
+            {
+
+            }
         }
 
         #endregion PublicFields
@@ -96,7 +101,7 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <summary>
         /// Default constructor, the root dir is C:
         /// </summary>
-        private IFileSystemImpl()
+        private FileSystemImpl()
         { 
             Root = new EDirectory("C:");
             CurrentLocation = Root.Path;
@@ -655,9 +660,9 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         /// <param name="filePath">Path from which retrieve the instance</param>
         /// <returns>Instance of EFileSystem</returns>
         /// <exception cref="Exception">An exception occured</exception>
-        public IFileSystemImpl DeserializeFileSystem(string filePath)
+        public FileSystemImpl DeserializeFileSystem(string filePath)
         {
-            IFileSystemImpl ris = null;
+            FileSystemImpl ris = null;
             ISerFileServices fS = FileServicesFactory.GetSerFileServices();
             try
             {
@@ -670,6 +675,30 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             me = ris;
             return GetInstance();
         }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("root", Root, typeof(EDirectory));
+            info.AddValue("pathsList", PathsList, typeof(PathList));
+            info.AddValue("currentLocation", CurrentLocation, typeof(string));
+            info.AddValue("temporaryCopy", _temporaryCopy, typeof(EFileList));
+        }
+
+        /// <summary>
+        /// Special constructor for deserialization
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
+        public FileSystemImpl(SerializationInfo info, StreamingContext context)
+        {
+            Root = (EDirectory)info.GetValue("root", typeof(EDirectory));
+            PathsList = (PathList)info.GetValue("pathsList", typeof(PathList));
+            CurrentLocation = (string)info.GetValue("currentLocation", typeof(string));
+            _temporaryCopy = (EFileList)info.GetValue("temporaryCopy", typeof(EFileList));
+
+        }
+
+
         #endregion Serialization
 
 
@@ -695,7 +724,7 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
         }
 
         /// <summary>
-        /// Loads all the <see cref="EFile"/> contained in a <see cref="EFileList"/> in the current <see cref="IFileSystemImpl"/>
+        /// Loads all the <see cref="EFile"/> contained in a <see cref="EFileList"/> in the current <see cref="FileSystemImpl"/>
         /// </summary>
         /// <param name="fileList">List of files to add</param>
         /// <param name="format">True if the file system must be formatted before adding the files </param>
@@ -736,6 +765,7 @@ namespace FileChooserDialog.FileSystemEmulator.Backend.Data.EmulatedFileSystem
             return Root.GetTreeNodes();
         }
 
+       
         #endregion InterfaceMethods
 
     }
