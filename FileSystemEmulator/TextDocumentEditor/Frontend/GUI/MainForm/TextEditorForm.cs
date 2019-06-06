@@ -116,6 +116,38 @@ namespace TextDocumentEditor.Frontend.GUI.MainForm
         #region FunctionMethods
 
         /// <summary>
+        /// Initializes the file chooser to open a file
+        /// </summary>
+        /// <returns></returns>
+        public OpenFileDialog InitOpenFileDialog()
+        {
+            OpenFileDialog res = new OpenFileDialog
+            {
+                AddExtension = true,
+                DefaultExt = ETextDocument.EXTENSION,
+                Filter = "Text files (*.txt)|*." + ETextDocument.EXTENSION
+
+            };
+            return res;
+        }
+
+        /// <summary>
+        /// Initializes the file chooser to save a file
+        /// </summary>
+        /// <returns></returns>
+        public SaveFileDialog InitSaveFileDialog()
+        {
+            SaveFileDialog res = new SaveFileDialog
+            {
+                AddExtension = true,
+                DefaultExt = ETextDocument.EXTENSION,
+                Filter = "Text files (*.txt)|*." + ETextDocument.EXTENSION
+
+            };
+            return res;
+        }
+
+        /// <summary>
         /// Prompts operations to create a new file
         /// </summary>
         public void PerformNewFile()
@@ -197,10 +229,7 @@ namespace TextDocumentEditor.Frontend.GUI.MainForm
         /// </summary>
         public void PerformImport()
         {
-            OpenFileDialog fd = new OpenFileDialog
-            {
-                DefaultExt = "txt"
-            };
+            OpenFileDialog fd = InitOpenFileDialog();
 
             if(fd.ShowDialog(this) == DialogResult.OK)
             {
@@ -217,11 +246,7 @@ namespace TextDocumentEditor.Frontend.GUI.MainForm
         public void PerformExport()
         {
             PerformSave();
-            SaveFileDialog fd = new SaveFileDialog
-            {
-                AddExtension = true,
-                DefaultExt = "txt"
-            };
+            SaveFileDialog fd = InitSaveFileDialog();
 
             if (fd.ShowDialog(this) == DialogResult.OK)
             {
