@@ -333,6 +333,12 @@ namespace FileChooserDialog
         {
             LaunchTextDocumentEditor();
         }
+
+
+        private void ForceUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateWholeDisplay();
+        }
         #endregion EventHandlers
 
         #region BrowsingMethods
@@ -991,6 +997,7 @@ namespace FileChooserDialog
             new TextEditorForm(null).Show(this);
 
         }
+
 
 
 

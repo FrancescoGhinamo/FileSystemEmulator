@@ -62,6 +62,8 @@ namespace FileChooserDialog
             this.programsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eByteFileEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eTextDocumentEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.forceUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContMain)).BeginInit();
             this.splitContMain.Panel1.SuspendLayout();
             this.splitContMain.Panel2.SuspendLayout();
@@ -180,7 +182,8 @@ namespace FileChooserDialog
             this.fileToolStripMenuItem,
             this.eFileToolStripMenuItem,
             this.eFileSystemToolStripMenuItem,
-            this.programsToolStripMenuItem});
+            this.programsToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(800, 28);
@@ -376,6 +379,21 @@ namespace FileChooserDialog
             this.eTextDocumentEditorToolStripMenuItem.Text = "ETextDocumentEditor";
             this.eTextDocumentEditorToolStripMenuItem.Click += new System.EventHandler(this.ETextDocumentEditorToolStripMenuItem_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.forceUpdateToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // forceUpdateToolStripMenuItem
+            // 
+            this.forceUpdateToolStripMenuItem.Name = "forceUpdateToolStripMenuItem";
+            this.forceUpdateToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.forceUpdateToolStripMenuItem.Text = "Force update";
+            this.forceUpdateToolStripMenuItem.Click += new System.EventHandler(this.ForceUpdateToolStripMenuItem_Click);
+            // 
             // FileSystemExplorerGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -438,6 +456,8 @@ namespace FileChooserDialog
         private System.Windows.Forms.ToolStripMenuItem textDocumentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eTextDocumentEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem forceUpdateToolStripMenuItem;
     }
 }
 
