@@ -73,6 +73,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Utils\Icons\Mcdo-Design-Hdd-Internal-Drive-180GB.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -265,6 +268,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FileSystemEmulator\Frontend\GUI\Components\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Utils\Icons\Elegantthemes-Beautiful-Flat-Document.ico" />
+    <Content Include="Utils\Icons\Mcdo-Design-Hdd-Internal-Drive-180GB.ico" />
+    <Content Include="Utils\Icons\Tuziibanez-Profesional-Red-Network-drive-connected.ico" />
+    <Content Include="Utils\Icons\Uriy1966-Steel-System-Windows.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

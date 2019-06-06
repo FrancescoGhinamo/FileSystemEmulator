@@ -30,6 +30,7 @@ namespace FileChooserDialog
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileChooser));
             this.listDirectory = new System.Windows.Forms.ListBox();
             this.splitContMain = new System.Windows.Forms.SplitContainer();
             this.btnGo = new System.Windows.Forms.Button();
@@ -256,6 +257,7 @@ namespace FileChooserDialog
             this.Controls.Add(this.butPanel);
             this.Controls.Add(this.splitContMain);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FileChooser";

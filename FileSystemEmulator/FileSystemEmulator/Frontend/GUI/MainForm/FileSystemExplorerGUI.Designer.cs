@@ -30,6 +30,7 @@ namespace FileChooserDialog
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileSystemExplorerGUI));
             this.listDirectory = new System.Windows.Forms.ListBox();
             this.splitContMain = new System.Windows.Forms.SplitContainer();
             this.btnGo = new System.Windows.Forms.Button();
@@ -401,6 +402,7 @@ namespace FileChooserDialog
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContMain);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FileSystemExplorerGUI";
             this.Text = "FileSystemEmulator";
