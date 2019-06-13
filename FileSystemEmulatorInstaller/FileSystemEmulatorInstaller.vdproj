@@ -104,7 +104,7 @@
             "SourcePath" = "8:..\\FileSystemEmulator\\bin\\Release\\FileSystemEmulator.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_209287C07E5046A59192D4AA690E01FC"
+            "Folder" = "8:_19D56DC73AE647EDB8AEE4CD38E4A91C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -127,7 +127,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_A735F6C2D0634A1FA4F9C59D4CE045C3"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\FDevs"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -135,26 +135,15 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_2D3F669ED9A34E19912E750E5D078517"
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_19D56DC73AE647EDB8AEE4CD38E4A91C"
                     {
-                    "Name" = "8:FDevs"
+                    "Name" = "8:FileSystemEmulator"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_5C205CA0D0CC40CA8822D23C99F0CB6B"
+                    "Property" = "8:_A3A9E996664D416EBACD3A426AEB4BF4"
                         "Folders"
                         {
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_209287C07E5046A59192D4AA690E01FC"
-                            {
-                            "Name" = "8:FileSystemEmulator"
-                            "AlwaysCreate" = "11:FALSE"
-                            "Condition" = "8:"
-                            "Transitive" = "11:FALSE"
-                            "Property" = "8:_A3A9E996664D416EBACD3A426AEB4BF4"
-                                "Folders"
-                                {
-                                }
-                            }
                         }
                     }
                 }
@@ -207,22 +196,22 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:FileSystemEmulatorInstaller"
+        "ProductName" = "8:FileSystemEmulator"
         "ProductCode" = "8:{ADB4F078-A3D5-42FD-93A8-10CBA120E47A}"
-        "PackageCode" = "8:{7C86DAD4-AA36-4612-8078-9887C98DB855}"
+        "PackageCode" = "8:{F52A20D0-F8F7-4562-AA6C-38A84BBA79FB}"
         "UpgradeCode" = "8:{FD8C1B12-1174-4F85-AE3D-EFA6604F31F5}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:Francesco Ghinamo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:FileSystemEmulatorInstaller"
+        "Title" = "8:FileSystemEmulator Installer"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Francsco Ghinamo"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -230,7 +219,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
@@ -339,7 +328,7 @@
             "Transitive" = "11:FALSE"
             "Target" = "8:_B1CE683F2D87473181B4E778A33AAEB5"
             "Folder" = "8:_CE67E3A993C6455794B41CEFBE8EF37C"
-            "WorkingFolder" = "8:_209287C07E5046A59192D4AA690E01FC"
+            "WorkingFolder" = "8:_19D56DC73AE647EDB8AEE4CD38E4A91C"
             "Icon" = "8:"
             "Feature" = "8:"
             }
@@ -353,7 +342,7 @@
             "Transitive" = "11:FALSE"
             "Target" = "8:_B1CE683F2D87473181B4E778A33AAEB5"
             "Folder" = "8:_EC22D9EE8DD2480FA57EA898CC95D935"
-            "WorkingFolder" = "8:_209287C07E5046A59192D4AA690E01FC"
+            "WorkingFolder" = "8:_19D56DC73AE647EDB8AEE4CD38E4A91C"
             "Icon" = "8:"
             "Feature" = "8:"
             }
